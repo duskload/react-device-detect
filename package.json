@@ -1,0 +1,53 @@
+{
+    "name": "react-device-detect",
+    "version": "0.1.0",
+    "description": "Detect device type and render your component according to it",
+    "main": "dist/index.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/duskload/react-device-detect/"
+    },
+    "peerDependencies": {
+        "react": "^16.0.0"
+    },
+    "dependencies": {
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0"
+    },
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "cover": "jest --coverage",
+        "start": "webpack --watch",
+        "build": "webpack"
+    },
+    "jest": {
+        "setupFiles": [
+            "./.jestSetup.js"
+        ],
+        "coveragePathIgnorePatterns": [
+            "/node_modules/",
+            "./.jestSetup.js"
+        ]
+    },
+    "author": {
+        "name": "Michael Laktionov",
+        "email": "duskload@gmail.com"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-jest": "^21.2.0",
+        "babel-loader": "^7.1.2",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.6.0",
+        "enzyme": "^3.1.0",
+        "enzyme-adapter-react-16": "^1.0.1",
+        "jest": "^21.2.1",
+        "react-test-renderer": "^16.0.0",
+        "ua-parser-js": "^0.7.17",
+        "webpack": "^3.7.1"
+    }
+}
