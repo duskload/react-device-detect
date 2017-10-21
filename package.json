@@ -9,7 +9,8 @@
         "url": "https://github.com/duskload/react-device-detect/"
     },
     "peerDependencies": {
-        "react": "^16.0.0"
+        "react": "^0.14.0 || ^15.0.0 || ^16",
+        "react-dom": "^0.14.0 || ^15.0.0 || ^16"
     },
     "dependencies": {
         "react": "^16.0.0",
