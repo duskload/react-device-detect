@@ -44,7 +44,7 @@ const isFirefoxType = () => {
 };
 
 const isSafariType = () => {
-    return browser.name === 'Safari' ? true : false;
+    return browser.name === 'Safari' || browser.name === 'Mobile Safari' ? true : false;
 };
 
 const isOperaType = () => {
