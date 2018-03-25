@@ -29,7 +29,7 @@ const getBrowserVersion = () => browser.version;
 const getOsVersion = () => os.version ? os.version : 'none';
 const getOsName = () => os.name ? os.name : 'none';
 const getBrowserName = () => browser.name;
-const getMobileVendor = () => device.vendor ? device.vendor : 'none'    ;
+const getMobileVendor = () => device.vendor ? device.vendor : 'none';
 const getMobileModel = () => device.model ? device.model : 'none';
 const getEngineName = () => engine.name;
 const getEngineVersion = () => engine.version;

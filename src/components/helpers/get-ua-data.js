@@ -8,12 +8,11 @@ export const device = UA.getDevice();
 export const engine = UA.getEngine();
 export const os = UA.getOS();
 export const ua = UA.getUA();
-export const setUA = (uaStr) => {
-    return UA.setUA(uaStr)
-}
+export const setUA = (uaStr) => UA.setUA(uaStr);
+
 export const mockUserAgent = (userAgent) => {
     const nav = window.navigator;
     nav.__defineGetter__('userAgent',() => {
         return userAgent;
     });
-}
+};

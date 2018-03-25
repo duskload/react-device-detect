@@ -11,15 +11,15 @@ const checkDeviceType = () => {
         case 'mobile':
             return {
                 isMobile: true
-            }
+            };
         case 'tablet':
             return {
                 isTablet: true
-            }
+            };
         case undefined:
             return {
                 isBrowser: true
-            }
+            };
         default:
             return {
                 isMobile: false,
@@ -35,7 +35,7 @@ const getCurrentBrowser = () => {
         return true
     } else {
         return false
-    }
+    };
 };
 
 const type = checkDeviceType();
@@ -43,7 +43,7 @@ const type = checkDeviceType();
 const deviceDetect = () => {
     const {isBrowser, isMobile, isTablet} = type;
     if (isBrowser) {        
-        const result = {
+        return {
             isBrowser: getCurrentBrowser(),
             browserMajorVersion: browser.major,
             browserFullVersion: browser.version,
@@ -53,20 +53,18 @@ const deviceDetect = () => {
             osName: os.name,
             osVersion: os.version,
             userAgent: ua
-        }
-        return result;
+        };
     }
 
     if (isMobile || isTablet) {
-        const result = {
+        return {
             ...type,
             vendor: device.vendor || "none",
             model: device.model || "none",
             os: os.name || "none",
             osVersion: os.version || "none",
             ua: ua || "none"
-        }
-        return result;
+        };
     }
 };
 
