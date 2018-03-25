@@ -87,6 +87,7 @@ var ua = exports.ua = UA.getUA();
 var setUA = exports.setUA = function setUA(uaStr) {
     return UA.setUA(uaStr);
 };
+
 var mockUserAgent = exports.mockUserAgent = function mockUserAgent(userAgent) {
     var nav = window.navigator;
     nav.__defineGetter__('userAgent', function () {
@@ -408,7 +409,7 @@ var getCurrentBrowser = function getCurrentBrowser() {
         return true;
     } else {
         return false;
-    }
+    };
 };
 
 var type = checkDeviceType();
@@ -419,7 +420,7 @@ var deviceDetect = function deviceDetect() {
         isTablet = type.isTablet;
 
     if (isBrowser) {
-        var result = {
+        return {
             isBrowser: getCurrentBrowser(),
             browserMajorVersion: _getUaData.browser.major,
             browserFullVersion: _getUaData.browser.version,
@@ -430,18 +431,16 @@ var deviceDetect = function deviceDetect() {
             osVersion: _getUaData.os.version,
             userAgent: _getUaData.ua
         };
-        return result;
     }
 
     if (isMobile || isTablet) {
-        var _result = _extends({}, type, {
+        return _extends({}, type, {
             vendor: _getUaData.device.vendor || "none",
             model: _getUaData.device.model || "none",
             os: _getUaData.os.name || "none",
             osVersion: _getUaData.os.version || "none",
             ua: _getUaData.ua || "none"
         });
-        return _result;
     }
 };
 
