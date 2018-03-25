@@ -8,7 +8,7 @@ To install, you can use npm or yarn:
 ```
 npm install react-device-detect --save
 
-`or`
+or
 
 yarn add react-device-detect
 ```
