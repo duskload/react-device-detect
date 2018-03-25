@@ -8,7 +8,7 @@ export const device = UA.getDevice();
 export const engine = UA.getEngine();
 export const os = UA.getOS();
 export const ua = UA.getUA();
-export const setStr = (uaStr) => {
+export const setUA = (uaStr) => {
     return UA.setUA(uaStr)
 }
 export const mockUserAgent = (userAgent) => {
