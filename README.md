@@ -96,18 +96,17 @@ const styles = {
 | isSafari     | bool | returns true if browser is `safari`                  |
 | isOpera      | bool | returns true if browser is `opera`                   |
 | isIE         | bool | returns true if browser is `ie`                      |
-| osVersion    | string | returns os version (e.g 7 for Windows or 6 for Android)|
-| osName       | string | returns os name (e.g Windows, Android) |
-| fullBrowserVersion | string | returns full browser version, like (65.0.3325.181 for Chrome) | 
-| browserVersion | string | returns browser `major` version (e.g 65 in Chrome or 9 in IE) |
+| osVersion    | string | returns os version (e.g 7 for `Windows` or 6 for `Android`)|
+| osName       | string | returns os name (e.g `Windows`, `Android`) |
+| fullBrowserVersion | string | returns full browser version (e.g 65.0.3325.181 for `Chrome`) | 
+| browserVersion | string | returns browser `major` version (e.g 65 in `Chrome` or 9 in `IE`) |
 | browserName | string | returns browser name |
-| mobileVendor | string | returns mobile device vendor. (e.g LG, iPhone etc) |
-| mobileModel | string | returns mobile device model (e.g Nexus 5) |
-| engineName | string | returns browser engine `name` (like gecko for FF or webkit for Chrome) |
+| mobileVendor | string | returns mobile device vendor (e.g `LG`, `iPhone` etc) |
+| mobileModel | string | returns mobile device model (e.g `Nexus 5`) |
+| engineName | string | returns browser engine `name` (e.g `Gecko` for FF or `WebKit` for Chrome) |
 | engineVersion | string | returns engine version |
 | getUA | string | returns user agent | 
-
-function `deviceDetect` returns data object for current device.
+| deviceDetect | function | return data object which includes all data about device (e.g version, engine, os etc.) | 
 
 ### Views 
 
