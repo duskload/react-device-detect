@@ -29,13 +29,26 @@ const checkDeviceType = () => {
     };
 };
 
+
 const getCurrentBrowser = () => {
-    const name = browser.name;
-    if (name === 'Chrome' || name === 'Firefox' || name === 'Opera' || name === 'Yandex' || name === 'Safari') {
-        return true
-    } else {
-        return false
-    };
+    switch (browser.name) {
+        case 'Chrome':
+            return true;
+        case 'Firefox':
+            return true;
+        case 'Opera':
+            return true;
+        case 'Yandex':
+            return true;
+        case 'Safari':
+            return true;
+        case 'IE':
+            return true;
+        case 'Edge':
+            return true;
+        default:
+            return false;
+    }
 };
 
 const type = checkDeviceType();

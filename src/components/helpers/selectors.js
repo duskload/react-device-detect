@@ -22,7 +22,8 @@ const isChromeType = () => browser.name === 'Chrome' ? true : false;
 const isFirefoxType = () => browser.name === 'Firefox' ? true : false;
 const isSafariType = () => browser.name === 'Safari' || browser.name === 'Mobile Safari' ? true : false;
 const isOperaType = () => browser.name === 'Opera' ? true : false;
-const isIEType = () => browser.name === 'Internet Explorer' ? true : false;
+const isIEType = () => browser.name === 'Internet Explorer' || browser.name === 'IE' ? true : false;
+const isEdgeType = () => browser.name === 'Edge' ? true : false;
 
 const getBrowserFullVersion = () => browser.major;
 const getBrowserVersion = () => browser.version;
@@ -47,6 +48,7 @@ export const isFirefox = isFirefoxType();
 export const isSafari = isSafariType();
 export const isOpera = isOperaType();
 export const isIE = isIEType();
+export const isEdge = isEdgeType()
 export const osVersion = getOsVersion();
 export const osName = getOsName();
 export const fullBrowserVersion = getBrowserFullVersion();

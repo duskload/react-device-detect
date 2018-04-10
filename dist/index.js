@@ -237,7 +237,7 @@ module.exports = require("react");
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = undefined;
+exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isEdge = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = undefined;
 
 var _getUaData = __webpack_require__(0);
 
@@ -284,7 +284,10 @@ var isOperaType = function isOperaType() {
     return _getUaData.browser.name === 'Opera' ? true : false;
 };
 var isIEType = function isIEType() {
-    return _getUaData.browser.name === 'Internet Explorer' ? true : false;
+    return _getUaData.browser.name === 'Internet Explorer' || _getUaData.browser.name === 'IE' ? true : false;
+};
+var isEdgeType = function isEdgeType() {
+    return _getUaData.browser.name === 'Edge' ? true : false;
 };
 
 var getBrowserFullVersion = function getBrowserFullVersion() {
@@ -330,6 +333,7 @@ var isFirefox = exports.isFirefox = isFirefoxType();
 var isSafari = exports.isSafari = isSafariType();
 var isOpera = exports.isOpera = isOperaType();
 var isIE = exports.isIE = isIEType();
+var isEdge = exports.isEdge = isEdgeType();
 var osVersion = exports.osVersion = getOsVersion();
 var osName = exports.osName = getOsName();
 var fullBrowserVersion = exports.fullBrowserVersion = getBrowserFullVersion();
@@ -404,12 +408,24 @@ var checkDeviceType = function checkDeviceType() {
 };
 
 var getCurrentBrowser = function getCurrentBrowser() {
-    var name = _getUaData.browser.name;
-    if (name === 'Chrome' || name === 'Firefox' || name === 'Opera' || name === 'Yandex' || name === 'Safari') {
-        return true;
-    } else {
-        return false;
-    };
+    switch (_getUaData.browser.name) {
+        case 'Chrome':
+            return true;
+        case 'Firefox':
+            return true;
+        case 'Opera':
+            return true;
+        case 'Yandex':
+            return true;
+        case 'Safari':
+            return true;
+        case 'IE':
+            return true;
+        case 'Edge':
+            return true;
+        default:
+            return false;
+    }
 };
 
 var type = checkDeviceType();
