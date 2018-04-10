@@ -99,6 +99,7 @@ const styles = {
 | isSafari     | bool | returns true if browser is `safari`                  |
 | isOpera      | bool | returns true if browser is `opera`                   |
 | isIE         | bool | returns true if browser is `ie`                      |
+| isEdge         | bool | returns true if browser is `edge`                      |
 | osVersion    | string | returns os version (e.g 7 for `Windows` or 6 for `Android`)|
 | osName       | string | returns os name (e.g `Windows`, `Android`) |
 | fullBrowserVersion | string | returns full browser version (e.g 65.0.3325.181 for `Chrome`) | 
