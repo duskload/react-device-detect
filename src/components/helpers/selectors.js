@@ -16,15 +16,19 @@ const isMobileAndTabletType = () => {
 
 const isSmartTVType = () => (device.type === "smarttv" ? true : false);
 const isBrowserType = () => (device.type === undefined ? true : false);
+const isWearableType = () => (device.type === 'wearable' ? true : false);
+const isConsoleType = () => (device.type === 'console' ? true : false);
 const isAndroidType = () => (os.name === "Android" ? true : false);
 const isWinPhoneType = () => (os.name === "Windows Phone" ? true : false);
 const isIOSType = () => (os.name === "iOS" ? true : false);
 const isChromeType = () => (browser.name === "Chrome" ? true : false);
 const isFirefoxType = () => (browser.name === "Firefox" ? true : false);
+const isChromiumType = () => (browser.name === 'Chromim' ? true : false);
 
 const isSafariType = () =>
   browser.name === "Safari" || browser.name === "Mobile Safari" ? true : false;
 
+const isMobileSafariType = () => browser.name === "Mobile Safari" ? true : false;
 const isOperaType = () => (browser.name === "Opera" ? true : false);
 const isIEType = () => (browser.name === "Internet Explorer" ? true : false);
 
@@ -40,6 +44,10 @@ const getEngineVersion = () => engine.version;
 const getUseragent = () => ua;
 
 export const isSmartTV = isSmartTVType();
+export const isConsole = isConsoleType();
+export const isWearable = isWearableType();
+export const isMobileSafari = isMobileSafariType();
+export const isChromium = isChromiumType();
 export const isMobile = isMobileAndTabletType();
 export const isMobileOnly = isMobileType();
 export const isTablet = isTabletType();

@@ -71,3 +71,27 @@ export const SmartTVView = props => {
     </div>
   ) : null;
 };
+
+export const ConsoleView = props => {
+  return props.device ? (
+    <div className={props.viewClassName} style={props.style}>
+      {props.children}
+    </div>
+  ) : null;
+};
+
+export const WearableView = props => {
+  return props.device ? (
+    <div className={props.viewClassName} style={props.style}>
+      {props.children}
+    </div>
+  ) : null;
+};
+
+export const CustomView = props => {
+  return props.condition ? (
+    <div className={props.viewClassName} style={props.style}>
+      {props.children}
+    </div>
+  ) : null;
+};

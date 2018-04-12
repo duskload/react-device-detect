@@ -1,93 +1,39 @@
 import { browser, device, os, ua, engine } from "./get-ua-data";
+import * as create from "./types";
 
-const checkDeviceType = () => {
-  switch (device.type) {
-    case "mobile":
-      return {
-        isMobile: true
-      };
-    case "tablet":
-      return {
-        isTablet: true
-      };
-    case "smarttv":
-      return {
-        isSmartTV: true
-      };
-    case undefined:
-      return {
-        isBrowser: true
-      };
-    default:
-      return {
-        isMobile: false,
-        isTablet: false,
-        isBrowser: false,
-        isSmartTV: false
-      };
-  }
-};
+const type = create.checkType(device.type);
 
-const getCurrentBrowser = () => {
-  switch (browser.name) {
-    case "Chrome":
-      return true;
-    case "Firefox":
-      return true;
-    case "Opera":
-      return true;
-    case "Yandex":
-      return true;
-    case "Safari":
-      return true;
-    case "IE":
-      return true;
-    case "Edge":
-      return true;
-    default:
-      return false;
-  }
-};
-
-const type = checkDeviceType();
-
-const deviceDetect = () => {
-  const { isBrowser, isMobile, isTablet, isSmartTV } = type;
+export default () => {
+  const {
+    isBrowser,
+    isMobile,
+    isTablet,
+    isSmartTV,
+    isConsole,
+    isWearable
+  } = type;
+  console.log
   if (isBrowser) {
-    return {
-      isBrowser: getCurrentBrowser(),
-      browserMajorVersion: browser.major,
-      browserFullVersion: browser.version,
-      browserName: browser.name,
-      engineName: engine.name || false,
-      engineVersion: engine.version,
-      osName: os.name,
-      osVersion: os.version,
-      userAgent: ua
-    };
+    return create.broPayload(isBrowser, browser, engine, os, ua);
   }
 
   if (isSmartTV) {
-    return {
-      isSmartTV,
-      engineName: engine.name || false,
-      engineVersion: engine.version,
-      osName: os.name,
-      osVersion: os.version,
-      userAgent: ua
-    };
+    return create.stvPayload(isSmartTV, engine, os, ua);
   }
 
-  if (isMobile || isTablet) {
-    return {
-      ...type,
-      vendor: device.vendor || "none",
-      model: device.model || "none",
-      os: os.name || "none",
-      osVersion: os.version || "none",
-      ua: ua || "none"
-    };
+  if (isConsole) {
+    return create.consolePayload(isConsole, engine, os, ua);
+  }
+
+  if (isMobile) {
+    return create.mobilePayload(type, device, os, ua);
+  }
+
+  if (isTablet) {
+    return create.mobilePayload(type, device, os, ua);
+  }
+
+  if (isWearable) {
+    return create.wearPayload(isWearable, engine, os, ua);
   }
 };
-
-export default deviceDetect;
