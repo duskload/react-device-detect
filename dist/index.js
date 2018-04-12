@@ -72,7 +72,7 @@ module.exports =
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var UAParser = __webpack_require__(5);
 
@@ -85,14 +85,14 @@ var engine = exports.engine = UA.getEngine();
 var os = exports.os = UA.getOS();
 var ua = exports.ua = UA.getUA();
 var setUA = exports.setUA = function setUA(uaStr) {
-    return UA.setUA(uaStr);
+  return UA.setUA(uaStr);
 };
 
 var mockUserAgent = exports.mockUserAgent = function mockUserAgent(userAgent) {
-    var nav = window.navigator;
-    nav.__defineGetter__('userAgent', function () {
-        return userAgent;
-    });
+  var nav = window.navigator;
+  nav.__defineGetter__("userAgent", function () {
+    return userAgent;
+  });
 };
 
 /***/ }),
@@ -147,9 +147,9 @@ exports.deviceDetect = _detect2.default;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.MobileOnlyView = exports.WinPhoneView = exports.TabletView = exports.MobileView = exports.IOSView = exports.IEView = exports.BrowserView = exports.AndroidView = undefined;
+exports.SmartTVView = exports.MobileOnlyView = exports.WinPhoneView = exports.TabletView = exports.MobileView = exports.IOSView = exports.IEView = exports.BrowserView = exports.AndroidView = undefined;
 
 var _react = __webpack_require__(3);
 
@@ -158,67 +158,75 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AndroidView = exports.AndroidView = function AndroidView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var BrowserView = exports.BrowserView = function BrowserView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var IEView = exports.IEView = function IEView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var IOSView = exports.IOSView = function IOSView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var MobileView = exports.MobileView = function MobileView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var TabletView = exports.TabletView = function TabletView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var WinPhoneView = exports.WinPhoneView = function WinPhoneView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 var MobileOnlyView = exports.MobileOnlyView = function MobileOnlyView(props) {
-    return props.device ? _react2.default.createElement(
-        'div',
-        { className: props.viewClassName, style: props.style },
-        props.children
-    ) : null;
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var SmartTVView = exports.SmartTVView = function SmartTVView(props) {
+  return props.device ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
 };
 
 /***/ }),
@@ -235,92 +243,95 @@ module.exports = require("react");
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isEdge = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = undefined;
+exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = exports.isSmartTV = undefined;
 
 var _getUaData = __webpack_require__(0);
 
 var isMobileType = function isMobileType() {
-    return _getUaData.device.type === 'mobile' ? true : false;
+  return _getUaData.device.type === "mobile" ? true : false;
 };
 var isTabletType = function isTabletType() {
-    return _getUaData.device.type === 'tablet' ? true : false;
+  return _getUaData.device.type === "tablet" ? true : false;
 };
 
 var isMobileAndTabletType = function isMobileAndTabletType() {
-    switch (_getUaData.device.type) {
-        case 'mobile':
-            return true;
-        case 'tablet':
-            return true;
-        default:
-            return false;
-    };
+  switch (_getUaData.device.type) {
+    case "mobile":
+      return true;
+    case "tablet":
+      return true;
+    default:
+      return false;
+  }
 };
 
+var isSmartTVType = function isSmartTVType() {
+  return _getUaData.device.type === "smarttv" ? true : false;
+};
 var isBrowserType = function isBrowserType() {
-    return _getUaData.device.type === undefined ? true : false;
+  return _getUaData.device.type === undefined ? true : false;
 };
 var isAndroidType = function isAndroidType() {
-    return _getUaData.os.name === 'Android' ? true : false;
+  return _getUaData.os.name === "Android" ? true : false;
 };
 var isWinPhoneType = function isWinPhoneType() {
-    return _getUaData.os.name === 'Windows Phone' ? true : false;
+  return _getUaData.os.name === "Windows Phone" ? true : false;
 };
 var isIOSType = function isIOSType() {
-    return _getUaData.os.name === 'iOS' ? true : false;
+  return _getUaData.os.name === "iOS" ? true : false;
 };
 var isChromeType = function isChromeType() {
-    return _getUaData.browser.name === 'Chrome' ? true : false;
+  return _getUaData.browser.name === "Chrome" ? true : false;
 };
 var isFirefoxType = function isFirefoxType() {
-    return _getUaData.browser.name === 'Firefox' ? true : false;
+  return _getUaData.browser.name === "Firefox" ? true : false;
 };
+
 var isSafariType = function isSafariType() {
-    return _getUaData.browser.name === 'Safari' || _getUaData.browser.name === 'Mobile Safari' ? true : false;
+  return _getUaData.browser.name === "Safari" || _getUaData.browser.name === "Mobile Safari" ? true : false;
 };
+
 var isOperaType = function isOperaType() {
-    return _getUaData.browser.name === 'Opera' ? true : false;
+  return _getUaData.browser.name === "Opera" ? true : false;
 };
 var isIEType = function isIEType() {
-    return _getUaData.browser.name === 'Internet Explorer' || _getUaData.browser.name === 'IE' ? true : false;
-};
-var isEdgeType = function isEdgeType() {
-    return _getUaData.browser.name === 'Edge' ? true : false;
+  return _getUaData.browser.name === "Internet Explorer" ? true : false;
 };
 
 var getBrowserFullVersion = function getBrowserFullVersion() {
-    return _getUaData.browser.major;
+  return _getUaData.browser.major;
 };
 var getBrowserVersion = function getBrowserVersion() {
-    return _getUaData.browser.version;
+  return _getUaData.browser.version;
 };
 var getOsVersion = function getOsVersion() {
-    return _getUaData.os.version ? _getUaData.os.version : 'none';
+  return _getUaData.os.version ? _getUaData.os.version : "none";
 };
 var getOsName = function getOsName() {
-    return _getUaData.os.name ? _getUaData.os.name : 'none';
+  return _getUaData.os.name ? _getUaData.os.name : "none";
 };
 var getBrowserName = function getBrowserName() {
-    return _getUaData.browser.name;
+  return _getUaData.browser.name;
 };
 var getMobileVendor = function getMobileVendor() {
-    return _getUaData.device.vendor ? _getUaData.device.vendor : 'none';
+  return _getUaData.device.vendor ? _getUaData.device.vendor : "none";
 };
 var getMobileModel = function getMobileModel() {
-    return _getUaData.device.model ? _getUaData.device.model : 'none';
+  return _getUaData.device.model ? _getUaData.device.model : "none";
 };
 var getEngineName = function getEngineName() {
-    return _getUaData.engine.name;
+  return _getUaData.engine.name;
 };
 var getEngineVersion = function getEngineVersion() {
-    return _getUaData.engine.version;
+  return _getUaData.engine.version;
 };
 var getUseragent = function getUseragent() {
-    return _getUaData.ua;
+  return _getUaData.ua;
 };
 
+var isSmartTV = exports.isSmartTV = isSmartTVType();
 var isMobile = exports.isMobile = isMobileAndTabletType();
 var isMobileOnly = exports.isMobileOnly = isMobileType();
 var isTablet = exports.isTablet = isTabletType();
@@ -333,7 +344,6 @@ var isFirefox = exports.isFirefox = isFirefoxType();
 var isSafari = exports.isSafari = isSafariType();
 var isOpera = exports.isOpera = isOperaType();
 var isIE = exports.isIE = isIEType();
-var isEdge = exports.isEdge = isEdgeType();
 var osVersion = exports.osVersion = getOsVersion();
 var osName = exports.osName = getOsName();
 var fullBrowserVersion = exports.fullBrowserVersion = getBrowserFullVersion();
@@ -377,7 +387,7 @@ module.exports = __webpack_amd_options__;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -385,79 +395,96 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _getUaData = __webpack_require__(0);
 
 var checkDeviceType = function checkDeviceType() {
-    switch (_getUaData.device.type) {
-        case 'mobile':
-            return {
-                isMobile: true
-            };
-        case 'tablet':
-            return {
-                isTablet: true
-            };
-        case undefined:
-            return {
-                isBrowser: true
-            };
-        default:
-            return {
-                isMobile: false,
-                isTablet: false,
-                isBrowser: false
-            };
-    };
+  switch (_getUaData.device.type) {
+    case "mobile":
+      return {
+        isMobile: true
+      };
+    case "tablet":
+      return {
+        isTablet: true
+      };
+    case "smarttv":
+      return {
+        isSmartTV: true
+      };
+    case undefined:
+      return {
+        isBrowser: true
+      };
+    default:
+      return {
+        isMobile: false,
+        isTablet: false,
+        isBrowser: false,
+        isSmartTV: false
+      };
+  }
 };
 
 var getCurrentBrowser = function getCurrentBrowser() {
-    switch (_getUaData.browser.name) {
-        case 'Chrome':
-            return true;
-        case 'Firefox':
-            return true;
-        case 'Opera':
-            return true;
-        case 'Yandex':
-            return true;
-        case 'Safari':
-            return true;
-        case 'IE':
-            return true;
-        case 'Edge':
-            return true;
-        default:
-            return false;
-    }
+  switch (_getUaData.browser.name) {
+    case "Chrome":
+      return true;
+    case "Firefox":
+      return true;
+    case "Opera":
+      return true;
+    case "Yandex":
+      return true;
+    case "Safari":
+      return true;
+    case "IE":
+      return true;
+    case "Edge":
+      return true;
+    default:
+      return false;
+  }
 };
 
 var type = checkDeviceType();
 
 var deviceDetect = function deviceDetect() {
-    var isBrowser = type.isBrowser,
-        isMobile = type.isMobile,
-        isTablet = type.isTablet;
+  var isBrowser = type.isBrowser,
+      isMobile = type.isMobile,
+      isTablet = type.isTablet,
+      isSmartTV = type.isSmartTV;
 
-    if (isBrowser) {
-        return {
-            isBrowser: getCurrentBrowser(),
-            browserMajorVersion: _getUaData.browser.major,
-            browserFullVersion: _getUaData.browser.version,
-            browserName: _getUaData.browser.name,
-            engineName: _getUaData.engine.name || false,
-            engineVersion: _getUaData.engine.version,
-            osName: _getUaData.os.name,
-            osVersion: _getUaData.os.version,
-            userAgent: _getUaData.ua
-        };
-    }
+  if (isBrowser) {
+    return {
+      isBrowser: getCurrentBrowser(),
+      browserMajorVersion: _getUaData.browser.major,
+      browserFullVersion: _getUaData.browser.version,
+      browserName: _getUaData.browser.name,
+      engineName: _getUaData.engine.name || false,
+      engineVersion: _getUaData.engine.version,
+      osName: _getUaData.os.name,
+      osVersion: _getUaData.os.version,
+      userAgent: _getUaData.ua
+    };
+  }
 
-    if (isMobile || isTablet) {
-        return _extends({}, type, {
-            vendor: _getUaData.device.vendor || "none",
-            model: _getUaData.device.model || "none",
-            os: _getUaData.os.name || "none",
-            osVersion: _getUaData.os.version || "none",
-            ua: _getUaData.ua || "none"
-        });
-    }
+  if (isSmartTV) {
+    return {
+      isSmartTV: isSmartTV,
+      engineName: _getUaData.engine.name || false,
+      engineVersion: _getUaData.engine.version,
+      osName: _getUaData.os.name,
+      osVersion: _getUaData.os.version,
+      userAgent: _getUaData.ua
+    };
+  }
+
+  if (isMobile || isTablet) {
+    return _extends({}, type, {
+      vendor: _getUaData.device.vendor || "none",
+      model: _getUaData.device.model || "none",
+      os: _getUaData.os.name || "none",
+      osVersion: _getUaData.os.version || "none",
+      ua: _getUaData.ua || "none"
+    });
+  }
 };
 
 exports.default = deviceDetect;

@@ -85,12 +85,14 @@ const styles = {
 ## Selectors and views
 
 ### Selectors
+
 |     prop     | type |                    description                       |
 |--------------|------|------------------------------------------------------|
 | isMobile     | bool | returns true if device type is `mobile` or `tablet` |
 | isMobileOnly | bool | returns true if device type is `mobile`              |
 | isTablet     | bool | returns true if device type is `tablet`              |
 | isBrowser    | bool | returns true if device type is `browser`             |
+| isSmartTV     | bool | returns true if device type is `smarttv` |
 | isAndroid    | bool | returns true if os type is `android`                 |
 | isWinPhone   | bool | returns true if os type is `win phone`               |
 | isIOS        | bool | returns true if os type is `ios`                     |
@@ -126,6 +128,7 @@ Currently available views:
 | IEView         | takes `isIE` prop            |
 | WinPhoneView   | takes `isWinPhone` prop      |
 | MobileOnlyView | takes `isMobileOnly` prop    |
+| SmartTVView | takes `isMobileOnly` prop    |
 
 Each view takes four props:
 

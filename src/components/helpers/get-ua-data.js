@@ -1,4 +1,4 @@
-const UAParser = require('../../../node_modules/ua-parser-js/dist/ua-parser.min');
+const UAParser = require("../../../node_modules/ua-parser-js/dist/ua-parser.min");
 
 export const UA = new UAParser();
 
@@ -8,11 +8,11 @@ export const device = UA.getDevice();
 export const engine = UA.getEngine();
 export const os = UA.getOS();
 export const ua = UA.getUA();
-export const setUA = (uaStr) => UA.setUA(uaStr);
+export const setUA = uaStr => UA.setUA(uaStr);
 
-export const mockUserAgent = (userAgent) => {
-    const nav = window.navigator;
-    nav.__defineGetter__('userAgent',() => {
-        return userAgent;
-    });
+export const mockUserAgent = userAgent => {
+  const nav = window.navigator;
+  nav.__defineGetter__("userAgent", () => {
+    return userAgent;
+  });
 };
