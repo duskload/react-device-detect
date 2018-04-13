@@ -1,21 +1,17 @@
-import {
-  mockUserAgent,
-  UA,
-  setUA
-} from "../../src/components/helpers/get-ua-data";
+import { mockUserAgent, UA, setUA } from "../components/helpers/get-ua-data";
 
 const commonTestUa =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36";
 
 describe("Parsing useragent", () => {
-  test("should set useragent with mockUserAgent", () => {
+  it("should set useragent with mockUserAgent", () => {
     const uaStr =
       "Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9B206";
     mockUserAgent(uaStr);
     expect(window.navigator.userAgent).toEqual(uaStr);
   });
 
-  test("should get device data", () => {
+  it("should get device data", () => {
     const uaStr =
       "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Mobile Safari/537.36";
     setUA(uaStr);
@@ -29,7 +25,7 @@ describe("Parsing useragent", () => {
     expect(data).toMatchObject(matchingData);
   });
 
-  test("should get browser data", () => {
+  it("should get browser data", () => {
     setUA(commonTestUa);
     const data = UA.getBrowser();
     const matchingData = {
@@ -40,7 +36,7 @@ describe("Parsing useragent", () => {
     expect(data).toMatchObject(matchingData);
   });
 
-  test("should get engine data", () => {
+  it("should get engine data", () => {
     setUA(commonTestUa);
     const data = UA.getEngine();
     const matchingData = {
@@ -50,7 +46,7 @@ describe("Parsing useragent", () => {
     expect(data).toMatchObject(matchingData);
   });
 
-  test("should get engine data", () => {
+  it("should get engine data", () => {
     setUA(commonTestUa);
     const data = UA.getCPU();
     const matchingData = {
@@ -59,7 +55,7 @@ describe("Parsing useragent", () => {
     expect(data).toMatchObject(matchingData);
   });
 
-  test("should get engine data", () => {
+  it("should get engine data", () => {
     setUA(commonTestUa);
     const data = UA.getOS();
     const matchingData = {
@@ -69,7 +65,7 @@ describe("Parsing useragent", () => {
     expect(data).toMatchObject(matchingData);
   });
 
-  test("should get engine data", () => {
+  it("should get engine data", () => {
     setUA(commonTestUa);
     const data = UA.getUA();
     expect(data).toEqual(commonTestUa);
