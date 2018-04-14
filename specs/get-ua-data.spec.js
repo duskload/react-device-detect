@@ -1,4 +1,4 @@
-import { mockUserAgent, UA, setUA } from "../components/helpers/get-ua-data";
+import { mockUserAgent, UA, setUA } from "../src/components/helpers/get-ua-data";
 
 const commonTestUa =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36";

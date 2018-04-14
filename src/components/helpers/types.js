@@ -108,7 +108,7 @@ export const consolePayload = (isConsole, engine, os, ua) => {
   };
 };
 
-export const createWearablePayload = (isWearable, engine, os, ua) => {
+export const wearPayload = (isWearable, engine, os, ua) => {
   return {
     isWearable,
     engineName: engine.name || false,

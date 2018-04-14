@@ -7,7 +7,7 @@ import {
   MobileView,
   TabletView,
   WinPhoneView
-} from "../components/views";
+} from "../src/components/views";
 
 describe("Views tests", () => {
   describe("AndroidView", () => {

@@ -20,8 +20,13 @@
     "build": "webpack"
   },
   "jest": {
-    "setupFiles": ["./.jestSetup.js"],
-    "coveragePathIgnorePatterns": ["/node_modules/", "./.jestSetup.js"]
+    "setupFiles": [
+      "./.jestSetup.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "./.jestSetup.js"
+    ]
   },
   "author": {
     "name": "Michael Laktionov",

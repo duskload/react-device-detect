@@ -12,7 +12,6 @@ export default () => {
     isConsole,
     isWearable
   } = type;
-  console.log
   if (isBrowser) {
     return create.broPayload(isBrowser, browser, engine, os, ua);
   }
