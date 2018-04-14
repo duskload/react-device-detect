@@ -93,15 +93,19 @@ const styles = {
 | isTablet     | bool | returns true if device type is `tablet`              |
 | isBrowser    | bool | returns true if device type is `browser`             |
 | isSmartTV     | bool | returns true if device type is `smarttv` |
-| isAndroid    | bool | returns true if os type is `android`                 |
-| isWinPhone   | bool | returns true if os type is `win phone`               |
-| isIOS        | bool | returns true if os type is `ios`                     |
-| isChrome     | bool | returns true if browser is `chrome`                  |
-| isFirefox    | bool | returns true if browser is `firefox`                 |
-| isSafari     | bool | returns true if browser is `safari`                  |
-| isOpera      | bool | returns true if browser is `opera`                   |
-| isIE         | bool | returns true if browser is `ie`                      |
-| isEdge         | bool | returns true if browser is `edge`                      |
+| isWearable     | bool | returns true if device type is `wearable` |
+| isConsole | bool | returns true if device type is `console` |
+| isAndroid    | bool | returns true if os type is `Android`                 |
+| isWinPhone   | bool | returns true if os type is `Windows Phone`               |
+| isIOS        | bool | returns true if os type is `iOS`                     |
+| isChrome     | bool | returns true if browser is `Chrome`                  |
+| isFirefox    | bool | returns true if browser is `Firefox`                 |
+| isSafari     | bool | returns true if browser is `Safari`                  |
+| isOpera      | bool | returns true if browser is `Opera`                   |
+| isIE         | bool | returns true if browser is `Internet Explorer`                      |
+| isEdge         | bool | returns true if browser is `Edge`                      |
+| isChromium         | bool | returns true if browser is `Chromium`                      |
+| isMobileSafari         | bool | returns true if browser is `Mobile Safari`                      |
 | osVersion    | string | returns os version (e.g 7 for `Windows` or 6 for `Android`)|
 | osName       | string | returns os name (e.g `Windows`, `Android`) |
 | fullBrowserVersion | string | returns full browser version (e.g 65.0.3325.181 for `Chrome`) | 
@@ -128,9 +132,16 @@ Currently available views:
 | IEView         | takes `isIE` prop            |
 | WinPhoneView   | takes `isWinPhone` prop      |
 | MobileOnlyView | takes `isMobileOnly` prop    |
-| SmartTVView | takes `isMobileOnly` prop    |
+| SmartTVView | takes `isSmartTV` prop    |
+| ConsoleView | takes `isConsole` prop    |
+| WearableView | takes `isWearable` prop    |
 
-Each view takes four props:
+|     view       |      condition                  |
+|----------------|------------------------------|
+| CustomView     | takes `any` expression which results into boolean (e.g browserName === 'Chrome')        |
+
+
+Each view (except CustomView) takes four props:
 
 1. `device` - takes device prop to render the view
 2. `viewClassName` - to style the view
