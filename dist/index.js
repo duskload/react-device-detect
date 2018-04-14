@@ -447,7 +447,6 @@ exports.default = function () {
       isConsole = type.isConsole,
       isWearable = type.isWearable;
 
-  console.log;
   if (isBrowser) {
     return create.broPayload(isBrowser, _getUaData.browser, _getUaData.engine, _getUaData.os, _getUaData.ua);
   }
@@ -595,7 +594,7 @@ var consolePayload = exports.consolePayload = function consolePayload(isConsole,
   };
 };
 
-var createWearablePayload = exports.createWearablePayload = function createWearablePayload(isWearable, engine, os, ua) {
+var wearPayload = exports.wearPayload = function wearPayload(isWearable, engine, os, ua) {
   return {
     isWearable: isWearable,
     engineName: engine.name || false,

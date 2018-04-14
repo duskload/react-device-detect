@@ -59,6 +59,21 @@ render() {
 }
 ```
 
+If you want to render a view on specific device and with specific condition:
+
+```javascript
+import { browserName, CustomView } from 'react-device-detect';
+
+render() {
+    return (
+        <CustomView condition={browserName === "Chrome"}>
+            <div>...content</div>
+        </CustomView>
+    )
+}
+```
+
+
 ## Style the view
 
 Yoa can style view component by passing class to `viewClassName` prop
