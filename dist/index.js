@@ -419,17 +419,36 @@ var _getUaData = __webpack_require__(0);
 
 var _types = __webpack_require__(1);
 
+var CHROME = _types.BROWSER_TYPES.CHROME,
+    CHROMIUM = _types.BROWSER_TYPES.CHROMIUM,
+    IE = _types.BROWSER_TYPES.IE,
+    INTERNET_EXPLORER = _types.BROWSER_TYPES.INTERNET_EXPLORER,
+    OPERA = _types.BROWSER_TYPES.OPERA,
+    FIREFOX = _types.BROWSER_TYPES.FIREFOX,
+    SAFARI = _types.BROWSER_TYPES.SAFARI,
+    MOBILE_SAFARI = _types.BROWSER_TYPES.MOBILE_SAFARI;
+var MOBILE = _types.DEVICE_TYPES.MOBILE,
+    TABLET = _types.DEVICE_TYPES.TABLET,
+    SMART_TV = _types.DEVICE_TYPES.SMART_TV,
+    BROWSER = _types.DEVICE_TYPES.BROWSER,
+    WEARABLE = _types.DEVICE_TYPES.WEARABLE,
+    CONSOLE = _types.DEVICE_TYPES.CONSOLE;
+var ANDROID = _types.OS_TYPES.ANDROID,
+    WINDOWS_PHONE = _types.OS_TYPES.WINDOWS_PHONE,
+    IOS = _types.OS_TYPES.IOS;
+
+
 var isMobileType = function isMobileType() {
-  return _getUaData.device.type === _types.DEVICE_TYPES.MOBILE;
+  return _getUaData.device.type === MOBILE;
 };
 var isTabletType = function isTabletType() {
-  return _getUaData.device.type === _types.DEVICE_TYPES.TABLET;
+  return _getUaData.device.type === TABLET;
 };
 
 var isMobileAndTabletType = function isMobileAndTabletType() {
   switch (_getUaData.device.type) {
-    case _types.DEVICE_TYPES.MOBILE:
-    case _types.DEVICE_TYPES.TABLET:
+    case MOBILE:
+    case TABLET:
       return true;
     default:
       return false;
@@ -437,48 +456,48 @@ var isMobileAndTabletType = function isMobileAndTabletType() {
 };
 
 var isSmartTVType = function isSmartTVType() {
-  return _getUaData.device.type === _types.DEVICE_TYPES.SMART_TV;
+  return _getUaData.device.type === SMART_TV;
 };
 var isBrowserType = function isBrowserType() {
-  return _getUaData.device.type === _types.DEVICE_TYPES.BROWSER;
+  return _getUaData.device.type === BROWSER;
 };
 var isWearableType = function isWearableType() {
-  return _getUaData.device.type === _types.DEVICE_TYPES.WEARABLE;
+  return _getUaData.device.type === WEARABLE;
 };
 var isConsoleType = function isConsoleType() {
-  return _getUaData.device.type === _types.DEVICE_TYPES.CONSOLE;
+  return _getUaData.device.type === CONSOLE;
 };
 var isAndroidType = function isAndroidType() {
-  return _getUaData.os.name === _types.OS_TYPES.ANDROID;
+  return _getUaData.os.name === ANDROID;
 };
 var isWinPhoneType = function isWinPhoneType() {
-  return _getUaData.os.name === _types.OS_TYPES.WINDOWS_PHONE;
+  return _getUaData.os.name === WINDOWS_PHONE;
 };
 var isIOSType = function isIOSType() {
-  return _getUaData.os.name === _types.OS_TYPES.IOS;
+  return _getUaData.os.name === IOS;
 };
 var isChromeType = function isChromeType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.CHROME;
+  return _getUaData.browser.name === CHROME;
 };
 var isFirefoxType = function isFirefoxType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.FIREFOX;
+  return _getUaData.browser.name === FIREFOX;
 };
 var isChromiumType = function isChromiumType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.CHROMIUM;
+  return _getUaData.browser.name === CHROMIUM;
 };
 
 var isSafariType = function isSafariType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.SAFARI || _getUaData.browser.name === _types.BROWSER_TYPES.MOBILE_SAFARI;
+  return _getUaData.browser.name === SAFARI || _getUaData.browser.name === MOBILE_SAFARI;
 };
 
 var isMobileSafariType = function isMobileSafariType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.MOBILE_SAFARI;
+  return _getUaData.browser.name === MOBILE_SAFARI;
 };
 var isOperaType = function isOperaType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.OPERA;
+  return _getUaData.browser.name === OPERA;
 };
 var isIEType = function isIEType() {
-  return _getUaData.browser.name === _types.BROWSER_TYPES.INTERNET_EXPLORER;
+  return _getUaData.browser.name === INTERNET_EXPLORER || _getUaData.browser.name === IE;
 };
 
 var getBrowserFullVersion = function getBrowserFullVersion() {

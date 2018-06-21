@@ -1,36 +1,50 @@
 import { os, device, browser, ua, engine } from "./get-ua-data";
-import { BROWSER_TYPES, DEVICE_TYPES, OS_TYPES } from './types';
+import { BROWSER_TYPES, DEVICE_TYPES, OS_TYPES } from "./types";
 
-const isMobileType = () => device.type === DEVICE_TYPES.MOBILE;
-const isTabletType = () => device.type === DEVICE_TYPES.TABLET;
+const {
+  CHROME,
+  CHROMIUM,
+  IE,
+  INTERNET_EXPLORER,
+  OPERA,
+  FIREFOX,
+  SAFARI,
+  MOBILE_SAFARI
+} = BROWSER_TYPES;
+const { MOBILE, TABLET, SMART_TV, BROWSER, WEARABLE, CONSOLE } = DEVICE_TYPES;
+const { ANDROID, WINDOWS_PHONE, IOS } = OS_TYPES;
+
+const isMobileType = () => device.type === MOBILE;
+const isTabletType = () => device.type === TABLET;
 
 const isMobileAndTabletType = () => {
   switch (device.type) {
-    case DEVICE_TYPES.MOBILE:
-    case DEVICE_TYPES.TABLET:
+    case MOBILE:
+    case TABLET:
       return true;
     default:
       return false;
   }
 };
 
-const isSmartTVType = () => device.type === DEVICE_TYPES.SMART_TV;
-const isBrowserType = () => device.type === DEVICE_TYPES.BROWSER;
-const isWearableType = () => device.type === DEVICE_TYPES.WEARABLE;
-const isConsoleType = () => device.type === DEVICE_TYPES.CONSOLE;
-const isAndroidType = () => os.name === OS_TYPES.ANDROID;
-const isWinPhoneType = () => os.name === OS_TYPES.WINDOWS_PHONE;
-const isIOSType = () => os.name === OS_TYPES.IOS;
-const isChromeType = () => browser.name === BROWSER_TYPES.CHROME;
-const isFirefoxType = () => browser.name === BROWSER_TYPES.FIREFOX;
-const isChromiumType = () => browser.name === BROWSER_TYPES.CHROMIUM;
+const isSmartTVType = () => device.type === SMART_TV;
+const isBrowserType = () => device.type === BROWSER;
+const isWearableType = () => device.type === WEARABLE;
+const isConsoleType = () => device.type === CONSOLE;
+const isAndroidType = () => os.name === ANDROID;
+const isWinPhoneType = () => os.name === WINDOWS_PHONE;
+const isIOSType = () => os.name === IOS;
+const isChromeType = () => browser.name === CHROME;
+const isFirefoxType = () => browser.name === FIREFOX;
+const isChromiumType = () => browser.name === CHROMIUM;
 
 const isSafariType = () =>
-  browser.name === BROWSER_TYPES.SAFARI || browser.name === BROWSER_TYPES.MOBILE_SAFARI;
+  browser.name === SAFARI || browser.name === MOBILE_SAFARI;
 
-const isMobileSafariType = () => browser.name === BROWSER_TYPES.MOBILE_SAFARI;
-const isOperaType = () => browser.name === BROWSER_TYPES.OPERA;
-const isIEType = () => browser.name === BROWSER_TYPES.INTERNET_EXPLORER;
+const isMobileSafariType = () => browser.name === MOBILE_SAFARI;
+const isOperaType = () => browser.name === OPERA;
+const isIEType = () =>
+  browser.name === INTERNET_EXPLORER || browser.name === IE;
 
 const getBrowserFullVersion = () => browser.major;
 const getBrowserVersion = () => browser.version;

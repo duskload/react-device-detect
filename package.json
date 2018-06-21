@@ -1,6 +1,6 @@
 {
   "name": "react-device-detect",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Detect device type and render your component according to it",
   "main": "dist/index.js",
   "typings": "./index.d.ts",
@@ -9,6 +9,20 @@
     "type": "git",
     "url": "https://github.com/duskload/react-device-detect/"
   },
+  "keywords": [
+    "useragent",
+    "mobile",
+    "phone",
+    "tablet",
+    "detect",
+    "device",
+    "browser",
+    "smart-tv",
+    "smarttv",
+    "version",
+    "model",
+    "console"
+  ],
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16",
     "react-dom": "^0.14.0 || ^15.0.0 || ^16"
