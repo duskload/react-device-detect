@@ -413,7 +413,7 @@ module.exports = require("react");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = exports.isChromium = exports.isMobileSafari = exports.isWearable = exports.isConsole = exports.isSmartTV = undefined;
+exports.isYandex = exports.isEdge = exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = exports.isChromium = exports.isMobileSafari = exports.isWearable = exports.isConsole = exports.isSmartTV = undefined;
 
 var _getUaData = __webpack_require__(0);
 
@@ -426,7 +426,9 @@ var CHROME = _types.BROWSER_TYPES.CHROME,
     OPERA = _types.BROWSER_TYPES.OPERA,
     FIREFOX = _types.BROWSER_TYPES.FIREFOX,
     SAFARI = _types.BROWSER_TYPES.SAFARI,
-    MOBILE_SAFARI = _types.BROWSER_TYPES.MOBILE_SAFARI;
+    MOBILE_SAFARI = _types.BROWSER_TYPES.MOBILE_SAFARI,
+    EDGE = _types.BROWSER_TYPES.EDGE,
+    YANDEX = _types.BROWSER_TYPES.YANDEX;
 var MOBILE = _types.DEVICE_TYPES.MOBILE,
     TABLET = _types.DEVICE_TYPES.TABLET,
     SMART_TV = _types.DEVICE_TYPES.SMART_TV,
@@ -485,11 +487,15 @@ var isFirefoxType = function isFirefoxType() {
 var isChromiumType = function isChromiumType() {
   return _getUaData.browser.name === CHROMIUM;
 };
-
+var isEdgeType = function isEdgeType() {
+  return _getUaData.browser.name === EDGE;
+};
+var isYandexType = function isYandexType() {
+  return _getUaData.browser.name === YANDEX;
+};
 var isSafariType = function isSafariType() {
   return _getUaData.browser.name === SAFARI || _getUaData.browser.name === MOBILE_SAFARI;
 };
-
 var isMobileSafariType = function isMobileSafariType() {
   return _getUaData.browser.name === MOBILE_SAFARI;
 };
@@ -558,6 +564,8 @@ var mobileModel = exports.mobileModel = getMobileModel();
 var engineName = exports.engineName = getEngineName();
 var engineVersion = exports.engineVersion = getEngineVersion();
 var getUA = exports.getUA = getUseragent();
+var isEdge = exports.isEdge = isEdgeType();
+var isYandex = exports.isYandex = isYandexType();
 
 /***/ }),
 /* 6 */

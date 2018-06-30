@@ -125,6 +125,7 @@ const styles = {
 | isOpera            | bool     | returns true if browser is `Opera`                                                     |
 | isIE               | bool     | returns true if browser is `Internet Explorer`                                         |
 | isEdge             | bool     | returns true if browser is `Edge`                                                      |
+| isYandex           | bool     | returns true if browser is `Yandex`                                                    |
 | isChromium         | bool     | returns true if browser is `Chromium`                                                  |
 | isMobileSafari     | bool     | returns true if browser is `Mobile Safari`                                             |
 | osVersion          | string   | returns os version (e.g 7 for `Windows` or 6 for `Android`)                            |

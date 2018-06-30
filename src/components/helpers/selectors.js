@@ -9,7 +9,9 @@ const {
   OPERA,
   FIREFOX,
   SAFARI,
-  MOBILE_SAFARI
+  MOBILE_SAFARI,
+  EDGE,
+  YANDEX
 } = BROWSER_TYPES;
 const { MOBILE, TABLET, SMART_TV, BROWSER, WEARABLE, CONSOLE } = DEVICE_TYPES;
 const { ANDROID, WINDOWS_PHONE, IOS } = OS_TYPES;
@@ -37,10 +39,10 @@ const isIOSType = () => os.name === IOS;
 const isChromeType = () => browser.name === CHROME;
 const isFirefoxType = () => browser.name === FIREFOX;
 const isChromiumType = () => browser.name === CHROMIUM;
-
+const isEdgeType = () => browser.name === EDGE;
+const isYandexType = () => browser.name === YANDEX;
 const isSafariType = () =>
   browser.name === SAFARI || browser.name === MOBILE_SAFARI;
-
 const isMobileSafariType = () => browser.name === MOBILE_SAFARI;
 const isOperaType = () => browser.name === OPERA;
 const isIEType = () =>
@@ -84,3 +86,5 @@ export const mobileModel = getMobileModel();
 export const engineName = getEngineName();
 export const engineVersion = getEngineVersion();
 export const getUA = getUseragent();
+export const isEdge = isEdgeType();
+export const isYandex = isYandexType();
