@@ -21,14 +21,19 @@ Any view component has one required prop `device` to which you pass prop which i
 Example:
 
 ```javascript
-import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
 ```
 
 ```html
-<BrowserView device={isBrowser}>
+<BrowserView>
     <h1> This is rendered only in browser </h1>
 </BrowserView>
-<MobileView device={isMobile}>
+<MobileView>
     <h1> This is rendered only on mobile </h1>
 </MobileView>
 ```
@@ -98,7 +103,7 @@ const styles = {
 ```
 
 ```html
-<BrowserView style={styles} device={isBrowser}>
+<BrowserView style={styles}>
     <p> View content</p>
 </BrowserView>
 ```
@@ -142,32 +147,26 @@ const styles = {
 
 ### Views
 
-Currently available views:
+Available views:
 
-| view           | device                    |
-| -------------- | ------------------------- |
-| MobileView     | takes `isMobile` prop     |
-| BrowserView    | takes `isBrowser` prop    |
-| TabletView     | takes `isTablet` prop     |
-| AndroidView    | takes `isAndroid` prop    |
-| IOSView        | takes `isIOS` prop        |
-| IEView         | takes `isIE` prop         |
-| WinPhoneView   | takes `isWinPhone` prop   |
-| MobileOnlyView | takes `isMobileOnly` prop |
-| SmartTVView    | takes `isSmartTV` prop    |
-| ConsoleView    | takes `isConsole` prop    |
-| WearableView   | takes `isWearable` prop   |
+- MobileView
+- BrowserView
+- TabletView
+- AndroidView
+- IOSView
+- IEView
+- WinPhoneView
+- MobileOnlyView
+- SmartTVView
+- ConsoleView
+- WearableView
+- CustomView -- has `condition` prop which takes any expression which results into boolean (e.g browserName === 'Chrome')
 
-| view       | condition                                                                        |
-| ---------- | -------------------------------------------------------------------------------- |
-| CustomView | takes `any` expression which results into boolean (e.g browserName === 'Chrome') |
+Each view accepts three props:
 
-Each view (except CustomView) takes four props:
-
-1.  `device` - takes device prop to render the view
-2.  `viewClassName` - to style the view
-3.  `style` - to add inline styles to view
-4.  `children` - to pass children to view
+1.  `viewClassName` - to style the view
+2.  `style` - to add inline styles to view
+3.  `children` - to pass children to view
 
 ## License
 

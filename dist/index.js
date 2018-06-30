@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -104,320 +104,11 @@ var mockUserAgent = exports.mockUserAgent = function mockUserAgent(userAgent) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.wearPayload = exports.consolePayload = exports.stvPayload = exports.mobilePayload = exports.broPayload = exports.getCurrentBrowser = exports.checkType = exports.OS_TYPES = exports.BROWSER_TYPES = exports.DEVICE_TYPES = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _getUaData = __webpack_require__(0);
-
-var DEVICE_TYPES = exports.DEVICE_TYPES = {
-  MOBILE: 'mobile',
-  TABLET: 'tablet',
-  SMART_TV: 'smarttv',
-  CONSOLE: 'console',
-  WEARABLE: 'wearable',
-  BROWSER: undefined
-};
-
-var BROWSER_TYPES = exports.BROWSER_TYPES = {
-  CHROME: 'Chrome',
-  FIREFOX: "Firefox",
-  OPERA: "Opera",
-  YANDEX: "Yandex",
-  SAFARI: "Safari",
-  INTERNET_EXPLORER: "Internet Explorer",
-  EDGE: "Edge",
-  CHROMIUM: "Chromium",
-  IE: 'IE',
-  MOBILE_SAFARI: "Mobile Safari"
-};
-
-var OS_TYPES = exports.OS_TYPES = {
-  IOS: 'iOS',
-  ANDROID: "Android",
-  WINDOWS_PHONE: "Windows Phone"
-};
-
-var initialData = {
-  isMobile: false,
-  isTablet: false,
-  isBrowser: false,
-  isSmartTV: false,
-  isConsole: false,
-  isWearable: false
-};
-
-var checkType = exports.checkType = function checkType(type) {
-  switch (type) {
-    case DEVICE_TYPES.MOBILE:
-      return { isMobile: true };
-    case DEVICE_TYPES.TABLET:
-      return { isTablet: true };
-    case DEVICE_TYPES.SMART_TV:
-      return { isSmartTV: true };
-    case DEVICE_TYPES.CONSOLE:
-      return { isConsole: true };
-    case DEVICE_TYPES.WEARABLE:
-      return { isWearable: true };
-    case DEVICE_TYPES.BROWSER:
-      return { isBrowser: true };
-    default:
-      return initialData;
-  }
-};
-
-var getCurrentBrowser = exports.getCurrentBrowser = function getCurrentBrowser(name) {
-  switch (name) {
-    case BROWSER_TYPES.CHROME:
-    case BROWSER_TYPES.FIREFOX:
-    case BROWSER_TYPES.OPERA:
-    case BROWSER_TYPES.YANDEX:
-    case BROWSER_TYPES.SAFARI:
-    case BROWSER_TYPES.IE:
-    case BROWSER_TYPES.EDGE:
-    case BROWSER_TYPES.CHROMIUM:
-      return true;
-    default:
-      return false;
-  }
-};
-
-var broPayload = exports.broPayload = function broPayload(isBrowser, browser, engine, os, ua) {
-  return {
-    isBrowser: isBrowser,
-    browserMajorVersion: browser.major,
-    browserFullVersion: browser.version,
-    browserName: browser.name,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
-
-var mobilePayload = exports.mobilePayload = function mobilePayload(type, device, os, ua) {
-  return _extends({}, type, {
-    vendor: device.vendor || "none",
-    model: device.model || "none",
-    os: os.name || "none",
-    osVersion: os.version || "none",
-    ua: ua || "none"
-  });
-};
-
-var stvPayload = exports.stvPayload = function stvPayload(isSmartTV, engine, os, ua) {
-  return {
-    isSmartTV: isSmartTV,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
-
-var consolePayload = exports.consolePayload = function consolePayload(isConsole, engine, os, ua) {
-  return {
-    isConsole: isConsole,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
-
-var wearPayload = exports.wearPayload = function wearPayload(isWearable, engine, os, ua) {
-  return {
-    isWearable: isWearable,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.deviceDetect = undefined;
-
-var _views = __webpack_require__(3);
-
-Object.keys(_views).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _views[key];
-    }
-  });
-});
-
-var _selectors = __webpack_require__(5);
-
-Object.keys(_selectors).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _selectors[key];
-    }
-  });
-});
-
-var _detect = __webpack_require__(8);
-
-var _detect2 = _interopRequireDefault(_detect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.deviceDetect = _detect2.default;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CustomView = exports.WearableView = exports.ConsoleView = exports.SmartTVView = exports.MobileOnlyView = exports.WinPhoneView = exports.TabletView = exports.MobileView = exports.IOSView = exports.IEView = exports.BrowserView = exports.AndroidView = undefined;
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var AndroidView = exports.AndroidView = function AndroidView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var BrowserView = exports.BrowserView = function BrowserView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var IEView = exports.IEView = function IEView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var IOSView = exports.IOSView = function IOSView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var MobileView = exports.MobileView = function MobileView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var TabletView = exports.TabletView = function TabletView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var WinPhoneView = exports.WinPhoneView = function WinPhoneView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var MobileOnlyView = exports.MobileOnlyView = function MobileOnlyView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var SmartTVView = exports.SmartTVView = function SmartTVView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var ConsoleView = exports.ConsoleView = function ConsoleView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var WearableView = exports.WearableView = function WearableView(props) {
-  return props.device ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-var CustomView = exports.CustomView = function CustomView(props) {
-  return props.condition ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
-  ) : null;
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("react");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.isYandex = exports.isEdge = exports.getUA = exports.engineVersion = exports.engineName = exports.mobileModel = exports.mobileVendor = exports.browserName = exports.browserVersion = exports.fullBrowserVersion = exports.osName = exports.osVersion = exports.isIE = exports.isOpera = exports.isSafari = exports.isFirefox = exports.isChrome = exports.isIOS = exports.isWinPhone = exports.isAndroid = exports.isBrowser = exports.isTablet = exports.isMobileOnly = exports.isMobile = exports.isChromium = exports.isMobileSafari = exports.isWearable = exports.isConsole = exports.isSmartTV = undefined;
 
 var _getUaData = __webpack_require__(0);
 
-var _types = __webpack_require__(1);
+var _types = __webpack_require__(2);
 
 var CHROME = _types.BROWSER_TYPES.CHROME,
     CHROMIUM = _types.BROWSER_TYPES.CHROMIUM,
@@ -568,6 +259,317 @@ var isEdge = exports.isEdge = isEdgeType();
 var isYandex = exports.isYandex = isYandexType();
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.wearPayload = exports.consolePayload = exports.stvPayload = exports.mobilePayload = exports.broPayload = exports.getCurrentBrowser = exports.checkType = exports.OS_TYPES = exports.BROWSER_TYPES = exports.DEVICE_TYPES = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _getUaData = __webpack_require__(0);
+
+var DEVICE_TYPES = exports.DEVICE_TYPES = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  SMART_TV: 'smarttv',
+  CONSOLE: 'console',
+  WEARABLE: 'wearable',
+  BROWSER: undefined
+};
+
+var BROWSER_TYPES = exports.BROWSER_TYPES = {
+  CHROME: 'Chrome',
+  FIREFOX: "Firefox",
+  OPERA: "Opera",
+  YANDEX: "Yandex",
+  SAFARI: "Safari",
+  INTERNET_EXPLORER: "Internet Explorer",
+  EDGE: "Edge",
+  CHROMIUM: "Chromium",
+  IE: 'IE',
+  MOBILE_SAFARI: "Mobile Safari"
+};
+
+var OS_TYPES = exports.OS_TYPES = {
+  IOS: 'iOS',
+  ANDROID: "Android",
+  WINDOWS_PHONE: "Windows Phone"
+};
+
+var initialData = {
+  isMobile: false,
+  isTablet: false,
+  isBrowser: false,
+  isSmartTV: false,
+  isConsole: false,
+  isWearable: false
+};
+
+var checkType = exports.checkType = function checkType(type) {
+  switch (type) {
+    case DEVICE_TYPES.MOBILE:
+      return { isMobile: true };
+    case DEVICE_TYPES.TABLET:
+      return { isTablet: true };
+    case DEVICE_TYPES.SMART_TV:
+      return { isSmartTV: true };
+    case DEVICE_TYPES.CONSOLE:
+      return { isConsole: true };
+    case DEVICE_TYPES.WEARABLE:
+      return { isWearable: true };
+    case DEVICE_TYPES.BROWSER:
+      return { isBrowser: true };
+    default:
+      return initialData;
+  }
+};
+
+var getCurrentBrowser = exports.getCurrentBrowser = function getCurrentBrowser(name) {
+  switch (name) {
+    case BROWSER_TYPES.CHROME:
+    case BROWSER_TYPES.FIREFOX:
+    case BROWSER_TYPES.OPERA:
+    case BROWSER_TYPES.YANDEX:
+    case BROWSER_TYPES.SAFARI:
+    case BROWSER_TYPES.IE:
+    case BROWSER_TYPES.EDGE:
+    case BROWSER_TYPES.CHROMIUM:
+      return true;
+    default:
+      return false;
+  }
+};
+
+var broPayload = exports.broPayload = function broPayload(isBrowser, browser, engine, os, ua) {
+  return {
+    isBrowser: isBrowser,
+    browserMajorVersion: browser.major,
+    browserFullVersion: browser.version,
+    browserName: browser.name,
+    engineName: engine.name || false,
+    engineVersion: engine.version,
+    osName: os.name,
+    osVersion: os.version,
+    userAgent: ua
+  };
+};
+
+var mobilePayload = exports.mobilePayload = function mobilePayload(type, device, os, ua) {
+  return _extends({}, type, {
+    vendor: device.vendor || "none",
+    model: device.model || "none",
+    os: os.name || "none",
+    osVersion: os.version || "none",
+    ua: ua || "none"
+  });
+};
+
+var stvPayload = exports.stvPayload = function stvPayload(isSmartTV, engine, os, ua) {
+  return {
+    isSmartTV: isSmartTV,
+    engineName: engine.name || false,
+    engineVersion: engine.version,
+    osName: os.name,
+    osVersion: os.version,
+    userAgent: ua
+  };
+};
+
+var consolePayload = exports.consolePayload = function consolePayload(isConsole, engine, os, ua) {
+  return {
+    isConsole: isConsole,
+    engineName: engine.name || false,
+    engineVersion: engine.version,
+    osName: os.name,
+    osVersion: os.version,
+    userAgent: ua
+  };
+};
+
+var wearPayload = exports.wearPayload = function wearPayload(isWearable, engine, os, ua) {
+  return {
+    isWearable: isWearable,
+    engineName: engine.name || false,
+    engineVersion: engine.version,
+    osName: os.name,
+    osVersion: os.version,
+    userAgent: ua
+  };
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.deviceDetect = undefined;
+
+var _views = __webpack_require__(4);
+
+Object.keys(_views).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _views[key];
+    }
+  });
+});
+
+var _selectors = __webpack_require__(1);
+
+Object.keys(_selectors).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _selectors[key];
+    }
+  });
+});
+
+var _detect = __webpack_require__(8);
+
+var _detect2 = _interopRequireDefault(_detect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.deviceDetect = _detect2.default;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CustomView = exports.WearableView = exports.ConsoleView = exports.SmartTVView = exports.MobileOnlyView = exports.WinPhoneView = exports.TabletView = exports.MobileView = exports.IOSView = exports.IEView = exports.BrowserView = exports.AndroidView = undefined;
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _selectors = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var AndroidView = exports.AndroidView = function AndroidView(props) {
+  return _selectors.isAndroid ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var BrowserView = exports.BrowserView = function BrowserView(props) {
+  return _selectors.isBrowser ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var IEView = exports.IEView = function IEView(props) {
+  return _selectors.isIE ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var IOSView = exports.IOSView = function IOSView(props) {
+  return _selectors.isIOS ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var MobileView = exports.MobileView = function MobileView(props) {
+  return _selectors.isMobile ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var TabletView = exports.TabletView = function TabletView(props) {
+  return _selectors.isTablet ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var WinPhoneView = exports.WinPhoneView = function WinPhoneView(props) {
+  return _selectors.isWinPhone ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var MobileOnlyView = exports.MobileOnlyView = function MobileOnlyView(props) {
+  return _selectors.isMobileOnly ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var SmartTVView = exports.SmartTVView = function SmartTVView(props) {
+  return _selectors.isSmartTV ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var ConsoleView = exports.ConsoleView = function ConsoleView(props) {
+  return _selectors.isConsole ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var WearableView = exports.WearableView = function WearableView(props) {
+  return _selectors.isWearable ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+var CustomView = exports.CustomView = function CustomView(props) {
+  return props.condition ? _react2.default.createElement(
+    "div",
+    { className: props.viewClassName, style: props.style },
+    props.children
+  ) : null;
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = require("react");
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -604,7 +606,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _getUaData = __webpack_require__(0);
 
-var _types = __webpack_require__(1);
+var _types = __webpack_require__(2);
 
 var create = _interopRequireWildcard(_types);
 

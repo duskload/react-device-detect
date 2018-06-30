@@ -1,7 +1,20 @@
 import React from "react";
+import {
+  isAndroid,
+  isBrowser,
+  isIOS,
+  isMobile,
+  isIE,
+  isWinPhone,
+  isSmartTV,
+  isMobileOnly,
+  isWearable,
+  isConsole,
+  isTablet
+} from "../helpers/selectors";
 
 export const AndroidView = props => {
-  return props.device ? (
+  return isAndroid ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -9,7 +22,7 @@ export const AndroidView = props => {
 };
 
 export const BrowserView = props => {
-  return props.device ? (
+  return isBrowser ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -17,7 +30,7 @@ export const BrowserView = props => {
 };
 
 export const IEView = props => {
-  return props.device ? (
+  return isIE ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -25,7 +38,7 @@ export const IEView = props => {
 };
 
 export const IOSView = props => {
-  return props.device ? (
+  return isIOS ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -33,7 +46,7 @@ export const IOSView = props => {
 };
 
 export const MobileView = props => {
-  return props.device ? (
+  return isMobile ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -41,7 +54,7 @@ export const MobileView = props => {
 };
 
 export const TabletView = props => {
-  return props.device ? (
+  return isTablet ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -49,7 +62,7 @@ export const TabletView = props => {
 };
 
 export const WinPhoneView = props => {
-  return props.device ? (
+  return isWinPhone ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -57,7 +70,7 @@ export const WinPhoneView = props => {
 };
 
 export const MobileOnlyView = props => {
-  return props.device ? (
+  return isMobileOnly ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -65,7 +78,7 @@ export const MobileOnlyView = props => {
 };
 
 export const SmartTVView = props => {
-  return props.device ? (
+  return isSmartTV ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -73,7 +86,7 @@ export const SmartTVView = props => {
 };
 
 export const ConsoleView = props => {
-  return props.device ? (
+  return isConsole ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
@@ -81,7 +94,7 @@ export const ConsoleView = props => {
 };
 
 export const WearableView = props => {
-  return props.device ? (
+  return isWearable ? (
     <div className={props.viewClassName} style={props.style}>
       {props.children}
     </div>
