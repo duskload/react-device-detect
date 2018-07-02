@@ -91,8 +91,6 @@ declare module "react-device-detect" {
 
   export const isMobileOnly: boolean;
 
-  export const isBrowser: boolean;
-
   export const isAndroid: boolean;
 
   export const isWinPhone: boolean;
