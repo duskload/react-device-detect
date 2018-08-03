@@ -16,8 +16,6 @@ yarn add react-device-detect
 
 ## Usage
 
-Any view component has one required prop `device` to which you pass prop which identifies if view should be rendered.
-
 Example:
 
 ```javascript

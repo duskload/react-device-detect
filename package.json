@@ -1,6 +1,6 @@
 {
   "name": "react-device-detect",
-  "version": "1.5.8",
+  "version": "1.5.9",
   "description": "Detect device type and render your component according to it",
   "main": "dist/index.js",
   "typings": "./index.d.ts",
@@ -60,7 +60,7 @@
     "jest": "^21.2.1",
     "raf": "^3.4.0",
     "react-test-renderer": "^16.0.0",
-    "ua-parser-js": "^0.7.17",
+    "ua-parser-js": "^0.7.18",
     "webpack": "^3.7.1"
   }
 }
