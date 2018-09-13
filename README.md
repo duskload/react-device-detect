@@ -165,6 +165,7 @@ Each view accepts three props:
 1.  `viewClassName` - to style the view
 2.  `style` - to add inline styles to view
 3.  `children` - to pass children to view
+4.  `ghost` - to remove surrounding `div` container
 
 ## License
 
