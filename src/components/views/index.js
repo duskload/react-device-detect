@@ -15,7 +15,8 @@ import {
 
 export const AndroidView = props => {
   return isAndroid ? 
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -25,7 +26,8 @@ export const AndroidView = props => {
 
 export const BrowserView = props => {
   return isBrowser ? 
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -35,7 +37,8 @@ export const BrowserView = props => {
 
 export const IEView = props => {
   return isIE ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -45,7 +48,8 @@ export const IEView = props => {
 
 export const IOSView = props => {
   return isIOS ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -55,7 +59,8 @@ export const IOSView = props => {
 
 export const MobileView = props => {
   return isMobile ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -65,7 +70,8 @@ export const MobileView = props => {
 
 export const TabletView = props => {
   return isTablet ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -75,7 +81,8 @@ export const TabletView = props => {
 
 export const WinPhoneView = props => {
   return isWinPhone ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -85,7 +92,8 @@ export const WinPhoneView = props => {
 
 export const MobileOnlyView = props => {
   return isMobileOnly ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -95,7 +103,8 @@ export const MobileOnlyView = props => {
 
 export const SmartTVView = props => {
   return isSmartTV ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -105,7 +114,8 @@ export const SmartTVView = props => {
 
 export const ConsoleView = props => {
   return isConsole ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -115,7 +125,8 @@ export const ConsoleView = props => {
 
 export const WearableView = props => {
   return isWearable ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
@@ -125,7 +136,8 @@ export const WearableView = props => {
 
 export const CustomView = props => {
   return props.condition ?  
-    props.ghost ? (<Fragment>{props.children}</Fragment>) : 
+    (props.renderWithFragment || props.noContainer) ? 
+    (<Fragment>{props.children}</Fragment>) : 
     (
       <div className={props.viewClassName} style={props.style}>
         {props.children}
