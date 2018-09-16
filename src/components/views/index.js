@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 import {
   isAndroid,
   isBrowser,
@@ -11,136 +11,148 @@ import {
   isWearable,
   isConsole,
   isTablet
-} from "../helpers/selectors";
+} from '../helpers/selectors';
 
-export const AndroidView = props => {
-  return isAndroid ? 
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const AndroidView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isAndroid ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const BrowserView = props => {
-  return isBrowser ? 
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const BrowserView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isBrowser ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const IEView = props => {
-  return isIE ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const IEView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isIE ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const IOSView = props => {
-  return isIOS ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const IOSView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isIOS ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const MobileView = props => {
-  return isMobile ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const MobileView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isMobile ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const TabletView = props => {
-  return isTablet ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const TabletView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isTablet ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const WinPhoneView = props => {
-  return isWinPhone ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const WinPhoneView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isWinPhone ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const MobileOnlyView = props => {
-  return isMobileOnly ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const MobileOnlyView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isMobileOnly ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const SmartTVView = props => {
-  return isSmartTV ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const SmartTVView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isSmartTV ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const ConsoleView = props => {
-  return isConsole ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const ConsoleView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isConsole ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const WearableView = props => {
-  return isWearable ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const WearableView = ({ renderWithFragment, children, viewClassName, style }) => {
+  return isWearable ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };
 
-export const CustomView = props => {
-  return props.condition ?  
-    (props.renderWithFragment || props.noContainer) ? 
-    (<Fragment>{props.children}</Fragment>) : 
-    (
-      <div className={props.viewClassName} style={props.style}>
-        {props.children}
+export const CustomView = ({ renderWithFragment, children, viewClassName, style, condition }) => {
+  return condition ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div className={viewClassName} style={style}>
+        {children}
       </div>
-    ) : null;
+    )
+  ) : null;
 };

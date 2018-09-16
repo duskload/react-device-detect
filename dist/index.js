@@ -467,99 +467,208 @@ var _selectors = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var AndroidView = exports.AndroidView = function AndroidView(props) {
-  return _selectors.isAndroid ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var AndroidView = exports.AndroidView = function AndroidView(_ref) {
+  var renderWithFragment = _ref.renderWithFragment,
+      children = _ref.children,
+      viewClassName = _ref.viewClassName,
+      style = _ref.style;
+
+  return _selectors.isAndroid ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var BrowserView = exports.BrowserView = function BrowserView(props) {
-  return _selectors.isBrowser ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var BrowserView = exports.BrowserView = function BrowserView(_ref2) {
+  var renderWithFragment = _ref2.renderWithFragment,
+      children = _ref2.children,
+      viewClassName = _ref2.viewClassName,
+      style = _ref2.style;
+
+  return _selectors.isBrowser ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var IEView = exports.IEView = function IEView(props) {
-  return _selectors.isIE ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var IEView = exports.IEView = function IEView(_ref3) {
+  var renderWithFragment = _ref3.renderWithFragment,
+      children = _ref3.children,
+      viewClassName = _ref3.viewClassName,
+      style = _ref3.style;
+
+  return _selectors.isIE ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var IOSView = exports.IOSView = function IOSView(props) {
-  return _selectors.isIOS ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var IOSView = exports.IOSView = function IOSView(_ref4) {
+  var renderWithFragment = _ref4.renderWithFragment,
+      children = _ref4.children,
+      viewClassName = _ref4.viewClassName,
+      style = _ref4.style;
+
+  return _selectors.isIOS ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var MobileView = exports.MobileView = function MobileView(props) {
-  return _selectors.isMobile ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var MobileView = exports.MobileView = function MobileView(_ref5) {
+  var renderWithFragment = _ref5.renderWithFragment,
+      children = _ref5.children,
+      viewClassName = _ref5.viewClassName,
+      style = _ref5.style;
+
+  return _selectors.isMobile ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var TabletView = exports.TabletView = function TabletView(props) {
-  return _selectors.isTablet ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var TabletView = exports.TabletView = function TabletView(_ref6) {
+  var renderWithFragment = _ref6.renderWithFragment,
+      children = _ref6.children,
+      viewClassName = _ref6.viewClassName,
+      style = _ref6.style;
+
+  return _selectors.isTablet ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var WinPhoneView = exports.WinPhoneView = function WinPhoneView(props) {
-  return _selectors.isWinPhone ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var WinPhoneView = exports.WinPhoneView = function WinPhoneView(_ref7) {
+  var renderWithFragment = _ref7.renderWithFragment,
+      children = _ref7.children,
+      viewClassName = _ref7.viewClassName,
+      style = _ref7.style;
+
+  return _selectors.isWinPhone ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var MobileOnlyView = exports.MobileOnlyView = function MobileOnlyView(props) {
-  return _selectors.isMobileOnly ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var MobileOnlyView = exports.MobileOnlyView = function MobileOnlyView(_ref8) {
+  var renderWithFragment = _ref8.renderWithFragment,
+      children = _ref8.children,
+      viewClassName = _ref8.viewClassName,
+      style = _ref8.style;
+
+  return _selectors.isMobileOnly ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var SmartTVView = exports.SmartTVView = function SmartTVView(props) {
-  return _selectors.isSmartTV ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var SmartTVView = exports.SmartTVView = function SmartTVView(_ref9) {
+  var renderWithFragment = _ref9.renderWithFragment,
+      children = _ref9.children,
+      viewClassName = _ref9.viewClassName,
+      style = _ref9.style;
+
+  return _selectors.isSmartTV ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var ConsoleView = exports.ConsoleView = function ConsoleView(props) {
-  return _selectors.isConsole ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var ConsoleView = exports.ConsoleView = function ConsoleView(_ref10) {
+  var renderWithFragment = _ref10.renderWithFragment,
+      children = _ref10.children,
+      viewClassName = _ref10.viewClassName,
+      style = _ref10.style;
+
+  return _selectors.isConsole ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var WearableView = exports.WearableView = function WearableView(props) {
-  return _selectors.isWearable ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var WearableView = exports.WearableView = function WearableView(_ref11) {
+  var renderWithFragment = _ref11.renderWithFragment,
+      children = _ref11.children,
+      viewClassName = _ref11.viewClassName,
+      style = _ref11.style;
+
+  return _selectors.isWearable ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
-var CustomView = exports.CustomView = function CustomView(props) {
-  return props.condition ? _react2.default.createElement(
-    "div",
-    { className: props.viewClassName, style: props.style },
-    props.children
+var CustomView = exports.CustomView = function CustomView(_ref12) {
+  var renderWithFragment = _ref12.renderWithFragment,
+      children = _ref12.children,
+      viewClassName = _ref12.viewClassName,
+      style = _ref12.style,
+      condition = _ref12.condition;
+
+  return condition ? renderWithFragment ? _react2.default.createElement(
+    _react.Fragment,
+    null,
+    children
+  ) : _react2.default.createElement(
+    'div',
+    { className: viewClassName, style: style },
+    children
   ) : null;
 };
 
