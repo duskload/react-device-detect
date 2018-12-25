@@ -53,7 +53,7 @@ render() {
 }
 ```
 
-If you wan't to leave a message to specific browser (e.g IE), you can use `isIE` selector
+If you want to leave a message to specific browser (e.g IE), you can use `isIE` selector
 
 ```javascript
 import {isIE} from 'react-device-detect';
