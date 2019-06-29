@@ -48,8 +48,8 @@ const isOperaType = () => browser.name === OPERA;
 const isIEType = () =>
   browser.name === INTERNET_EXPLORER || browser.name === IE;
 
-const getBrowserFullVersion = () => browser.major;
-const getBrowserVersion = () => browser.version;
+const getBrowserFullVersion = () => browser.version;
+const getBrowserVersion = () => browser.major;
 const getOsVersion = () => (os.version ? os.version : "none");
 const getOsName = () => (os.name ? os.name : "none");
 const getBrowserName = () => browser.name;
