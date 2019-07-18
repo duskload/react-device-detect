@@ -198,10 +198,10 @@ var isIEType = function isIEType() {
 };
 
 var getBrowserFullVersion = function getBrowserFullVersion() {
-  return _getUaData.browser.major;
+  return _getUaData.browser.version;
 };
 var getBrowserVersion = function getBrowserVersion() {
-  return _getUaData.browser.version;
+  return _getUaData.browser.major;
 };
 var getOsVersion = function getOsVersion() {
   return _getUaData.os.version ? _getUaData.os.version : "none";
