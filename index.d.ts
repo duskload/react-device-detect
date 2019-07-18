@@ -1,76 +1,107 @@
+
+// Type definitions for react-device-detect 1.6.4
+// Project: https://github.com/duskload/react-device-detect
+// Definitions by: Michael Laktionov <https://github.com/duskload>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+// TypeScript Version: 2.8
+
 declare module "react-device-detect" {
-  import * as React from "react";
+  export import BrowserView = ReactDeviceDetect.BrowserView;
+  export import MobileView = ReactDeviceDetect.MobileView;
+  export import AndroidView = ReactDeviceDetect.AndroidView;
+  export import IEView = ReactDeviceDetect.IEView;
+  export import IOSView = ReactDeviceDetect.IOSView;
+  export import TabletView = ReactDeviceDetect.TabletView;
+  export import WinPhoneView = ReactDeviceDetect.WinPhoneView;
+  export import MobileOnlyView = ReactDeviceDetect.MobileOnlyView;
+  export import SmartTVView = ReactDeviceDetect.SmartTVView;
+  export import ConsoleView = ReactDeviceDetect.ConsoleView;
+  export import WearableView = ReactDeviceDetect.WearableView;
+  export import CustomView = ReactDeviceDetect.CustomView;
+  export import CustomViewProps = ReactDeviceDetect.CustomViewProps;
+  export import ViewProps = ReactDeviceDetect.ViewProps;
+  export import isBrowser = ReactDeviceDetect.isBrowser;
+  export import isMobile = ReactDeviceDetect.isMobile;
+  export import isTablet = ReactDeviceDetect.isTablet;
+  export import isSmartTV = ReactDeviceDetect.isSmartTV;
+  export import isConsole = ReactDeviceDetect.isConsole;
+  export import isWearable = ReactDeviceDetect.isWearable;
+  export import isMobileSafari = ReactDeviceDetect.isMobileSafari;
+  export import isChromium = ReactDeviceDetect.isChromium;
+  export import isMobileOnly = ReactDeviceDetect.isMobileOnly;
+  export import isAndroid = ReactDeviceDetect.isAndroid;
+  export import isWinPhone = ReactDeviceDetect.isWinPhone;
+  export import isIOS = ReactDeviceDetect.isIOS;
+  export import isChrome = ReactDeviceDetect.isChrome;
+  export import isFirefox = ReactDeviceDetect.isFirefox;
+  export import isSafari = ReactDeviceDetect.isSafari;
+  export import isOpera = ReactDeviceDetect.isOpera;
+  export import isIE = ReactDeviceDetect.isIE;
+  export import isEdge = ReactDeviceDetect.isEdge;
+  export import isYandex = ReactDeviceDetect.isYandex;
+  export import osVersion = ReactDeviceDetect.osVersion;
+  export import osName = ReactDeviceDetect.osName;
+  export import fullBrowserVersion = ReactDeviceDetect.fullBrowserVersion;
+  export import browserVersion = ReactDeviceDetect.browserVersion;
+  export import browserName = ReactDeviceDetect.browserName;
+  export import mobileVendor = ReactDeviceDetect.mobileVendor;
+  export import mobileModel = ReactDeviceDetect.mobileModel;
+  export import engineName = ReactDeviceDetect.engineName;
+  export import engineVersion = ReactDeviceDetect.engineVersion;
+  export import getUA = ReactDeviceDetect.getUA;
+}
 
-  export class BrowserView extends React.Component<any, never> {
-    device: any;
+declare namespace ReactDeviceDetect {
 
-    render(): JSX.Element;
+  export interface ViewProps {
+    renderWithFragment?: boolean;
+    children?: React.ReactNode;
+    viewClassName?: string;
+    style?: React.CSSProperties;
   }
 
-  export class MobileView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export interface CustomViewProps {
+    renderWithFragment?: boolean;
+    children?: React.ReactNode;
+    viewClassName?: string;
+    style?: React.CSSProperties;
+    condition?: boolean
   }
 
-  export class AndroidView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class BrowserView extends React.Component<ViewProps> {
   }
 
-  export class IEView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class MobileView extends React.Component<ViewProps> {
   }
 
-  export class IOSView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class AndroidView extends React.Component<ViewProps> {
   }
 
-  export class TabletView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class IEView extends React.Component<ViewProps> {
   }
 
-  export class WinPhoneView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class IOSView extends React.Component<ViewProps> {
   }
 
-  export class MobileOnlyView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class TabletView extends React.Component<ViewProps> {
   }
 
-  export class SmartTVView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class WinPhoneView extends React.Component<ViewProps> {
   }
 
-  export class ConsoleView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class MobileOnlyView extends React.Component<ViewProps> {
   }
 
-  export class WearableView extends React.Component<any, never> {
-    device: any;
-
-    render(): JSX.Element;
+  export class SmartTVView extends React.Component<ViewProps> {
   }
 
-  export class CustomView extends React.Component<any, never> {
-    device: any;
+  export class ConsoleView extends React.Component<ViewProps> {
+  }
 
-    render(): JSX.Element;
+  export class WearableView extends React.Component<ViewProps> {
+  }
+
+  export class CustomView extends React.Component<CustomViewProps> {
   }
 
   export const isBrowser: boolean;
