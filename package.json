@@ -2,7 +2,7 @@
   "name": "react-device-detect",
   "version": "1.6.5",
   "description": "Detect device type and render your component according to it",
-  "main": "dist/index.js",
+  "main": "main.js",
   "typings": "./index.d.ts",
   "license": "MIT",
   "repository": {
@@ -31,9 +31,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "cover": "jest --coverage",
-    "start": "webpack --watch",
-    "build": "webpack"
+    "build": "rollup -c"
   },
+  "prepare": "npm run build",
   "jest": {
     "setupFiles": [
       "./.jestSetup.js"
@@ -48,19 +48,17 @@
     "email": "duskload@gmail.com"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^21.2.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
     "jest": "^24.8.0",
     "raf": "^3.4.0",
     "react-test-renderer": "^16.0.0",
-    "ua-parser-js": "^0.7.18",
-    "webpack": "^3.7.1"
+    "rollup": "^1.17.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "ua-parser-js": "^0.7.18"
   }
 }
