@@ -1,63 +1,48 @@
-import { os, device, browser, ua, engine } from "./get-ua-data";
+import { os, device, browser, ua, engine, setDefaults } from "./get-ua-data";
 import { BROWSER_TYPES, DEVICE_TYPES, OS_TYPES } from "./types";
 
-const {
-  CHROME,
-  CHROMIUM,
-  IE,
-  INTERNET_EXPLORER,
-  OPERA,
-  FIREFOX,
-  SAFARI,
-  MOBILE_SAFARI,
-  EDGE,
-  YANDEX
-} = BROWSER_TYPES;
-const { MOBILE, TABLET, SMART_TV, BROWSER, WEARABLE, CONSOLE } = DEVICE_TYPES;
-const { ANDROID, WINDOWS_PHONE, IOS } = OS_TYPES;
-
-const isMobileType = () => device.type === MOBILE;
-const isTabletType = () => device.type === TABLET;
+const isMobileType = () => device.type === DEVICE_TYPES.MOBILE;
+const isTabletType = () => device.type === DEVICE_TYPES.TABLET;
 
 const isMobileAndTabletType = () => {
   switch (device.type) {
-    case MOBILE:
-    case TABLET:
+    case DEVICE_TYPES.MOBILE:
+    case DEVICE_TYPES.TABLET:
       return true;
     default:
       return false;
   }
 };
 
-const isSmartTVType = () => device.type === SMART_TV;
-const isBrowserType = () => device.type === BROWSER;
-const isWearableType = () => device.type === WEARABLE;
-const isConsoleType = () => device.type === CONSOLE;
-const isAndroidType = () => os.name === ANDROID;
-const isWinPhoneType = () => os.name === WINDOWS_PHONE;
-const isIOSType = () => os.name === IOS;
-const isChromeType = () => browser.name === CHROME;
-const isFirefoxType = () => browser.name === FIREFOX;
-const isChromiumType = () => browser.name === CHROMIUM;
-const isEdgeType = () => browser.name === EDGE;
-const isYandexType = () => browser.name === YANDEX;
+const isSmartTVType = () => device.type === DEVICE_TYPES.SMART_TV;
+const isBrowserType = () => device.type === DEVICE_TYPES.BROWSER;
+const isWearableType = () => device.type === DEVICE_TYPES.WEARABLE;
+const isConsoleType = () => device.type === DEVICE_TYPES.CONSOLE;
+const isAndroidType = () => os.name === OS_TYPES.ANDROID;
+const isWinPhoneType = () => os.name === OS_TYPES.WINDOWS_PHONE;
+const isIOSType = () => os.name === OS_TYPES.IOS;
+const isChromeType = () => browser.name === BROWSER_TYPES.CHROME;
+const isFirefoxType = () => browser.name === BROWSER_TYPES.FIREFOX;
+const isChromiumType = () => browser.name === BROWSER_TYPES.CHROMIUM;
+const isEdgeType = () => browser.name === BROWSER_TYPES.EDGE;
+const isYandexType = () => browser.name === BROWSER_TYPES.YANDEX;
 const isSafariType = () =>
-  browser.name === SAFARI || browser.name === MOBILE_SAFARI;
-const isMobileSafariType = () => browser.name === MOBILE_SAFARI;
-const isOperaType = () => browser.name === OPERA;
+  browser.name === BROWSER_TYPES.SAFARI || browser.name === BROWSER_TYPES.MOBILE_SAFARI;
+const isMobileSafariType = () => browser.name === BROWSER_TYPES.MOBILE_SAFARI;
+const isOperaType = () => browser.name === BROWSER_TYPES.OPERA;
 const isIEType = () =>
-  browser.name === INTERNET_EXPLORER || browser.name === IE;
+  browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
 
-const getBrowserFullVersion = () => browser.version;
-const getBrowserVersion = () => browser.major;
-const getOsVersion = () => (os.version ? os.version : "none");
-const getOsName = () => (os.name ? os.name : "none");
-const getBrowserName = () => browser.name;
-const getMobileVendor = () => (device.vendor ? device.vendor : "none");
-const getMobileModel = () => (device.model ? device.model : "none");
-const getEngineName = () => engine.name;
-const getEngineVersion = () => engine.version;
-const getUseragent = () => ua;
+const getBrowserFullVersion = () => setDefaults(browser.version);
+const getBrowserVersion = () => setDefaults(browser.major);
+const getOsVersion = () => setDefaults(os.version);
+const getOsName = () => setDefaults(os.name);
+const getBrowserName = () => setDefaults(browser.name);
+const getMobileVendor = () => setDefaults(device.vendor);
+const getMobileModel = () => setDefaults(device.model);
+const getEngineName = () => setDefaults(engine.name);
+const getEngineVersion = () => setDefaults(engine.version);
+const getUseragent = () => setDefaults(ua);
 
 export const isSmartTV = isSmartTVType();
 export const isConsole = isConsoleType();

@@ -13,3 +13,5 @@ export const setUA = uaStr => UA.setUA(uaStr);
 export const mockUserAgent = userAgent => {
   window.navigator.__defineGetter__("userAgent", () => userAgent);
 };
+
+export const setDefaults = (p, d = 'none') => p ? p : d
