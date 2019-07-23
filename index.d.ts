@@ -49,6 +49,7 @@ declare module "react-device-detect" {
   export import engineName = ReactDeviceDetect.engineName;
   export import engineVersion = ReactDeviceDetect.engineVersion;
   export import getUA = ReactDeviceDetect.getUA;
+  export import deviceType = ReactDeviceDetect.deviceType;
 }
 
 declare namespace ReactDeviceDetect {
@@ -161,4 +162,6 @@ declare namespace ReactDeviceDetect {
   export const engineVersion: string;
 
   export const getUA: string;
+
+  export const deviceType: string;
 }

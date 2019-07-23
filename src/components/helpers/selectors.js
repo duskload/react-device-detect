@@ -58,6 +58,7 @@ const getMobileModel = () => (device.model ? device.model : "none");
 const getEngineName = () => engine.name;
 const getEngineVersion = () => engine.version;
 const getUseragent = () => ua;
+const getDeviceType = () => device.type
 
 export const isSmartTV = isSmartTVType();
 export const isConsole = isConsoleType();
@@ -88,3 +89,4 @@ export const engineVersion = getEngineVersion();
 export const getUA = getUseragent();
 export const isEdge = isEdgeType();
 export const isYandex = isYandexType();
+export const deviceType = getDeviceType();
