@@ -349,6 +349,10 @@ var getUseragent = function getUseragent() {
   return setDefaults(ua);
 };
 
+var getDeviceType = function getDeviceType() {
+  return setDefaults(device.type, '');
+};
+
 var isSmartTV = isSmartTVType();
 var isConsole = isConsoleType();
 var isWearable = isWearableType();
@@ -378,6 +382,7 @@ var engineVersion = getEngineVersion();
 var getUA = getUseragent();
 var isEdge = isEdgeType();
 var isYandex = isYandexType();
+var deviceType = getDeviceType();
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -516,6 +521,7 @@ exports.WinPhoneView = WinPhoneView;
 exports.browserName = browserName;
 exports.browserVersion = browserVersion;
 exports.deviceDetect = detect;
+exports.deviceType = deviceType;
 exports.engineName = engineName;
 exports.engineVersion = engineVersion;
 exports.fullBrowserVersion = fullBrowserVersion;
