@@ -21,6 +21,42 @@ var setDefaults = function setDefaults(p) {
   return p ? p : d;
 };
 
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -68,6 +104,53 @@ function _objectSpread2(target) {
   }
 
   return target;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
 }
 
 var DEVICE_TYPES = {
@@ -506,6 +589,86 @@ var CustomView = function CustomView(_ref12) {
   }, children) : null;
 };
 
+function withOrientationChange(WrappedComponent) {
+  return (
+    /*#__PURE__*/
+    function (_React$Component) {
+      _inherits(_class, _React$Component);
+
+      function _class(props) {
+        var _this;
+
+        _classCallCheck(this, _class);
+
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(_class).call(this, props));
+        _this.isEventListenerAdded = false;
+        _this.handleOrientationChange = _this.handleOrientationChange.bind(_assertThisInitialized(_this));
+        _this.onOrientationChange = _this.onOrientationChange.bind(_assertThisInitialized(_this));
+        _this.onPageLoad = _this.onPageLoad.bind(_assertThisInitialized(_this));
+        _this.state = {
+          isLandscape: false,
+          isPortrait: false
+        };
+        return _this;
+      }
+
+      _createClass(_class, [{
+        key: "handleOrientationChange",
+        value: function handleOrientationChange() {
+          if (!this.isEventListenerAdded) {
+            this.isEventListenerAdded = true;
+          }
+
+          var orientation = window.innerWidth > window.innerHeight ? 90 : 0;
+          this.setState({
+            isPortrait: orientation === 0,
+            isLandscape: orientation === 90
+          });
+        }
+      }, {
+        key: "onOrientationChange",
+        value: function onOrientationChange() {
+          this.handleOrientationChange();
+        }
+      }, {
+        key: "onPageLoad",
+        value: function onPageLoad() {
+          this.handleOrientationChange();
+        }
+      }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+          if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== undefined && isMobile) {
+            if (!this.isEventListenerAdded) {
+              this.handleOrientationChange();
+              window.addEventListener("load", this.onPageLoad, false);
+            } else {
+              window.removeEventListener("load", this.onPageLoad, false);
+            }
+
+            window.addEventListener("resize", this.onOrientationChange, false);
+          }
+        }
+      }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+          window.removeEventListener("resize", this.onOrientationChange, false);
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          return React__default.createElement(WrappedComponent, {
+            isLandscape: this.state.isLandscape,
+            isPortrait: this.state.isPortrait
+          });
+        }
+      }]);
+
+      return _class;
+    }(React__default.Component)
+  );
+}
+
 exports.AndroidView = AndroidView;
 exports.BrowserView = BrowserView;
 exports.ConsoleView = ConsoleView;
@@ -549,3 +712,4 @@ exports.mobileModel = mobileModel;
 exports.mobileVendor = mobileVendor;
 exports.osName = osName;
 exports.osVersion = osVersion;
+exports.withOrientationChange = withOrientationChange;
