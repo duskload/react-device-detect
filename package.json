@@ -60,7 +60,9 @@
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "dependencies": {
     "ua-parser-js": "^0.7.20"
   }
 }
