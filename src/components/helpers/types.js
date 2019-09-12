@@ -1,4 +1,4 @@
-import { os } from "./get-ua-data";
+import { setDefaults } from "./get-ua-data";
 
 export const DEVICE_TYPES = {
   MOBILE: 'mobile',
@@ -72,60 +72,50 @@ export const getCurrentBrowser = name => {
   }
 };
 
-export const broPayload = (isBrowser, browser, engine, os, ua) => {
-  return {
-    isBrowser,
-    browserMajorVersion: browser.major,
-    browserFullVersion: browser.version,
-    browserName: browser.name,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
+export const broPayload = (isBrowser, browser, engine, os, ua) => ({
+  isBrowser,
+  browserMajorVersion: setDefaults(browser.major),
+  browserFullVersion: setDefaults(browser.version),
+  browserName: setDefaults(browser.name),
+  engineName: setDefaults(engine.name),
+  engineVersion: setDefaults(engine.version),
+  osName: setDefaults(os.name),
+  osVersion: setDefaults(os.version),
+  userAgent: setDefaults(ua)
+});
 
-export const mobilePayload = (type, device, os, ua) => {
-  return {
-    ...type,
-    vendor: device.vendor || "none",
-    model: device.model || "none",
-    os: os.name || "none",
-    osVersion: os.version || "none",
-    ua: ua || "none"
-  };
-};
+export const mobilePayload = (type, device, os, ua) => ({
+  ...type,
+  vendor: setDefaults(device.vendor),
+  model: setDefaults(device.model),
+  os: setDefaults(os.name),
+  osVersion: setDefaults(os.version),
+  ua: setDefaults(ua)
+});
 
-export const stvPayload = (isSmartTV, engine, os, ua) => {
-  return {
-    isSmartTV,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
+export const stvPayload = (isSmartTV, engine, os, ua) => ({
+  isSmartTV,
+  engineName: setDefaults(engine.name),
+  engineVersion: setDefaults(engine.version),
+  osName: setDefaults(os.name),
+  osVersion: setDefaults(os.version),
+  userAgent: setDefaults(ua)
+});
 
-export const consolePayload = (isConsole, engine, os, ua) => {
-  return {
-    isConsole,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
+export const consolePayload = (isConsole, engine, os, ua) => ({
+  isConsole,
+  engineName: setDefaults(engine.name),
+  engineVersion: setDefaults(engine.version),
+  osName: setDefaults(os.name),
+  osVersion: setDefaults(os.version),
+  userAgent: setDefaults(ua)
+});
 
-export const wearPayload = (isWearable, engine, os, ua) => {
-  return {
-    isWearable,
-    engineName: engine.name || false,
-    engineVersion: engine.version,
-    osName: os.name,
-    osVersion: os.version,
-    userAgent: ua
-  };
-};
+export const wearPayload = (isWearable, engine, os, ua) => ({
+  isWearable,
+  engineName: setDefaults(engine.name),
+  engineVersion: setDefaults(engine.version),
+  osName: setDefaults(os.name),
+  osVersion: setDefaults(os.version),
+  userAgent: setDefaults(ua)
+});

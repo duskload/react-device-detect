@@ -1,4 +1,4 @@
-const UAParser = require("../../../node_modules/ua-parser-js/dist/ua-parser.min");
+const UAParser = require("ua-parser-js/dist/ua-parser.min");
 
 export const UA = new UAParser();
 
@@ -13,3 +13,5 @@ export const setUA = uaStr => UA.setUA(uaStr);
 export const mockUserAgent = userAgent => {
   window.navigator.__defineGetter__("userAgent", () => userAgent);
 };
+
+export const setDefaults = (p, d = 'none') => p ? p : d

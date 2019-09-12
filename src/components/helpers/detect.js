@@ -12,6 +12,7 @@ function deviceDetect () {
     isConsole,
     isWearable
   } = type;
+
   if (isBrowser) {
     return create.broPayload(isBrowser, browser, engine, os, ua);
   }
