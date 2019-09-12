@@ -1,6 +1,6 @@
 {
   "name": "react-device-detect",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "description": "Detect device type and render your component according to it",
   "main": "main.js",
   "typings": "./index.d.ts",
@@ -60,7 +60,9 @@
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "ua-parser-js": "^0.7.18"
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "dependencies": {
+    "ua-parser-js": "^0.7.20"
   }
 }

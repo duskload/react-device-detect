@@ -7,7 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 
-var UAParser = require("ua-parser-js/dist/ua-parser.min");
+var UAParser = require("../../../node_modules/ua-parser-js/dist/ua-parser.min");
 
 var UA = new UAParser();
 var browser = UA.getBrowser();
