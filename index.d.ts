@@ -51,6 +51,7 @@ declare module "react-device-detect" {
   export import getUA = ReactDeviceDetect.getUA;
   export import deviceType = ReactDeviceDetect.deviceType;
   export import deviceDetect = ReactDeviceDetect.deviceDetect;
+  export import withOrientationChange = ReactDeviceDetect.withOrientationChange;
 }
 
 declare namespace ReactDeviceDetect {
@@ -71,6 +72,7 @@ declare namespace ReactDeviceDetect {
 
   export function deviceDetect (): any;
 
+  export function withOrientationChange (Component: React.ReactComponentElement): React.ReactComponentElement;
   export class BrowserView extends React.Component<ViewProps> {
   }
 
