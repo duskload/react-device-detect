@@ -168,6 +168,28 @@ Each view accepts three props:
 3.  `children` - to pass children to view
 4.  `renderWithFragment` - render with `React.Fragment` instead of `<div>`
 
+### withOrientationChange
+A HOC for getting `isLandscape` and `isPortrait` props for mobile
+
+```js
+import { withOrientationChange } from 'react-device-detect'
+
+let App = props => {
+  const { isLandscape, isPortrait } = props
+
+  if (isLandscape) {
+    return  <div>The device is in Landscape mode</div>
+  }
+  
+  if (isPortrait) {
+    return  <div>The device is in Portrait mode</div>
+  }
+}
+
+App = withOrientationChange(App)
+
+export { App }
+```
 
 ## License
 
