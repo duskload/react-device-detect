@@ -276,7 +276,8 @@ var wearPayload = function wearPayload(isWearable, engine, os, ua) {
 };
 
 var type = checkType(device.type);
-var detect = (function () {
+
+function deviceDetect() {
   var isBrowser = type.isBrowser,
       isMobile = type.isMobile,
       isTablet = type.isTablet,
@@ -307,7 +308,7 @@ var detect = (function () {
   if (isWearable) {
     return wearPayload(isWearable, engine, os, ua);
   }
-});
+}
 
 var isMobileType = function isMobileType() {
   return device.type === DEVICE_TYPES.MOBILE;
@@ -683,7 +684,7 @@ exports.WearableView = WearableView;
 exports.WinPhoneView = WinPhoneView;
 exports.browserName = browserName;
 exports.browserVersion = browserVersion;
-exports.deviceDetect = detect;
+exports.deviceDetect = deviceDetect;
 exports.deviceType = deviceType;
 exports.engineName = engineName;
 exports.engineVersion = engineVersion;

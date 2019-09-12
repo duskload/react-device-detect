@@ -3,7 +3,7 @@ import * as create from "./types";
 
 const type = create.checkType(device.type);
 
-export default () => {
+function deviceDetect () {
   const {
     isBrowser,
     isMobile,
@@ -37,3 +37,5 @@ export default () => {
     return create.wearPayload(isWearable, engine, os, ua);
   }
 };
+
+export { deviceDetect }
