@@ -50,10 +50,10 @@ declare module "react-device-detect" {
   export import engineVersion = ReactDeviceDetect.engineVersion;
   export import getUA = ReactDeviceDetect.getUA;
   export import deviceType = ReactDeviceDetect.deviceType;
+  export import deviceDetect = ReactDeviceDetect.deviceDetect;
 }
 
 declare namespace ReactDeviceDetect {
-
   export interface ViewProps {
     renderWithFragment?: boolean;
     children?: React.ReactNode;
@@ -66,8 +66,10 @@ declare namespace ReactDeviceDetect {
     children?: React.ReactNode;
     viewClassName?: string;
     style?: React.CSSProperties;
-    condition?: boolean
+    condition?: boolean;
   }
+
+  export function deviceDetect (): any;
 
   export class BrowserView extends React.Component<ViewProps> {
   }
