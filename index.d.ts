@@ -72,7 +72,8 @@ declare namespace ReactDeviceDetect {
 
   export function deviceDetect (): any;
 
-  export function withOrientationChange (Component: React.ReactComponentElement): React.ReactComponentElement;
+  export function withOrientationChange (Component: any): any;
+
   export class BrowserView extends React.Component<ViewProps> {
   }
 
