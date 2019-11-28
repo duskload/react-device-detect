@@ -43,7 +43,7 @@ const getMobileModel = () => setDefaults(device.model);
 const getEngineName = () => setDefaults(engine.name);
 const getEngineVersion = () => setDefaults(engine.version);
 const getUseragent = () => setDefaults(ua);
-const getDeviceType = () => setDefaults(device.type, '')
+const getDeviceType = () => setDefaults(device.type, 'browser')
 
 export const isSmartTV = isSmartTVType();
 export const isConsole = isConsoleType();
