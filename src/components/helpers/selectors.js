@@ -1,4 +1,4 @@
-import { os, device, browser, ua, engine, setDefaults, isIOS13Check } from './get-ua-data';
+import { os, device, browser, ua, engine, setDefaults, isIOS13Check, getNavigatorInstance } from './get-ua-data';
 import { BROWSER_TYPES, DEVICE_TYPES, OS_TYPES } from './types';
 
 const isMobileType = () => device.type === DEVICE_TYPES.MOBILE;
@@ -31,25 +31,19 @@ const isMobileSafariType = () => browser.name === BROWSER_TYPES.MOBILE_SAFARI;
 const isOperaType = () => browser.name === BROWSER_TYPES.OPERA;
 const isIEType = () => browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
 const isElectronType = () => {
-  if (typeof window !== 'undefined') {
-    if (window.navigator || navigator) {
-      const ua = navigator.userAgent.toLowerCase();
+  const nav = getNavigatorInstance();
+  const ua = nav && nav.userAgent.toLowerCase();
 
-      return typeof ua === 'string' ? ua.includes('electron') : false;
-    }
-  }
+  return typeof ua === 'string' ? ua.includes('electron') : false;
 };
 
 const getIOS13 = () => {
-  if (typeof window !== 'undefined') {
-    if (window.navigator || navigator) {
-      return (
-        (/iPad|iPhone|iPod/.test(navigator.platform) ||
-          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) &&
-        !window.MSStream
-      );
-    }
-  }
+  const nav = getNavigatorInstance();
+  return (
+    nav &&
+    (/iPad|iPhone|iPod/.test(nav.platform) || (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1)) &&
+      !window.MSStream
+  );
 };
 
 const getIPad13 = () => isIOS13Check('iPad');

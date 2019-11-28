@@ -16,16 +16,23 @@ var device = UA.getDevice();
 var engine = UA.getEngine();
 var os = UA.getOS();
 var ua = UA.getUA();
+
 var setDefaults = function setDefaults(p) {
   var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
   return p ? p : d;
 };
-var isIOS13Check = function isIOS13Check(type) {
+var getNavigatorInstance = function getNavigatorInstance() {
   if (typeof window !== 'undefined') {
     if (window.navigator || navigator) {
-      return navigator.platform.includes(type) || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1 && !window.MSStream;
+      return window.navigator || navigator;
     }
   }
+
+  return false;
+};
+var isIOS13Check = function isIOS13Check(type) {
+  var nav = getNavigatorInstance();
+  return nav && (nav.platform.includes(type) || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
 };
 
 function _typeof(obj) {
@@ -419,21 +426,14 @@ var isIEType = function isIEType() {
 };
 
 var isElectronType = function isElectronType() {
-  if (typeof window !== 'undefined') {
-    if (window.navigator || navigator) {
-      var _ua = navigator.userAgent.toLowerCase();
-
-      return typeof _ua === 'string' ? _ua.includes('electron') : false;
-    }
-  }
+  var nav = getNavigatorInstance();
+  var ua = nav && nav.userAgent.toLowerCase();
+  return typeof ua === 'string' ? ua.includes('electron') : false;
 };
 
 var getIOS13 = function getIOS13() {
-  if (typeof window !== 'undefined') {
-    if (window.navigator || navigator) {
-      return (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) && !window.MSStream;
-    }
-  }
+  var nav = getNavigatorInstance();
+  return nav && (/iPad|iPhone|iPod/.test(nav.platform) || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1) && !window.MSStream;
 };
 
 var getIPad13 = function getIPad13() {

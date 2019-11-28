@@ -14,15 +14,22 @@ export const mockUserAgent = userAgent => {
   window.navigator.__defineGetter__('userAgent', () => userAgent);
 };
 
+//TODO: Rework structure, move helper functions to utils
 export const setDefaults = (p, d = 'none') => (p ? p : d);
 
-export const isIOS13Check = type => {
+export const getNavigatorInstance = () => {
   if (typeof window !== 'undefined') {
     if (window.navigator || navigator) {
-      return (
-        navigator.platform.includes(type) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1 && !window.MSStream)
-      );
+      return window.navigator || navigator;
     }
   }
+
+  return false;
+};
+
+export const isIOS13Check = type => {
+  const nav = getNavigatorInstance();
+  return (
+    nav && (nav.platform.includes(type) || (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream))
+  );
 };
