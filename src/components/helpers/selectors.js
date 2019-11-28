@@ -1,13 +1,5 @@
-import {
-  os,
-  device,
-  browser,
-  ua,
-  engine,
-  setDefaults,
-  isIOS13Check
-} from "./get-ua-data";
-import { BROWSER_TYPES, DEVICE_TYPES, OS_TYPES } from "./types";
+import { os, device, browser, ua, engine, setDefaults, isIOS13Check, getNavigatorInstance } from './get-ua-data';
+import { BROWSER_TYPES, DEVICE_TYPES, OS_TYPES } from './types';
 
 const isMobileType = () => device.type === DEVICE_TYPES.MOBILE;
 const isTabletType = () => device.type === DEVICE_TYPES.TABLET;
@@ -34,31 +26,29 @@ const isFirefoxType = () => browser.name === BROWSER_TYPES.FIREFOX;
 const isChromiumType = () => browser.name === BROWSER_TYPES.CHROMIUM;
 const isEdgeType = () => browser.name === BROWSER_TYPES.EDGE;
 const isYandexType = () => browser.name === BROWSER_TYPES.YANDEX;
-const isSafariType = () =>
-  browser.name === BROWSER_TYPES.SAFARI ||
-  browser.name === BROWSER_TYPES.MOBILE_SAFARI;
+const isSafariType = () => browser.name === BROWSER_TYPES.SAFARI || browser.name === BROWSER_TYPES.MOBILE_SAFARI;
 const isMobileSafariType = () => browser.name === BROWSER_TYPES.MOBILE_SAFARI;
 const isOperaType = () => browser.name === BROWSER_TYPES.OPERA;
-const isIEType = () =>
-  browser.name === BROWSER_TYPES.INTERNET_EXPLORER ||
-  browser.name === BROWSER_TYPES.IE;
+const isIEType = () => browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
 const isElectronType = () => {
-  const ua = navigator && navigator.userAgent.toLowerCase()
+  const nav = getNavigatorInstance();
+  const ua = nav && nav.userAgent.toLowerCase();
 
-  return typeof ua === 'string' ? ua.includes('electron') : false
-}
+  return typeof ua === 'string' ? ua.includes('electron') : false;
+};
 
 const getIOS13 = () => {
-  return navigator && (
-    (/iPad|iPhone|iPod/.test(navigator.platform) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
-    !window.MSStream
+  const nav = getNavigatorInstance();
+  return (
+    nav &&
+    (/iPad|iPhone|iPod/.test(nav.platform) || (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1)) &&
+      !window.MSStream
   );
 };
 
-const getIPad13 = () => isIOS13Check("iPad");
-const getIphone13 = () => isIOS13Check("iPhone");
-const getIPod13 = () => isIOS13Check("iPod");
+const getIPad13 = () => isIOS13Check('iPad');
+const getIphone13 = () => isIOS13Check('iPhone');
+const getIPod13 = () => isIOS13Check('iPod');
 
 const getBrowserFullVersion = () => setDefaults(browser.version);
 const getBrowserVersion = () => setDefaults(browser.major);
@@ -70,7 +60,7 @@ const getMobileModel = () => setDefaults(device.model);
 const getEngineName = () => setDefaults(engine.name);
 const getEngineVersion = () => setDefaults(engine.version);
 const getUseragent = () => setDefaults(ua);
-const getDeviceType = () => setDefaults(device.type, "browser");
+const getDeviceType = () => setDefaults(device.type, 'browser');
 
 export const isSmartTV = isSmartTVType();
 export const isConsole = isConsoleType();
@@ -102,8 +92,8 @@ export const getUA = getUseragent();
 export const isEdge = isEdgeType();
 export const isYandex = isYandexType();
 export const deviceType = getDeviceType();
-export const isIOS13 = getIOS13()
-export const isIPad13 = getIPad13()
-export const isIPhone13 = getIphone13()
-export const isIPod13 = getIPod13()
-export const isElectron = isElectronType()
+export const isIOS13 = getIOS13();
+export const isIPad13 = getIPad13();
+export const isIPhone13 = getIphone13();
+export const isIPod13 = getIPod13();
+export const isElectron = isElectronType();
