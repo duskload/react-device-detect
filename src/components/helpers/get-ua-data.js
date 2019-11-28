@@ -17,7 +17,7 @@ export const mockUserAgent = userAgent => {
 export const setDefaults = (p, d = "none") => (p ? p : d);
 
 export const isIOS13Check = type => {
-  return (
+  return navigator && (
     navigator.platform.includes(type) ||
     (navigator.platform === "MacIntel" &&
       navigator.maxTouchPoints > 1 &&

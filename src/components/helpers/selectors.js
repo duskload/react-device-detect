@@ -43,13 +43,13 @@ const isIEType = () =>
   browser.name === BROWSER_TYPES.INTERNET_EXPLORER ||
   browser.name === BROWSER_TYPES.IE;
 const isElectronType = () => {
-  const ua = navigator.userAgent.toLowerCase()
+  const ua = navigator && navigator.userAgent.toLowerCase()
 
-  return ua.includes('electron')
+  return typeof ua === 'string' ? ua.includes('electron') : false
 }
 
 const getIOS13 = () => {
-  return (
+  return navigator && (
     (/iPad|iPhone|iPod/.test(navigator.platform) ||
       (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
     !window.MSStream
