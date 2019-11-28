@@ -42,6 +42,11 @@ const isOperaType = () => browser.name === BROWSER_TYPES.OPERA;
 const isIEType = () =>
   browser.name === BROWSER_TYPES.INTERNET_EXPLORER ||
   browser.name === BROWSER_TYPES.IE;
+const isElectronType = () => {
+  const ua = navigator.userAgent.toLowerCase()
+
+  return ua.includes('electron')
+}
 
 const getIOS13 = () => {
   return (
@@ -101,3 +106,4 @@ export const isIOS13 = getIOS13()
 export const isIPad13 = getIPad13()
 export const isIPhone13 = getIphone13()
 export const isIPod13 = getIPod13()
+export const isElectron = isElectronType()

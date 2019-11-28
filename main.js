@@ -414,6 +414,11 @@ var isIEType = function isIEType() {
   return browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
 };
 
+var isElectronType = function isElectronType() {
+  var ua = navigator.userAgent.toLowerCase();
+  return ua.includes('electron');
+};
+
 var getIOS13 = function getIOS13() {
   return (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
 };
@@ -508,6 +513,7 @@ var isIOS13 = getIOS13();
 var isIPad13 = getIPad13();
 var isIPhone13 = getIphone13();
 var isIPod13 = getIPod13();
+var isElectron = isElectronType();
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -737,6 +743,7 @@ exports.isChrome = isChrome;
 exports.isChromium = isChromium;
 exports.isConsole = isConsole;
 exports.isEdge = isEdge;
+exports.isElectron = isElectron;
 exports.isFirefox = isFirefox;
 exports.isIE = isIE;
 exports.isIOS = isIOS;
