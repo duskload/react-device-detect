@@ -21,7 +21,7 @@ var setDefaults = function setDefaults(p) {
   return p ? p : d;
 };
 var isIOS13Check = function isIOS13Check(type) {
-  return navigator.platform.includes(type) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !window.MSStream;
+  return navigator && (navigator.platform.includes(type) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !window.MSStream);
 };
 
 function _typeof(obj) {
@@ -415,12 +415,12 @@ var isIEType = function isIEType() {
 };
 
 var isElectronType = function isElectronType() {
-  var ua = navigator.userAgent.toLowerCase();
-  return ua.includes('electron');
+  var ua = navigator && navigator.userAgent.toLowerCase();
+  return typeof ua === 'string' ? ua.includes('electron') : false;
 };
 
 var getIOS13 = function getIOS13() {
-  return (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+  return navigator && (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
 };
 
 var getIPad13 = function getIPad13() {
