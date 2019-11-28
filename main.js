@@ -17,8 +17,11 @@ var engine = UA.getEngine();
 var os = UA.getOS();
 var ua = UA.getUA();
 var setDefaults = function setDefaults(p) {
-  var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
+  var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "none";
   return p ? p : d;
+};
+var isIOS13Check = function isIOS13Check(type) {
+  return navigator.platform.includes(type) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !window.MSStream;
 };
 
 function _typeof(obj) {
@@ -393,6 +396,22 @@ var isIEType = function isIEType() {
   return browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
 };
 
+var getIOS13 = function getIOS13() {
+  return (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+};
+
+var getIPad13 = function getIPad13() {
+  return isIOS13Check("iPad");
+};
+
+var getIphone13 = function getIphone13() {
+  return isIOS13Check("iPhone");
+};
+
+var getIPod13 = function getIPod13() {
+  return isIOS13Check("iPod");
+};
+
 var getBrowserFullVersion = function getBrowserFullVersion() {
   return setDefaults(browser.version);
 };
@@ -434,7 +453,7 @@ var getUseragent = function getUseragent() {
 };
 
 var getDeviceType = function getDeviceType() {
-  return setDefaults(device.type, 'browser');
+  return setDefaults(device.type, "browser");
 };
 
 var isSmartTV = isSmartTVType();
@@ -467,6 +486,10 @@ var getUA = getUseragent();
 var isEdge = isEdgeType();
 var isYandex = isYandexType();
 var deviceType = getDeviceType();
+var isIOS13 = getIOS13();
+var isIPad13 = getIPad13();
+var isIPhone13 = getIphone13();
+var isIPod13 = getIPod13();
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -699,6 +722,10 @@ exports.isEdge = isEdge;
 exports.isFirefox = isFirefox;
 exports.isIE = isIE;
 exports.isIOS = isIOS;
+exports.isIOS13 = isIOS13;
+exports.isIPad13 = isIPad13;
+exports.isIPhone13 = isIPhone13;
+exports.isIPod13 = isIPod13;
 exports.isMobile = isMobile;
 exports.isMobileOnly = isMobileOnly;
 exports.isMobileSafari = isMobileSafari;

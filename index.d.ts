@@ -51,6 +51,10 @@ declare module "react-device-detect" {
   export import getUA = ReactDeviceDetect.getUA;
   export import deviceType = ReactDeviceDetect.deviceType;
   export import deviceDetect = ReactDeviceDetect.deviceDetect;
+  export import isIOS13 = ReactDeviceDetect.isIOS13;
+  export import isIPad13 = ReactDeviceDetect.isIPad13;
+  export import isIPhone13 = ReactDeviceDetect.isIPhone13;
+  export import isIPod13 = ReactDeviceDetect.isIPod13;
   export import withOrientationChange = ReactDeviceDetect.withOrientationChange;
 }
 
@@ -168,4 +172,12 @@ declare namespace ReactDeviceDetect {
   export const getUA: string;
 
   export const deviceType: string;
+
+  export const isIOS13: boolean;
+
+  export const isIPad13: boolean;
+
+  export const isIPhone13: boolean;
+
+  export const isIPod13: boolean;
 }
