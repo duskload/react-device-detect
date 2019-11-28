@@ -14,4 +14,13 @@ export const mockUserAgent = userAgent => {
   window.navigator.__defineGetter__("userAgent", () => userAgent);
 };
 
-export const setDefaults = (p, d = 'none') => p ? p : d
+export const setDefaults = (p, d = "none") => (p ? p : d);
+
+export const isIOS13Check = type => {
+  return (
+    navigator.platform.includes(type) ||
+    (navigator.platform === "MacIntel" &&
+      navigator.maxTouchPoints > 1 &&
+      !window.MSStream)
+  );
+};
