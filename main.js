@@ -75,6 +75,24 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
@@ -681,10 +699,10 @@ function withOrientationChange(WrappedComponent) {
       }, {
         key: "render",
         value: function render() {
-          return React__default.createElement(WrappedComponent, {
+          return React__default.createElement(WrappedComponent, _extends({}, this.props, {
             isLandscape: this.state.isLandscape,
             isPortrait: this.state.isPortrait
-          });
+          }));
         }
       }]);
 
