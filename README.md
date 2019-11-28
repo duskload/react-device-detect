@@ -142,6 +142,11 @@ const styles = {
 | engineVersion      | string   | returns engine version                                                                 |
 | getUA              | string   | returns user agent                                                                     |
 | deviceType         | string   | returns device type (e.g `mobile` or `tablet`)                                         |
+| isIOS13            | boolean  | returns true/false if device is running on iOS13                                       |
+| isIPhone13         | boolean  | returns true/false if device is iPhone and running on iOS13                            |
+| isIPad13           | boolean  | returns true/false if device is iPad and running on iOS13                              |
+| isIPod13           | boolean  | returns true/false if device is iPod and running on iOS13                              |
+| isElectron         | boolean  | returns true/false if running on Electron                                              |
 | deviceDetect       | function | return data object which includes all data about device (e.g version, engine, os etc.) |
 
 ### Views
