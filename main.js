@@ -7,7 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 
-var UAParser = require("ua-parser-js/dist/ua-parser.min");
+var UAParser = require('ua-parser-js/dist/ua-parser.min');
 
 var UA = new UAParser();
 var browser = UA.getBrowser();
@@ -17,11 +17,15 @@ var engine = UA.getEngine();
 var os = UA.getOS();
 var ua = UA.getUA();
 var setDefaults = function setDefaults(p) {
-  var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "none";
+  var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
   return p ? p : d;
 };
 var isIOS13Check = function isIOS13Check(type) {
-  return navigator && (navigator.platform.includes(type) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1 && !window.MSStream);
+  if (typeof window !== 'undefined') {
+    if (window.navigator || navigator) {
+      return navigator.platform.includes(type) || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1 && !window.MSStream;
+    }
+  }
 };
 
 function _typeof(obj) {
@@ -415,24 +419,33 @@ var isIEType = function isIEType() {
 };
 
 var isElectronType = function isElectronType() {
-  var ua = navigator && navigator.userAgent.toLowerCase();
-  return typeof ua === 'string' ? ua.includes('electron') : false;
+  if (typeof window !== 'undefined') {
+    if (window.navigator || navigator) {
+      var _ua = navigator.userAgent.toLowerCase();
+
+      return typeof _ua === 'string' ? _ua.includes('electron') : false;
+    }
+  }
 };
 
 var getIOS13 = function getIOS13() {
-  return navigator && (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) && !window.MSStream;
+  if (typeof window !== 'undefined') {
+    if (window.navigator || navigator) {
+      return (/iPad|iPhone|iPod/.test(navigator.platform) || navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) && !window.MSStream;
+    }
+  }
 };
 
 var getIPad13 = function getIPad13() {
-  return isIOS13Check("iPad");
+  return isIOS13Check('iPad');
 };
 
 var getIphone13 = function getIphone13() {
-  return isIOS13Check("iPhone");
+  return isIOS13Check('iPhone');
 };
 
 var getIPod13 = function getIPod13() {
-  return isIOS13Check("iPod");
+  return isIOS13Check('iPod');
 };
 
 var getBrowserFullVersion = function getBrowserFullVersion() {
@@ -476,7 +489,7 @@ var getUseragent = function getUseragent() {
 };
 
 var getDeviceType = function getDeviceType() {
-  return setDefaults(device.type, "browser");
+  return setDefaults(device.type, 'browser');
 };
 
 var isSmartTV = isSmartTVType();
