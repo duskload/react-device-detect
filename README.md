@@ -196,6 +196,16 @@ App = withOrientationChange(App)
 export { App }
 ```
 
+### Types
+
+| Types            | Description                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| DEVICE_TYPES     | returns device types map (`mobile`, `tablet`, `smarttv` etc.)                          |
+| IOS_TYPES        | returns ios devices types map (`iPad`, `iPod`, `iPhone`)                               |
+| PLATFORM_TYPES   | returns platform types map (so far only `MacIntel`)                                    |
+| BROWSER_TYPES    | returns browser types map (`Firefox`, `Chrome`, `Opera` etc.)                          |
+| OS_TYPES         | returns os types map (`iOS`, `Android`, `Windows Phone` etc.)                          |
+
 ## License
 
 MIT
