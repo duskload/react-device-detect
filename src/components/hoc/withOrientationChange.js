@@ -1,5 +1,5 @@
 import React from "react";
-import { isMobile } from "./selectors";
+import { isMobile } from "../../selectors";
 
 function withOrientationChange(WrappedComponent) {
   return class extends React.Component {

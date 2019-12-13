@@ -9,13 +9,67 @@ var React__default = _interopDefault(React);
 
 var UAParser = require('ua-parser-js/dist/ua-parser.min');
 
-var UA = new UAParser();
-var browser = UA.getBrowser();
-var cpu = UA.getCPU();
-var device = UA.getDevice();
-var engine = UA.getEngine();
-var os = UA.getOS();
-var ua = UA.getUA();
+var UA = null,
+    browser = null,
+    cpu = null,
+    device = null,
+    engine = null,
+    os = null,
+    ua = null;
+
+var initializePackage = function initializePackage() {
+  if (typeof window !== 'undefined') {
+    if (window && window.navigator) {
+      UA = new UAParser();
+      browser = UA.getBrowser();
+      cpu = UA.getCPU();
+      device = UA.getDevice();
+      engine = UA.getEngine();
+      os = UA.getOS();
+      ua = UA.getUA();
+    }
+  }
+};
+
+initializePackage();
+
+var DEVICE_TYPES = {
+  MOBILE: 'mobile',
+  TABLET: 'tablet',
+  SMART_TV: 'smarttv',
+  CONSOLE: 'console',
+  WEARABLE: 'wearable',
+  BROWSER: 'browser',
+  ELECTRON: 'electron'
+};
+var IOS_TYPES = {
+  IPAD: 'iPad',
+  IPHONE: 'iPhone',
+  IPOD: 'iPod'
+};
+var PLATFORM_TYPES = {
+  MACINTEL: 'MacIntel'
+};
+var BROWSER_TYPES = {
+  CHROME: 'Chrome',
+  FIREFOX: 'Firefox',
+  OPERA: 'Opera',
+  YANDEX: 'Yandex',
+  SAFARI: 'Safari',
+  INTERNET_EXPLORER: 'Internet Explorer',
+  EDGE: 'Edge',
+  CHROMIUM: 'Chromium',
+  IE: 'IE',
+  MOBILE_SAFARI: 'Mobile Safari'
+};
+var OS_TYPES = {
+  IOS: 'iOS',
+  ANDROID: 'Android',
+  WINDOWS_PHONE: 'Windows Phone',
+  // TODO: Update types map
+  WINDOWS: 'Windows',
+  LINUX: 'Linux'
+};
 
 var setDefaults = function setDefaults(p) {
   var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
@@ -33,6 +87,50 @@ var getNavigatorInstance = function getNavigatorInstance() {
 var isIOS13Check = function isIOS13Check(type) {
   var nav = getNavigatorInstance();
   return nav && (nav.platform.includes(type) || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
+};
+var initialData = {
+  isMobile: false,
+  isTablet: false,
+  isBrowser: false,
+  isSmartTV: false,
+  isConsole: false,
+  isWearable: false
+};
+var checkType = function checkType(type) {
+  switch (type) {
+    case DEVICE_TYPES.MOBILE:
+      return {
+        isMobile: true
+      };
+
+    case DEVICE_TYPES.TABLET:
+      return {
+        isTablet: true
+      };
+
+    case DEVICE_TYPES.SMART_TV:
+      return {
+        isSmartTV: true
+      };
+
+    case DEVICE_TYPES.CONSOLE:
+      return {
+        isConsole: true
+      };
+
+    case DEVICE_TYPES.WEARABLE:
+      return {
+        isWearable: true
+      };
+
+    case undefined:
+      return {
+        isBrowser: true
+      };
+
+    default:
+      return initialData;
+  }
 };
 
 function _typeof(obj) {
@@ -185,76 +283,7 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-var DEVICE_TYPES = {
-  MOBILE: 'mobile',
-  TABLET: 'tablet',
-  SMART_TV: 'smarttv',
-  CONSOLE: 'console',
-  WEARABLE: 'wearable',
-  BROWSER: undefined
-};
-var BROWSER_TYPES = {
-  CHROME: 'Chrome',
-  FIREFOX: "Firefox",
-  OPERA: "Opera",
-  YANDEX: "Yandex",
-  SAFARI: "Safari",
-  INTERNET_EXPLORER: "Internet Explorer",
-  EDGE: "Edge",
-  CHROMIUM: "Chromium",
-  IE: 'IE',
-  MOBILE_SAFARI: "Mobile Safari"
-};
-var OS_TYPES = {
-  IOS: 'iOS',
-  ANDROID: "Android",
-  WINDOWS_PHONE: "Windows Phone"
-};
-var initialData = {
-  isMobile: false,
-  isTablet: false,
-  isBrowser: false,
-  isSmartTV: false,
-  isConsole: false,
-  isWearable: false
-};
-var checkType = function checkType(type) {
-  switch (type) {
-    case DEVICE_TYPES.MOBILE:
-      return {
-        isMobile: true
-      };
-
-    case DEVICE_TYPES.TABLET:
-      return {
-        isTablet: true
-      };
-
-    case DEVICE_TYPES.SMART_TV:
-      return {
-        isSmartTV: true
-      };
-
-    case DEVICE_TYPES.CONSOLE:
-      return {
-        isConsole: true
-      };
-
-    case DEVICE_TYPES.WEARABLE:
-      return {
-        isWearable: true
-      };
-
-    case DEVICE_TYPES.BROWSER:
-      return {
-        isBrowser: true
-      };
-
-    default:
-      return initialData;
-  }
-};
-var broPayload = function broPayload(isBrowser, browser, engine, os, ua) {
+var createBrowserPayload = function createBrowserPayload(isBrowser, browser, engine, os, ua) {
   return {
     isBrowser: isBrowser,
     browserMajorVersion: setDefaults(browser.major),
@@ -267,7 +296,8 @@ var broPayload = function broPayload(isBrowser, browser, engine, os, ua) {
     userAgent: setDefaults(ua)
   };
 };
-var mobilePayload = function mobilePayload(type, device, os, ua) {
+
+var createMobilePayload = function createMobilePayload(type, device, os, ua) {
   return _objectSpread2({}, type, {
     vendor: setDefaults(device.vendor),
     model: setDefaults(device.model),
@@ -276,7 +306,8 @@ var mobilePayload = function mobilePayload(type, device, os, ua) {
     ua: setDefaults(ua)
   });
 };
-var stvPayload = function stvPayload(isSmartTV, engine, os, ua) {
+
+var createSmartTVPayload = function createSmartTVPayload(isSmartTV, engine, os, ua) {
   return {
     isSmartTV: isSmartTV,
     engineName: setDefaults(engine.name),
@@ -286,7 +317,8 @@ var stvPayload = function stvPayload(isSmartTV, engine, os, ua) {
     userAgent: setDefaults(ua)
   };
 };
-var consolePayload = function consolePayload(isConsole, engine, os, ua) {
+
+var createConsolePayload = function createConsolePayload(isConsole, engine, os, ua) {
   return {
     isConsole: isConsole,
     engineName: setDefaults(engine.name),
@@ -296,7 +328,8 @@ var consolePayload = function consolePayload(isConsole, engine, os, ua) {
     userAgent: setDefaults(ua)
   };
 };
-var wearPayload = function wearPayload(isWearable, engine, os, ua) {
+
+var createWearablePayload = function createWearablePayload(isWearable, engine, os, ua) {
   return {
     isWearable: isWearable,
     engineName: setDefaults(engine.name),
@@ -318,29 +351,33 @@ function deviceDetect() {
       isWearable = type.isWearable;
 
   if (isBrowser) {
-    return broPayload(isBrowser, browser, engine, os, ua);
+    return createBrowserPayload(isBrowser, browser, engine, os, ua);
   }
 
   if (isSmartTV) {
-    return stvPayload(isSmartTV, engine, os, ua);
+    return createSmartTVPayload(isSmartTV, engine, os, ua);
   }
 
   if (isConsole) {
-    return consolePayload(isConsole, engine, os, ua);
+    return createConsolePayload(isConsole, engine, os, ua);
   }
 
   if (isMobile) {
-    return mobilePayload(type, device, os, ua);
+    return createMobilePayload(type, device, os, ua);
   }
 
   if (isTablet) {
-    return mobilePayload(type, device, os, ua);
+    return createMobilePayload(type, device, os, ua);
   }
 
   if (isWearable) {
-    return wearPayload(isWearable, engine, os, ua);
+    return createWearablePayload(isWearable, engine, os, ua);
   }
 }
+
+var isMobileAndTabletType = function isMobileAndTabletType() {
+  return [DEVICE_TYPES.MOBILE, DEVICE_TYPES.TABLET].indexOf(device.type) > -1;
+};
 
 var isMobileType = function isMobileType() {
   return device.type === DEVICE_TYPES.MOBILE;
@@ -350,23 +387,12 @@ var isTabletType = function isTabletType() {
   return device.type === DEVICE_TYPES.TABLET;
 };
 
-var isMobileAndTabletType = function isMobileAndTabletType() {
-  switch (device.type) {
-    case DEVICE_TYPES.MOBILE:
-    case DEVICE_TYPES.TABLET:
-      return true;
-
-    default:
-      return false;
-  }
-};
-
 var isSmartTVType = function isSmartTVType() {
   return device.type === DEVICE_TYPES.SMART_TV;
 };
 
 var isBrowserType = function isBrowserType() {
-  return device.type === DEVICE_TYPES.BROWSER;
+  return device.type === undefined;
 };
 
 var isWearableType = function isWearableType() {
@@ -427,25 +453,25 @@ var isIEType = function isIEType() {
 
 var isElectronType = function isElectronType() {
   var nav = getNavigatorInstance();
-  var ua = nav && nav.userAgent.toLowerCase();
-  return typeof ua === 'string' ? ua.includes('electron') : false;
+  var userAgent = nav && nav.userAgent.toLowerCase();
+  return typeof userAgent === 'string' ? userAgent.includes(DEVICE_TYPES.ELECTRON) : false;
 };
 
 var getIOS13 = function getIOS13() {
   var nav = getNavigatorInstance();
-  return nav && (/iPad|iPhone|iPod/.test(nav.platform) || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1) && !window.MSStream;
+  return nav && (/iPad|iPhone|iPod/.test(nav.platform) || nav.platform === PLATFORM_TYPES.MACINTEL && nav.maxTouchPoints > 1) && !window.MSStream;
 };
 
 var getIPad13 = function getIPad13() {
-  return isIOS13Check('iPad');
+  return isIOS13Check(IOS_TYPES.IPAD);
 };
 
 var getIphone13 = function getIphone13() {
-  return isIOS13Check('iPhone');
+  return isIOS13Check(IOS_TYPES.IPHONE);
 };
 
 var getIPod13 = function getIPod13() {
-  return isIOS13Check('iPod');
+  return isIOS13Check(IOS_TYPES.IPOD);
 };
 
 var getBrowserFullVersion = function getBrowserFullVersion() {
@@ -489,7 +515,7 @@ var getUseragent = function getUseragent() {
 };
 
 var getDeviceType = function getDeviceType() {
-  return setDefaults(device.type, 'browser');
+  return setDefaults(device.type, DEVICE_TYPES.BROWSER);
 };
 
 var isSmartTV = isSmartTVType();
@@ -731,13 +757,18 @@ function withOrientationChange(WrappedComponent) {
 }
 
 exports.AndroidView = AndroidView;
+exports.BROWSER_TYPES = BROWSER_TYPES;
 exports.BrowserView = BrowserView;
 exports.ConsoleView = ConsoleView;
 exports.CustomView = CustomView;
+exports.DEVICE_TYPES = DEVICE_TYPES;
 exports.IEView = IEView;
 exports.IOSView = IOSView;
+exports.IOS_TYPES = IOS_TYPES;
 exports.MobileOnlyView = MobileOnlyView;
 exports.MobileView = MobileView;
+exports.OS_TYPES = OS_TYPES;
+exports.PLATFORM_TYPES = PLATFORM_TYPES;
 exports.SmartTVView = SmartTVView;
 exports.TabletView = TabletView;
 exports.WearableView = WearableView;

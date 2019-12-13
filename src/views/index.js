@@ -11,7 +11,7 @@ import {
   isWearable,
   isConsole,
   isTablet
-} from '../helpers/selectors';
+} from '../selectors';
 
 export const AndroidView = ({ renderWithFragment, children, viewClassName, style }) => {
   return isAndroid ? (
