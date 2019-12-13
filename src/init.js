@@ -2,7 +2,7 @@ const UAParser = require('ua-parser-js/dist/ua-parser.min');
 
 let UA = null, browser = null, cpu = null, device = null, engine = null, os = null, ua = null
 
-const initializePackage = () => {
+function init() {
   if (typeof window !== 'undefined') {
     if (window && window.navigator) {
       UA = new UAParser();
@@ -17,7 +17,7 @@ const initializePackage = () => {
   }
 }
 
-initializePackage()
+init()
 
 export {
   UA,
