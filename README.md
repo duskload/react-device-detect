@@ -82,7 +82,7 @@ render() {
 
 ## Style the view
 
-Yoa can style view component by passing class to `viewClassName` prop
+You can style view component by passing class to `viewClassName` prop
 
 ```html
 <BrowserView viewClassName='custom-class'>
