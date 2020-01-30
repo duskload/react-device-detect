@@ -1,6 +1,6 @@
 ## react-device-detect
 
-Detect device, and render view according to detected device type.
+Detect device, and render view according to the detected device type.
 
 ## Installation
 
@@ -53,7 +53,7 @@ render() {
 }
 ```
 
-If you want to leave a message to specific browser (e.g IE), you can use `isIE` selector
+If you want to leave a message to a specific browser (e.g IE), you can use `isIE` selector
 
 ```javascript
 import {isIE} from 'react-device-detect';
@@ -66,7 +66,7 @@ render() {
 }
 ```
 
-If you want to render a view on specific device and with specific condition:
+If you want to render a view on a specific device and with a specific condition:
 
 ```javascript
 import { browserName, CustomView } from 'react-device-detect';
