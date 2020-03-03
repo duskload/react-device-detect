@@ -34,7 +34,7 @@ const isElectronType = () => {
   const nav = getNavigatorInstance();
   const ua = nav && nav.userAgent.toLowerCase();
 
-  return typeof ua === 'string' ? ua.includes('electron') : false;
+  return typeof ua === 'string' ? /electron/.test(ua) : false;
 };
 
 const getIOS13 = () => {
