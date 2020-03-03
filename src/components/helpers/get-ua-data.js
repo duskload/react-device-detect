@@ -30,6 +30,6 @@ export const getNavigatorInstance = () => {
 export const isIOS13Check = type => {
   const nav = getNavigatorInstance();
   return (
-    nav && (nav.platform.includes(type) || (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream))
+    nav && (nav.platform.indexOf(type) !== -1 || (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream))
   );
 };
