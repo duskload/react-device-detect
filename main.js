@@ -32,7 +32,7 @@ var getNavigatorInstance = function getNavigatorInstance() {
 };
 var isIOS13Check = function isIOS13Check(type) {
   var nav = getNavigatorInstance();
-  return nav && (nav.platform.includes(type) || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
+  return nav && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
 };
 
 function _typeof(obj) {
@@ -428,7 +428,7 @@ var isIEType = function isIEType() {
 var isElectronType = function isElectronType() {
   var nav = getNavigatorInstance();
   var ua = nav && nav.userAgent.toLowerCase();
-  return typeof ua === 'string' ? ua.includes('electron') : false;
+  return typeof ua === 'string' ? /electron/.test(ua) : false;
 };
 
 var getIOS13 = function getIOS13() {
@@ -497,9 +497,9 @@ var isConsole = isConsoleType();
 var isWearable = isWearableType();
 var isMobileSafari = isMobileSafariType();
 var isChromium = isChromiumType();
-var isMobile = isMobileAndTabletType();
+var isMobile = isMobileAndTabletType() || getIPad13();
 var isMobileOnly = isMobileType();
-var isTablet = isTabletType();
+var isTablet = isTabletType() || getIPad13();
 var isBrowser = isBrowserType();
 var isAndroid = isAndroidType();
 var isWinPhone = isWinPhoneType();
