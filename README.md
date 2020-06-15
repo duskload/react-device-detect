@@ -199,6 +199,17 @@ App = withOrientationChange(App)
 export { App }
 ```
 
+### Testing
+
+```js
+import * as rdd from 'react-device-detect';
+
+rdd.isMobile = true; 
+
+// use in tests
+
+```
+
 ## License
 
 MIT
