@@ -32,7 +32,7 @@ var getNavigatorInstance = function getNavigatorInstance() {
 };
 var isIOS13Check = function isIOS13Check(type) {
   var nav = getNavigatorInstance();
-  return nav && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
+  return nav && nav.platform && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
 };
 
 function _typeof(obj) {
@@ -203,12 +203,15 @@ var BROWSER_TYPES = {
   EDGE: "Edge",
   CHROMIUM: "Chromium",
   IE: 'IE',
-  MOBILE_SAFARI: "Mobile Safari"
+  MOBILE_SAFARI: "Mobile Safari",
+  EDGE_CHROMIUM: "Edge Chromium"
 };
 var OS_TYPES = {
   IOS: 'iOS',
   ANDROID: "Android",
-  WINDOWS_PHONE: "Windows Phone"
+  WINDOWS_PHONE: "Windows Phone",
+  WINDOWS: 'Windows',
+  MAC_OS: 'Mac OS'
 };
 var initialData = {
   isMobile: false,
@@ -361,6 +364,14 @@ var isMobileAndTabletType = function isMobileAndTabletType() {
   }
 };
 
+var isEdgeChromiumType = function isEdgeChromiumType() {
+  if (os.name === OS_TYPES.WINDOWS && os.version === '10') {
+    return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
+  }
+
+  return false;
+};
+
 var isSmartTVType = function isSmartTVType() {
   return device.type === DEVICE_TYPES.SMART_TV;
 };
@@ -379,6 +390,14 @@ var isConsoleType = function isConsoleType() {
 
 var isAndroidType = function isAndroidType() {
   return os.name === OS_TYPES.ANDROID;
+};
+
+var isWindowsType = function isWindowsType() {
+  return os.name === OS_TYPES.WINDOWS;
+};
+
+var isMacOsType = function isMacOsType() {
+  return os.name === OS_TYPES.MAC_OS;
 };
 
 var isWinPhoneType = function isWinPhoneType() {
@@ -519,7 +538,7 @@ var mobileModel = getMobileModel();
 var engineName = getEngineName();
 var engineVersion = getEngineVersion();
 var getUA = getUseragent();
-var isEdge = isEdgeType();
+var isEdge = isEdgeType() || isEdgeChromiumType();
 var isYandex = isYandexType();
 var deviceType = getDeviceType();
 var isIOS13 = getIOS13();
@@ -527,6 +546,10 @@ var isIPad13 = getIPad13();
 var isIPhone13 = getIphone13();
 var isIPod13 = getIPod13();
 var isElectron = isElectronType();
+var isEdgeChromium = isEdgeChromiumType();
+var isLegacyEdge = isEdgeType();
+var isWindows = isWindowsType();
+var isMacOs = isMacOsType();
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -756,6 +779,7 @@ exports.isChrome = isChrome;
 exports.isChromium = isChromium;
 exports.isConsole = isConsole;
 exports.isEdge = isEdge;
+exports.isEdgeChromium = isEdgeChromium;
 exports.isElectron = isElectron;
 exports.isFirefox = isFirefox;
 exports.isIE = isIE;
@@ -764,6 +788,8 @@ exports.isIOS13 = isIOS13;
 exports.isIPad13 = isIPad13;
 exports.isIPhone13 = isIPhone13;
 exports.isIPod13 = isIPod13;
+exports.isLegacyEdge = isLegacyEdge;
+exports.isMacOs = isMacOs;
 exports.isMobile = isMobile;
 exports.isMobileOnly = isMobileOnly;
 exports.isMobileSafari = isMobileSafari;
@@ -773,6 +799,7 @@ exports.isSmartTV = isSmartTV;
 exports.isTablet = isTablet;
 exports.isWearable = isWearable;
 exports.isWinPhone = isWinPhone;
+exports.isWindows = isWindows;
 exports.isYandex = isYandex;
 exports.mobileModel = mobileModel;
 exports.mobileVendor = mobileVendor;
