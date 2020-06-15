@@ -14,11 +14,21 @@ const isMobileAndTabletType = () => {
   }
 };
 
+const isEdgeChromiumType = () => {
+  if (os.name === OS_TYPES.WINDOWS && os.version === '10') {
+    return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
+  }
+
+  return false;
+};
+
 const isSmartTVType = () => device.type === DEVICE_TYPES.SMART_TV;
 const isBrowserType = () => device.type === DEVICE_TYPES.BROWSER;
 const isWearableType = () => device.type === DEVICE_TYPES.WEARABLE;
 const isConsoleType = () => device.type === DEVICE_TYPES.CONSOLE;
 const isAndroidType = () => os.name === OS_TYPES.ANDROID;
+const isWindowsType = () => os.name === OS_TYPES.WINDOWS;
+const isMacOsType = () => os.name === OS_TYPES.MAC_OS;
 const isWinPhoneType = () => os.name === OS_TYPES.WINDOWS_PHONE;
 const isIOSType = () => os.name === OS_TYPES.IOS;
 const isChromeType = () => browser.name === BROWSER_TYPES.CHROME;
@@ -89,7 +99,7 @@ export const mobileModel = getMobileModel();
 export const engineName = getEngineName();
 export const engineVersion = getEngineVersion();
 export const getUA = getUseragent();
-export const isEdge = isEdgeType();
+export const isEdge = isEdgeType() || isEdgeChromiumType();
 export const isYandex = isYandexType();
 export const deviceType = getDeviceType();
 export const isIOS13 = getIOS13();
@@ -97,3 +107,7 @@ export const isIPad13 = getIPad13();
 export const isIPhone13 = getIphone13();
 export const isIPod13 = getIPod13();
 export const isElectron = isElectronType();
+export const isEdgeChromium = isEdgeChromiumType();
+export const isLegacyEdge = isEdgeType();
+export const isWindows = isWindowsType();
+export const isMacOs = isMacOsType();

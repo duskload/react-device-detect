@@ -19,13 +19,16 @@ export const BROWSER_TYPES = {
   EDGE: "Edge",
   CHROMIUM: "Chromium",
   IE: 'IE',
-  MOBILE_SAFARI: "Mobile Safari"
+  MOBILE_SAFARI: "Mobile Safari",
+  EDGE_CHROMIUM: "Edge Chromium"
 };
 
 export const OS_TYPES = {
   IOS: 'iOS',
   ANDROID: "Android",
-  WINDOWS_PHONE: "Windows Phone"
+  WINDOWS_PHONE: "Windows Phone",
+  WINDOWS: 'Windows',
+  MAC_OS: 'Mac OS'
 };
 
 const initialData = {
