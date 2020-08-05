@@ -204,7 +204,8 @@ var BROWSER_TYPES = {
   CHROMIUM: "Chromium",
   IE: 'IE',
   MOBILE_SAFARI: "Mobile Safari",
-  EDGE_CHROMIUM: "Edge Chromium"
+  EDGE_CHROMIUM: "Edge Chromium",
+  MIUI: "MIUI Browser"
 };
 var OS_TYPES = {
   IOS: 'iOS',
@@ -444,6 +445,10 @@ var isIEType = function isIEType() {
   return browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
 };
 
+var isMIUIType = function isMIUIType() {
+  return browser.name === BROWSER_TYPES.MIUI;
+};
+
 var isElectronType = function isElectronType() {
   var nav = getNavigatorInstance();
   var ua = nav && nav.userAgent.toLowerCase();
@@ -550,6 +555,7 @@ var isEdgeChromium = isEdgeChromiumType();
 var isLegacyEdge = isEdgeType();
 var isWindows = isWindowsType();
 var isMacOs = isMacOsType();
+var isMIUI = isMIUIType();
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -789,6 +795,7 @@ exports.isIPad13 = isIPad13;
 exports.isIPhone13 = isIPhone13;
 exports.isIPod13 = isIPod13;
 exports.isLegacyEdge = isLegacyEdge;
+exports.isMIUI = isMIUI;
 exports.isMacOs = isMacOs;
 exports.isMobile = isMobile;
 exports.isMobileOnly = isMobileOnly;
