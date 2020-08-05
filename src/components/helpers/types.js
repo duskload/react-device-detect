@@ -20,7 +20,8 @@ export const BROWSER_TYPES = {
   CHROMIUM: "Chromium",
   IE: 'IE',
   MOBILE_SAFARI: "Mobile Safari",
-  EDGE_CHROMIUM: "Edge Chromium"
+  EDGE_CHROMIUM: "Edge Chromium",
+  MIUI: "MIUI Browser"
 };
 
 export const OS_TYPES = {
