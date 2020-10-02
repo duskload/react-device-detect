@@ -15,7 +15,7 @@ const isMobileAndTabletType = () => {
 };
 
 const isEdgeChromiumType = () => {
-  if (os.name === OS_TYPES.WINDOWS && os.version === '10') {
+  if (os.name === OS_TYPES.WINDOWS) {
     return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
   }
 
