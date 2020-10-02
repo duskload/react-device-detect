@@ -15,11 +15,7 @@ const isMobileAndTabletType = () => {
 };
 
 const isEdgeChromiumType = () => {
-  if (os.name === OS_TYPES.WINDOWS) {
-    return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
-  }
-
-  return false;
+  return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
 };
 
 const isSmartTVType = () => device.type === DEVICE_TYPES.SMART_TV;
