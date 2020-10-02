@@ -108,6 +108,6 @@ export const isIPhone13 = getIphone13();
 export const isIPod13 = getIPod13();
 export const isElectron = isElectronType();
 export const isEdgeChromium = isEdgeChromiumType();
-export const isLegacyEdge = isEdgeType();
+export const isLegacyEdge = isEdgeType() && !isEdgeChromiumType();
 export const isWindows = isWindowsType();
 export const isMacOs = isMacOsType();
