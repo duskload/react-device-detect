@@ -366,11 +366,7 @@ var isMobileAndTabletType = function isMobileAndTabletType() {
 };
 
 var isEdgeChromiumType = function isEdgeChromiumType() {
-  if (os.name === OS_TYPES.WINDOWS && os.version === '10') {
-    return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
-  }
-
-  return false;
+  return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
 };
 
 var isSmartTVType = function isSmartTVType() {
@@ -552,7 +548,7 @@ var isIPhone13 = getIphone13();
 var isIPod13 = getIPod13();
 var isElectron = isElectronType();
 var isEdgeChromium = isEdgeChromiumType();
-var isLegacyEdge = isEdgeType();
+var isLegacyEdge = isEdgeType() && !isEdgeChromiumType();
 var isWindows = isWindowsType();
 var isMacOs = isMacOsType();
 var isMIUI = isMIUIType();
