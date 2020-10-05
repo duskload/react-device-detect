@@ -36,6 +36,7 @@ const isSafariType = () => browser.name === BROWSER_TYPES.SAFARI || browser.name
 const isMobileSafariType = () => browser.name === BROWSER_TYPES.MOBILE_SAFARI;
 const isOperaType = () => browser.name === BROWSER_TYPES.OPERA;
 const isIEType = () => browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
+const isMIUIType = () => browser.name === BROWSER_TYPES.MIUI;
 const isElectronType = () => {
   const nav = getNavigatorInstance();
   const ua = nav && nav.userAgent.toLowerCase();
@@ -107,3 +108,4 @@ export const isEdgeChromium = isEdgeChromiumType();
 export const isLegacyEdge = isEdgeType() && !isEdgeChromiumType();
 export const isWindows = isWindowsType();
 export const isMacOs = isMacOsType();
+export const isMIUI = isMIUIType();

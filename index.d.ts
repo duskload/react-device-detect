@@ -61,6 +61,7 @@ declare module "react-device-detect" {
   export import isWindows = ReactDeviceDetect.isWindows;
   export import isMacOs = ReactDeviceDetect.isMacOs;
   export import withOrientationChange = ReactDeviceDetect.withOrientationChange;
+  export import isMIUI = ReactDeviceDetect.isMIUI;
 }
 
 declare namespace ReactDeviceDetect {
@@ -196,4 +197,6 @@ declare namespace ReactDeviceDetect {
   export const isWindows: boolean;
 
   export const isMacOs: boolean;
+
+  export const isMIUI: boolean;
 }
