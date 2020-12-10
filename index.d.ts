@@ -80,9 +80,9 @@ declare namespace ReactDeviceDetect {
     condition?: boolean;
   }
 
-  export function deviceDetect (): any;
+  export function deviceDetect(): any;
 
-  export function withOrientationChange (Component: any): any;
+  export function withOrientationChange<P, S = {}>(Component: React.Component<P, S> | React.FC<P>): React.ComponentClass<P, S>;
 
   export class BrowserView extends React.Component<ViewProps> {
   }
