@@ -64,6 +64,6 @@
     "rollup-plugin-node-resolve": "^5.2.0"
   },
   "dependencies": {
-    "ua-parser-js": "^0.7.22"
+    "ua-parser-js": "^0.7.23"
   }
 }
