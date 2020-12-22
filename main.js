@@ -169,6 +169,42 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -557,122 +593,146 @@ var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
       children = _ref.children,
       viewClassName = _ref.viewClassName,
-      style = _ref.style;
-  return isAndroid ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref.style,
+      props = _objectWithoutProperties(_ref, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isAndroid ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props, props), children) : null;
 };
 var BrowserView = function BrowserView(_ref2) {
   var renderWithFragment = _ref2.renderWithFragment,
       children = _ref2.children,
       viewClassName = _ref2.viewClassName,
-      style = _ref2.style;
-  return isBrowser ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref2.style,
+      props = _objectWithoutProperties(_ref2, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isBrowser ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var IEView = function IEView(_ref3) {
   var renderWithFragment = _ref3.renderWithFragment,
       children = _ref3.children,
       viewClassName = _ref3.viewClassName,
-      style = _ref3.style;
-  return isIE ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref3.style,
+      props = _objectWithoutProperties(_ref3, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isIE ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var IOSView = function IOSView(_ref4) {
   var renderWithFragment = _ref4.renderWithFragment,
       children = _ref4.children,
       viewClassName = _ref4.viewClassName,
-      style = _ref4.style;
-  return isIOS ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref4.style,
+      props = _objectWithoutProperties(_ref4, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isIOS ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var MobileView = function MobileView(_ref5) {
   var renderWithFragment = _ref5.renderWithFragment,
       children = _ref5.children,
       viewClassName = _ref5.viewClassName,
-      style = _ref5.style;
-  return isMobile ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref5.style,
+      props = _objectWithoutProperties(_ref5, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isMobile ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var TabletView = function TabletView(_ref6) {
   var renderWithFragment = _ref6.renderWithFragment,
       children = _ref6.children,
       viewClassName = _ref6.viewClassName,
-      style = _ref6.style;
-  return isTablet ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref6.style,
+      props = _objectWithoutProperties(_ref6, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isTablet ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var WinPhoneView = function WinPhoneView(_ref7) {
   var renderWithFragment = _ref7.renderWithFragment,
       children = _ref7.children,
       viewClassName = _ref7.viewClassName,
-      style = _ref7.style;
-  return isWinPhone ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref7.style,
+      props = _objectWithoutProperties(_ref7, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isWinPhone ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var MobileOnlyView = function MobileOnlyView(_ref8) {
   var renderWithFragment = _ref8.renderWithFragment,
       children = _ref8.children,
       viewClassName = _ref8.viewClassName,
-      style = _ref8.style;
-  return isMobileOnly ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref8.style,
+      props = _objectWithoutProperties(_ref8, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isMobileOnly ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var SmartTVView = function SmartTVView(_ref9) {
   var renderWithFragment = _ref9.renderWithFragment,
       children = _ref9.children,
       viewClassName = _ref9.viewClassName,
-      style = _ref9.style;
-  return isSmartTV ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref9.style,
+      props = _objectWithoutProperties(_ref9, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isSmartTV ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var ConsoleView = function ConsoleView(_ref10) {
   var renderWithFragment = _ref10.renderWithFragment,
       children = _ref10.children,
       viewClassName = _ref10.viewClassName,
-      style = _ref10.style;
-  return isConsole ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref10.style,
+      props = _objectWithoutProperties(_ref10, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isConsole ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var WearableView = function WearableView(_ref11) {
   var renderWithFragment = _ref11.renderWithFragment,
       children = _ref11.children,
       viewClassName = _ref11.viewClassName,
-      style = _ref11.style;
-  return isWearable ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      style = _ref11.style,
+      props = _objectWithoutProperties(_ref11, ["renderWithFragment", "children", "viewClassName", "style"]);
+
+  return isWearable ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 var CustomView = function CustomView(_ref12) {
   var renderWithFragment = _ref12.renderWithFragment,
       children = _ref12.children,
       viewClassName = _ref12.viewClassName,
       style = _ref12.style,
-      condition = _ref12.condition;
-  return condition ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", {
+      condition = _ref12.condition,
+      props = _objectWithoutProperties(_ref12, ["renderWithFragment", "children", "viewClassName", "style", "condition"]);
+
+  return condition ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, children) : null;
+  }, props), children) : null;
 };
 
 function withOrientationChange(WrappedComponent) {
