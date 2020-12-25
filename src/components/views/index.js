@@ -18,7 +18,7 @@ export const AndroidView = ({ renderWithFragment, children, viewClassName, style
     renderWithFragment ? (
       <Fragment>{children}</Fragment>
     ) : (
-      <div className={viewClassName} style={style} {...props} {...props}>
+      <div className={viewClassName} style={style} {...props}>
         {children}
       </div>
     )
