@@ -32,7 +32,7 @@ var getNavigatorInstance = function getNavigatorInstance() {
 };
 var isIOS13Check = function isIOS13Check(type) {
   var nav = getNavigatorInstance();
-  return nav && nav.platform && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
+  return nav && nav.platform && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 0);
 };
 
 function _typeof(obj) {
