@@ -1,5 +1,7 @@
 ## react-device-detect
 
+![npm](https://img.shields.io/npm/dm/react-device-detect?label=npm%20downloads)
+
 Detect device, and render view according to the detected device type.
 
 ## Installation
