@@ -134,6 +134,7 @@ const styles = {
 | isYandex           | bool     | returns true if browser is `Yandex`                                                    |
 | isChromium         | bool     | returns true if browser is `Chromium`                                                  |
 | isMobileSafari     | bool     | returns true if browser is `Mobile Safari`                                             |
+| isSamsungBrowser   | bool     | returns true if browser is `Samsung Browser`                                           |
 | osVersion          | string   | returns os version (e.g 7 for `Windows` or 6 for `Android`)                            |
 | osName             | string   | returns os name (e.g `Windows`, `Android`)                                             |
 | fullBrowserVersion | string   | returns full browser version (e.g 65.0.3325.181 for `Chrome`)                          |
@@ -155,6 +156,8 @@ const styles = {
 | isWindows          | boolean  | returns true/false if os is `Windows`                                                  |
 | isMacOs            | boolean  | returns true/false if os is `Mac OS`                                                   |
 | deviceDetect       | boolean  | return data object which includes all data about device (e.g version, engine, os etc.) |
+| OsTypes            | object   | return data object with os types                                                       |
+| BrowserTypes       | object   | return data object with browser types                                                  |
 ### Views
 
 Available views:

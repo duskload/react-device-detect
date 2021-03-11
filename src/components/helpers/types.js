@@ -1,34 +1,35 @@
 import { setDefaults } from "./get-ua-data";
 
-export const DEVICE_TYPES = {
-  MOBILE: 'mobile',
-  TABLET: 'tablet',
-  SMART_TV: 'smarttv',
-  CONSOLE: 'console',
-  WEARABLE: 'wearable',
-  BROWSER: undefined
+export const DeviceTypes = {
+  Mobile: 'mobile',
+  Tablet: 'tablet',
+  SmartTv: 'smarttv',
+  Console: 'console',
+  Wearable: 'wearable',
+  Browser: undefined
 };
 
-export const BROWSER_TYPES = {
-  CHROME: 'Chrome',
-  FIREFOX: "Firefox",
-  OPERA: "Opera",
-  YANDEX: "Yandex",
-  SAFARI: "Safari",
-  INTERNET_EXPLORER: "Internet Explorer",
-  EDGE: "Edge",
-  CHROMIUM: "Chromium",
-  IE: 'IE',
-  MOBILE_SAFARI: "Mobile Safari",
-  EDGE_CHROMIUM: "Edge Chromium",
-  MIUI: "MIUI Browser"
+export const BrowserTypes = {
+  Chrome: 'Chrome',
+  Firefox: "Firefox",
+  Opera: "Opera",
+  Yandex: "Yandex",
+  Safari: "Safari",
+  InternetExplorer: "Internet Explorer",
+  Edge: "Edge",
+  Chromium: "Chromium",
+  Ie: 'IE',
+  MobileSafari: "Mobile Safari",
+  EdgeChromium: "Edge Chromium",
+  MIUI: "MIUI Browser",
+  SamsungBrowser: 'Samsung Browser'
 };
 
-export const OS_TYPES = {
+export const OsTypes = {
   IOS: 'iOS',
-  ANDROID: "Android",
-  WINDOWS_PHONE: "Windows Phone",
-  WINDOWS: 'Windows',
+  Android: "Android",
+  WindowsPhone: "Windows Phone",
+  Windows: 'Windows',
   MAC_OS: 'Mac OS'
 };
 
@@ -43,17 +44,17 @@ const initialData = {
 
 export const checkType = type => {
   switch (type) {
-    case DEVICE_TYPES.MOBILE:
+    case DeviceTypes.Mobile:
       return { isMobile: true };
-    case DEVICE_TYPES.TABLET:
+    case DeviceTypes.Tablet:
       return { isTablet: true };
-    case DEVICE_TYPES.SMART_TV:
+    case DeviceTypes.SmartTv:
       return { isSmartTV: true };
-    case DEVICE_TYPES.CONSOLE:
+    case DeviceTypes.Console:
       return { isConsole: true };
-    case DEVICE_TYPES.WEARABLE:
+    case DeviceTypes.Wearable:
       return { isWearable: true };
-    case DEVICE_TYPES.BROWSER:
+    case DeviceTypes.Browser:
       return { isBrowser: true };
     default:
       return initialData;
@@ -62,14 +63,14 @@ export const checkType = type => {
 
 export const getCurrentBrowser = name => {
   switch (name) {
-    case BROWSER_TYPES.CHROME:
-    case BROWSER_TYPES.FIREFOX:
-    case BROWSER_TYPES.OPERA:
-    case BROWSER_TYPES.YANDEX:
-    case BROWSER_TYPES.SAFARI:
-    case BROWSER_TYPES.IE:
-    case BROWSER_TYPES.EDGE:
-    case BROWSER_TYPES.CHROMIUM:
+    case BrowserTypes.Chrome:
+    case BrowserTypes.Opera:
+    case BrowserTypes.Firefox:
+    case BrowserTypes.Yandex:
+    case BrowserTypes.Safari:
+    case BrowserTypes.Ie:
+    case BrowserTypes.Edge:
+    case BrowserTypes.Chromium:
       return true;
     default:
       return false;
