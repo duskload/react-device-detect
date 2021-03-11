@@ -63,6 +63,9 @@ declare module "react-device-detect" {
   export import isMacOs = ReactDeviceDetect.isMacOs;
   export import withOrientationChange = ReactDeviceDetect.withOrientationChange;
   export import isMIUI = ReactDeviceDetect.isMIUI;
+  export import isSamsungBrowser = ReactDeviceDetect.isSamsungBrowser;
+  export import OsTypes = ReactDeviceDetect.OsTypes;
+  export import BrowserTypes = ReactDeviceDetect.BrowserTypes;
 }
 
 declare namespace ReactDeviceDetect {
@@ -79,6 +82,30 @@ declare namespace ReactDeviceDetect {
     viewClassName?: string;
     style?: React.CSSProperties;
     condition?: boolean;
+  }
+
+  interface IOsTypes {
+    IOS: string;
+    Android: string;
+    WindowsPhone: string;
+    Windows: string;
+    MAC_OS: string;
+  }
+
+  interface IBrowserTypes {
+    Chrome: string;
+    Firefox: string;
+    Opera: string;
+    Yandex: string;
+    Safari: string;
+    InternetExplorer: string;
+    Edge: string;
+    Chromium: string;
+    Ie: string;
+    MobileSafari: string;
+    EdgeChromium: string;
+    MIUI: string;
+    SamsungBrowser: string;
   }
 
   export function deviceDetect(): any;
@@ -204,4 +231,10 @@ declare namespace ReactDeviceDetect {
   export const isMacOs: boolean;
 
   export const isMIUI: boolean;
+
+  export const isSamsungBrowser: boolean;
+
+  export const OsTypes: IOsTypes;
+
+  export const BrowserTypes: IBrowserTypes;
 }

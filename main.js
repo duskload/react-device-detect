@@ -221,33 +221,34 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-var DEVICE_TYPES = {
-  MOBILE: 'mobile',
-  TABLET: 'tablet',
-  SMART_TV: 'smarttv',
-  CONSOLE: 'console',
-  WEARABLE: 'wearable',
-  BROWSER: undefined
+var DeviceTypes = {
+  Mobile: 'mobile',
+  Tablet: 'tablet',
+  SmartTv: 'smarttv',
+  Console: 'console',
+  Wearable: 'wearable',
+  Browser: undefined
 };
-var BROWSER_TYPES = {
-  CHROME: 'Chrome',
-  FIREFOX: "Firefox",
-  OPERA: "Opera",
-  YANDEX: "Yandex",
-  SAFARI: "Safari",
-  INTERNET_EXPLORER: "Internet Explorer",
-  EDGE: "Edge",
-  CHROMIUM: "Chromium",
-  IE: 'IE',
-  MOBILE_SAFARI: "Mobile Safari",
-  EDGE_CHROMIUM: "Edge Chromium",
-  MIUI: "MIUI Browser"
+var BrowserTypes = {
+  Chrome: 'Chrome',
+  Firefox: "Firefox",
+  Opera: "Opera",
+  Yandex: "Yandex",
+  Safari: "Safari",
+  InternetExplorer: "Internet Explorer",
+  Edge: "Edge",
+  Chromium: "Chromium",
+  Ie: 'IE',
+  MobileSafari: "Mobile Safari",
+  EdgeChromium: "Edge Chromium",
+  MIUI: "MIUI Browser",
+  SamsungBrowser: 'Samsung Browser'
 };
-var OS_TYPES = {
+var OsTypes = {
   IOS: 'iOS',
-  ANDROID: "Android",
-  WINDOWS_PHONE: "Windows Phone",
-  WINDOWS: 'Windows',
+  Android: "Android",
+  WindowsPhone: "Windows Phone",
+  Windows: 'Windows',
   MAC_OS: 'Mac OS'
 };
 var initialData = {
@@ -260,32 +261,32 @@ var initialData = {
 };
 var checkType = function checkType(type) {
   switch (type) {
-    case DEVICE_TYPES.MOBILE:
+    case DeviceTypes.Mobile:
       return {
         isMobile: true
       };
 
-    case DEVICE_TYPES.TABLET:
+    case DeviceTypes.Tablet:
       return {
         isTablet: true
       };
 
-    case DEVICE_TYPES.SMART_TV:
+    case DeviceTypes.SmartTv:
       return {
         isSmartTV: true
       };
 
-    case DEVICE_TYPES.CONSOLE:
+    case DeviceTypes.Console:
       return {
         isConsole: true
       };
 
-    case DEVICE_TYPES.WEARABLE:
+    case DeviceTypes.Wearable:
       return {
         isWearable: true
       };
 
-    case DEVICE_TYPES.BROWSER:
+    case DeviceTypes.Browser:
       return {
         isBrowser: true
       };
@@ -383,17 +384,17 @@ function deviceDetect() {
 }
 
 var isMobileType = function isMobileType() {
-  return device.type === DEVICE_TYPES.MOBILE;
+  return device.type === DeviceTypes.Mobile;
 };
 
 var isTabletType = function isTabletType() {
-  return device.type === DEVICE_TYPES.TABLET;
+  return device.type === DeviceTypes.Tablet;
 };
 
 var isMobileAndTabletType = function isMobileAndTabletType() {
   switch (device.type) {
-    case DEVICE_TYPES.MOBILE:
-    case DEVICE_TYPES.TABLET:
+    case DeviceTypes.Mobile:
+    case DeviceTypes.Tablet:
       return true;
 
     default:
@@ -406,79 +407,83 @@ var isEdgeChromiumType = function isEdgeChromiumType() {
 };
 
 var isSmartTVType = function isSmartTVType() {
-  return device.type === DEVICE_TYPES.SMART_TV;
+  return device.type === DeviceTypes.SmartTv;
 };
 
 var isBrowserType = function isBrowserType() {
-  return device.type === DEVICE_TYPES.BROWSER;
+  return device.type === DeviceTypes.Browser;
 };
 
 var isWearableType = function isWearableType() {
-  return device.type === DEVICE_TYPES.WEARABLE;
+  return device.type === DeviceTypes.Wearable;
 };
 
 var isConsoleType = function isConsoleType() {
-  return device.type === DEVICE_TYPES.CONSOLE;
+  return device.type === DeviceTypes.Console;
 };
 
 var isAndroidType = function isAndroidType() {
-  return os.name === OS_TYPES.ANDROID;
+  return os.name === OsTypes.Android;
 };
 
 var isWindowsType = function isWindowsType() {
-  return os.name === OS_TYPES.WINDOWS;
+  return os.name === OsTypes.Windows;
 };
 
 var isMacOsType = function isMacOsType() {
-  return os.name === OS_TYPES.MAC_OS;
+  return os.name === OsTypes.MAC_OS;
 };
 
 var isWinPhoneType = function isWinPhoneType() {
-  return os.name === OS_TYPES.WINDOWS_PHONE;
+  return os.name === OsTypes.WindowsPhone;
 };
 
 var isIOSType = function isIOSType() {
-  return os.name === OS_TYPES.IOS;
+  return os.name === OsTypes.IOS;
 };
 
 var isChromeType = function isChromeType() {
-  return browser.name === BROWSER_TYPES.CHROME;
+  return browser.name === BrowserTypes.Chrome;
 };
 
 var isFirefoxType = function isFirefoxType() {
-  return browser.name === BROWSER_TYPES.FIREFOX;
+  return browser.name === BrowserTypes.Firefox;
 };
 
 var isChromiumType = function isChromiumType() {
-  return browser.name === BROWSER_TYPES.CHROMIUM;
+  return browser.name === BrowserTypes.Chromium;
 };
 
 var isEdgeType = function isEdgeType() {
-  return browser.name === BROWSER_TYPES.EDGE;
+  return browser.name === BrowserTypes.Edge;
 };
 
 var isYandexType = function isYandexType() {
-  return browser.name === BROWSER_TYPES.YANDEX;
+  return browser.name === BrowserTypes.Yandex;
 };
 
 var isSafariType = function isSafariType() {
-  return browser.name === BROWSER_TYPES.SAFARI || browser.name === BROWSER_TYPES.MOBILE_SAFARI;
+  return browser.name === BrowserTypes.Safari || browser.name === BrowserTypes.MobileSafari;
 };
 
 var isMobileSafariType = function isMobileSafariType() {
-  return browser.name === BROWSER_TYPES.MOBILE_SAFARI;
+  return browser.name === BrowserTypes.MobileSafari;
 };
 
 var isOperaType = function isOperaType() {
-  return browser.name === BROWSER_TYPES.OPERA;
+  return browser.name === BrowserTypes.Opera;
 };
 
 var isIEType = function isIEType() {
-  return browser.name === BROWSER_TYPES.INTERNET_EXPLORER || browser.name === BROWSER_TYPES.IE;
+  return browser.name === BrowserTypes.InternetExplorer || browser.name === BrowserTypes.Ie;
 };
 
 var isMIUIType = function isMIUIType() {
-  return browser.name === BROWSER_TYPES.MIUI;
+  return browser.name === BrowserTypes.MIUI;
+};
+
+var isSamsungBrowserType = function isSamsungBrowserType() {
+  return browser.name === BrowserTypes.SamsungBrowser;
 };
 
 var isElectronType = function isElectronType() {
@@ -589,6 +594,7 @@ var isLegacyEdge = isEdgeType() && !isEdgeChromiumType();
 var isWindows = isWindowsType();
 var isMacOs = isMacOsType();
 var isMIUI = isMIUIType();
+var isSamsungBrowser = isSamsungBrowserType();
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -817,6 +823,7 @@ function withOrientationChange(WrappedComponent) {
 }
 
 exports.AndroidView = AndroidView;
+exports.BrowserTypes = BrowserTypes;
 exports.BrowserView = BrowserView;
 exports.ConsoleView = ConsoleView;
 exports.CustomView = CustomView;
@@ -824,6 +831,7 @@ exports.IEView = IEView;
 exports.IOSView = IOSView;
 exports.MobileOnlyView = MobileOnlyView;
 exports.MobileView = MobileView;
+exports.OsTypes = OsTypes;
 exports.SmartTVView = SmartTVView;
 exports.TabletView = TabletView;
 exports.WearableView = WearableView;
@@ -860,6 +868,7 @@ exports.isMobileOnly = isMobileOnly;
 exports.isMobileSafari = isMobileSafari;
 exports.isOpera = isOpera;
 exports.isSafari = isSafari;
+exports.isSamsungBrowser = isSamsungBrowser;
 exports.isSmartTV = isSmartTV;
 exports.isTablet = isTablet;
 exports.isWearable = isWearable;
