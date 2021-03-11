@@ -117,7 +117,8 @@ const styles = {
 | isMobile           | bool     | returns true if device type is `mobile` or `tablet`                                    |
 | isMobileOnly       | bool     | returns true if device type is `mobile`                                                |
 | isTablet           | bool     | returns true if device type is `tablet`                                                |
-| isBrowser          | bool     | returns true if device type is `browser`                                               |
+| isBrowser (legacy) | bool     | returns true if device type is `browser` (better to use `isDesktop` instead)           |
+| isDesktop          | bool     | returns true if device type is `browser` (an alias of the isBrowser type               |
 | isSmartTV          | bool     | returns true if device type is `smarttv`                                               |
 | isWearable         | bool     | returns true if device type is `wearable`                                              |
 | isConsole          | bool     | returns true if device type is `console`                                               |
