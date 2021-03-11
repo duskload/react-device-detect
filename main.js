@@ -483,7 +483,7 @@ var isMIUIType = function isMIUIType() {
 
 var isElectronType = function isElectronType() {
   var nav = getNavigatorInstance();
-  var ua = nav && nav.userAgent.toLowerCase();
+  var ua = nav && nav.userAgent && nav.userAgent.toLowerCase();
   return typeof ua === 'string' ? /electron/.test(ua) : false;
 };
 
@@ -599,7 +599,7 @@ var AndroidView = function AndroidView(_ref) {
   return isAndroid ? renderWithFragment ? React__default.createElement(React.Fragment, null, children) : React__default.createElement("div", _extends({
     className: viewClassName,
     style: style
-  }, props, props), children) : null;
+  }, props), children) : null;
 };
 var BrowserView = function BrowserView(_ref2) {
   var renderWithFragment = _ref2.renderWithFragment,
