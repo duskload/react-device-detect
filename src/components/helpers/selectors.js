@@ -39,7 +39,7 @@ const isIEType = () => browser.name === BROWSER_TYPES.INTERNET_EXPLORER || brows
 const isMIUIType = () => browser.name === BROWSER_TYPES.MIUI;
 const isElectronType = () => {
   const nav = getNavigatorInstance();
-  const ua = nav && nav.userAgent.toLowerCase();
+  const ua = nav && nav.userAgent && nav.userAgent.toLowerCase();
 
   return typeof ua === 'string' ? /electron/.test(ua) : false;
 };
