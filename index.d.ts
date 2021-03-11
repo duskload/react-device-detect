@@ -21,6 +21,7 @@ declare module "react-device-detect" {
   export import CustomViewProps = ReactDeviceDetect.CustomViewProps;
   export import ViewProps = ReactDeviceDetect.ViewProps;
   export import isBrowser = ReactDeviceDetect.isBrowser;
+  export import isDesktop = ReactDeviceDetect.isDesktop;
   export import isMobile = ReactDeviceDetect.isMobile;
   export import isTablet = ReactDeviceDetect.isTablet;
   export import isSmartTV = ReactDeviceDetect.isSmartTV;
@@ -123,6 +124,8 @@ declare namespace ReactDeviceDetect {
   }
 
   export const isBrowser: boolean;
+
+  export const isDesktop: boolean;
 
   export const isMobile: boolean;
 

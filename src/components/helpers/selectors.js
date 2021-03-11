@@ -78,6 +78,7 @@ export const isMobile = isMobileAndTabletType() || getIPad13();
 export const isMobileOnly = isMobileType();
 export const isTablet = isTabletType() || getIPad13();
 export const isBrowser = isBrowserType();
+export const isDesktop = isBrowserType();
 export const isAndroid = isAndroidType();
 export const isWinPhone = isWinPhoneType();
 export const isIOS = isIOSType() || getIPad13();
