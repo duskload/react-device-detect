@@ -155,7 +155,7 @@ const styles = {
 | isLegacyEdge       | boolean  | returns true if browser is `Edge`                                                      |
 | isWindows          | boolean  | returns true/false if os is `Windows`                                                  |
 | isMacOs            | boolean  | returns true/false if os is `Mac OS`                                                   |
-| deviceDetect       | boolean  | return data object which includes all data about device (e.g version, engine, os etc.) |
+| deviceDetect       | object  | return data object which includes all data about device (e.g version, engine, os etc.) |
 | OsTypes            | object   | return data object with os types                                                       |
 | BrowserTypes       | object   | return data object with browser types                                                  |
 ### Views
