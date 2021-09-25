@@ -5,5 +5,5 @@ export { setUserAgent } from './utils/utils';
 
 export * from './components/views';
 export * from './components/withOrientationChange';
-export * from './components/useOrientationChange';
+export * from './components/hooks';
 export * from './lib/selectors';

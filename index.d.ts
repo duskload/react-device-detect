@@ -116,6 +116,10 @@ declare namespace ReactDeviceDetect {
 
   export function getSelectorsByUserAgent(userAgent: string): any;
 
+  export function useDeviceSelectors(userAgent: string): any;
+
+  export function useDeviceData(userAgent: string): any;
+
   export function withOrientationChange<P, S = {}>(Component: React.Component<P, S> | React.FC<P>): React.ComponentClass<P, S>;
 
   export function useMobileOrientation(): { isPortrait: boolean, isLandscape: boolean, orientation: 'portrait' | 'landscape' };

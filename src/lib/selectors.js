@@ -1,6 +1,7 @@
-import { os, device, browser, ua, engine, parseUserAgent } from './parse';
+import * as UAHelper from './parse';
 import { BrowserTypes, DeviceTypes, OsTypes } from '../constants/constants';
 import { setDefaults, isIOS13Check, getNavigatorInstance } from '../utils/utils';
+const { parseUserAgent } = UAHelper
 
 // device types
 const isMobileType = ({ type }) => type === DeviceTypes.Mobile;
@@ -59,7 +60,7 @@ const isElectronType = () => {
 
   return typeof ua === 'string' ? /electron/.test(ua) : false;
 };
-const isEdgeChromiumType = () => {
+const isEdgeChromiumType = (ua) => {
   return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
 };
 const getIOS13 = () => {
@@ -76,57 +77,51 @@ const getIphone13 = () => isIOS13Check('iPhone');
 const getIPod13 = () => isIOS13Check('iPod');
 const getUseragent = userAg => setDefaults(userAg);
 
-export const isSmartTV = isSmartTVType(device);
-export const isConsole = isConsoleType(device);
-export const isWearable = isWearableType(device);
-export const isMobileSafari = isMobileSafariType(browser) || getIPad13();
-export const isChromium = isChromiumType(browser);
-export const isMobile = isMobileAndTabletType(device) || getIPad13();
-export const isMobileOnly = isMobileType(device);
-export const isTablet = isTabletType(device) || getIPad13();
-export const isBrowser = isBrowserType(device);
-export const isDesktop = isBrowserType(device);
-export const isAndroid = isAndroidType(os);
-export const isWinPhone = isWinPhoneType(os);
-export const isIOS = isIOSType(os) || getIPad13();
-export const isChrome = isChromeType(browser);
-export const isFirefox = isFirefoxType(browser);
-export const isSafari = isSafariType(browser);
-export const isOpera = isOperaType(browser);
-export const isIE = isIEType(browser);
-export const osVersion = getOsVersion(os);
-export const osName = getOsName(os);
-export const fullBrowserVersion = getBrowserFullVersion(browser);
-export const browserVersion = getBrowserVersion(browser);
-export const browserName = getBrowserName(browser);
-export const mobileVendor = getMobileVendor(device);
-export const mobileModel = getMobileModel(device);
-export const engineName = getEngineName(engine);
-export const engineVersion = getEngineVersion(engine);
-export const getUA = getUseragent(ua);
-export const isEdge = isEdgeType(browser) || isEdgeChromiumType();
-export const isYandex = isYandexType(browser);
-export const deviceType = getDeviceType(device);
+export const isSmartTV = isSmartTVType(UAHelper.device);
+export const isConsole = isConsoleType(UAHelper.device);
+export const isWearable = isWearableType(UAHelper.device);
+export const isMobileSafari = isMobileSafariType(UAHelper.browser) || getIPad13();
+export const isChromium = isChromiumType(UAHelper.browser);
+export const isMobile = isMobileAndTabletType(UAHelper.device) || getIPad13();
+export const isMobileOnly = isMobileType(UAHelper.device);
+export const isTablet = isTabletType(UAHelper.device) || getIPad13();
+export const isBrowser = isBrowserType(UAHelper.device);
+export const isDesktop = isBrowserType(UAHelper.device);
+export const isAndroid = isAndroidType(UAHelper.os);
+export const isWinPhone = isWinPhoneType(UAHelper.os);
+export const isIOS = isIOSType(UAHelper.os) || getIPad13();
+export const isChrome = isChromeType(UAHelper.browser);
+export const isFirefox = isFirefoxType(UAHelper.browser);
+export const isSafari = isSafariType(UAHelper.browser);
+export const isOpera = isOperaType(UAHelper.browser);
+export const isIE = isIEType(UAHelper.browser);
+export const osVersion = getOsVersion(UAHelper.os);
+export const osName = getOsName(UAHelper.os);
+export const fullBrowserVersion = getBrowserFullVersion(UAHelper.browser);
+export const browserVersion = getBrowserVersion(UAHelper.browser);
+export const browserName = getBrowserName(UAHelper.browser);
+export const mobileVendor = getMobileVendor(UAHelper.device);
+export const mobileModel = getMobileModel(UAHelper.device);
+export const engineName = getEngineName(UAHelper.engine);
+export const engineVersion = getEngineVersion(UAHelper.engine);
+export const getUA = getUseragent(UAHelper.ua);
+export const isEdge = isEdgeType(UAHelper.browser) || isEdgeChromiumType(UAHelper.ua);
+export const isYandex = isYandexType(UAHelper.browser);
+export const deviceType = getDeviceType(UAHelper.device);
 export const isIOS13 = getIOS13();
 export const isIPad13 = getIPad13();
 export const isIPhone13 = getIphone13();
 export const isIPod13 = getIPod13();
 export const isElectron = isElectronType();
-export const isEdgeChromium = isEdgeChromiumType();
-export const isLegacyEdge = isEdgeType(browser) && !isEdgeChromiumType();
-export const isWindows = isWindowsType(os);
-export const isMacOs = isMacOsType(os);
-export const isMIUI = isMIUIType(browser);
-export const isSamsungBrowser = isSamsungBrowserType(browser);
+export const isEdgeChromium = isEdgeChromiumType(UAHelper.ua);
+export const isLegacyEdge = isEdgeType(UAHelper.browser) && !isEdgeChromiumType(UAHelper.ua);
+export const isWindows = isWindowsType(UAHelper.os);
+export const isMacOs = isMacOsType(UAHelper.os);
+export const isMIUI = isMIUIType(UAHelper.browser);
+export const isSamsungBrowser = isSamsungBrowserType(UAHelper.browser);
 
-export const getSelectorsByUserAgent = userAgent => {
-  if (!userAgent || typeof userAgent !== 'string') {
-    console.error('No valid user agent string was provided')
-    return
-  }
-
-  const { device, browser, os, engine, ua } = parseUserAgent(userAgent)
-
+export function buildSelectorsObject(options) {
+  const { device, browser, os, engine, ua } = options ? options : UAHelper
   return {
     isSmartTV: isSmartTVType(device),
     isConsole: isConsoleType(device),
@@ -156,7 +151,7 @@ export const getSelectorsByUserAgent = userAgent => {
     engineName: getEngineName(engine),
     engineVersion: getEngineVersion(engine),
     getUA: getUseragent(ua),
-    isEdge: isEdgeType(browser) || isEdgeChromiumType(),
+    isEdge: isEdgeType(browser) || isEdgeChromiumType(ua),
     isYandex: isYandexType(browser),
     deviceType: getDeviceType(device),
     isIOS13: getIOS13(),
@@ -164,11 +159,21 @@ export const getSelectorsByUserAgent = userAgent => {
     isIPhone13: getIphone13(),
     isIPod13: getIPod13(),
     isElectron: isElectronType(),
-    isEdgeChromium: isEdgeChromiumType(),
-    isLegacyEdge: isEdgeType(browser) && !isEdgeChromiumType(),
+    isEdgeChromium: isEdgeChromiumType(ua),
+    isLegacyEdge: isEdgeType(browser) && !isEdgeChromiumType(ua),
     isWindows: isWindowsType(os),
     isMacOs: isMacOsType(os),
     isMIUI: isMIUIType(browser),
     isSamsungBrowser: isSamsungBrowserType(browser)
   }
+}
+
+export const getSelectorsByUserAgent = userAgent => {
+  if (!userAgent || typeof userAgent !== 'string') {
+    console.error('No valid user agent string was provided')
+    return
+  }
+
+  const { device, browser, os, engine, ua } = parseUserAgent(userAgent)
+  return buildSelectorsObject({ device, browser, os, engine, ua })
 }

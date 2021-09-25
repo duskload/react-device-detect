@@ -1,11 +1,11 @@
-import * as UAInstance from './parse';
+import * as UAHelper from './parse';
 import * as create from '../utils/payloads';
 import { checkDeviceType } from '../utils/utils';
 
 export function deviceDetect(userAgent) {
   const { device, browser, engine, os, ua } = userAgent
-    ? UAInstance.parseUserAgent(userAgent)
-    : UAInstance;
+    ? UAHelper.parseUserAgent(userAgent)
+    : UAHelper;
 
   const type = checkDeviceType(device.type);
   const { isBrowser, isMobile, isTablet, isSmartTV, isConsole, isWearable } = type;
