@@ -1,69 +1,69 @@
 import {
-  checkType,
-  getCurrentBrowser,
-  broPayload,
+  browserPayload,
   mobilePayload,
   consolePayload,
-  stvPayload,
-  wearPayload
-} from "../src/components/helpers/types";
+  smartTvPayload,
+  wearablePayload,
+} from '../src/utils/payloads';
 
-describe("Types tests", () => {
-  describe("checkType()", () => {
-    it("should return isBrowser type on unedined", () => {
-      expect(checkType(undefined)).toEqual({ isBrowser: true });
+import { checkDeviceType, getCurrentBrowser } from '../src/utils/utils';
+
+describe('Types tests', () => {
+  describe('checkType()', () => {
+    it('should return isBrowser type on unedined', () => {
+      expect(checkDeviceType(undefined)).toEqual({ isBrowser: true });
     });
 
-    it("should return isMobile type on mobile", () => {
-      expect(checkType("mobile")).toEqual({ isMobile: true });
+    it('should return isMobile type on mobile', () => {
+      expect(checkDeviceType('mobile')).toEqual({ isMobile: true });
     });
 
-    it("should return object with all type as default case", () => {
-      expect(checkType([])).toEqual({
+    it('should return object with all type as default case', () => {
+      expect(checkDeviceType([])).toEqual({
         isMobile: false,
         isBrowser: false,
         isConsole: false,
         isSmartTV: false,
         isTablet: false,
-        isWearable: false
+        isWearable: false,
       });
     });
   });
 
-  describe("getCurrentBrowser()", () => {
-    it("should return true if browser name exist", () => {
-      expect(getCurrentBrowser("Chrome")).toEqual(true);
+  describe('getCurrentBrowser()', () => {
+    it('should return true if browser name exist', () => {
+      expect(getCurrentBrowser('Chrome')).toEqual(true);
     });
     it("should return false if browser name doesn't exist", () => {
-      expect(getCurrentBrowser("UC Browser")).toEqual(false);
+      expect(getCurrentBrowser('UC Browser')).toEqual(false);
     });
   });
 
-  describe("Forming data payloads", () => {
+  describe('Forming data payloads', () => {
     let browser, engine, os, ua, device;
     beforeAll(() => {
       browser = {
-        major: "65",
-        version: "55.55.5555.55",
-        name: "Chrome"
+        major: '65',
+        version: '55.55.5555.55',
+        name: 'Chrome',
       };
       engine = {
-        name: "WebKit",
-        version: "517"
+        name: 'WebKit',
+        version: '517',
       };
       os = {
-        name: "Windows",
-        version: "10.0"
+        name: 'Windows',
+        version: '10.0',
       };
       ua =
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36";
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36';
       device = {
-        vendor: "Apple",
-        model: "iPhone"
+        vendor: 'Apple',
+        model: 'iPhone',
       };
     });
-    it("should return broPayload()", () => {
-      expect(broPayload(true, browser, engine, os, ua)).toEqual({
+    it('should return broPayload()', () => {
+      expect(browserPayload(true, browser, engine, os, ua)).toEqual({
         isBrowser: true,
         browserMajorVersion: browser.major,
         browserFullVersion: browser.version,
@@ -72,22 +72,17 @@ describe("Types tests", () => {
         engineVersion: engine.version,
         osName: os.name,
         osVersion: os.version,
-        userAgent: ua
+        userAgent: ua,
       });
     });
 
-    it("should return mobilePayload()", () => {
-      let mobileOs = { name: "iOS", version: "11.0" };
+    it('should return mobilePayload()', () => {
+      let mobileOs = { name: 'iOS', version: '11.0' };
       let mobileUa =
-        "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1";
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1';
 
       expect(
-        mobilePayload(
-          { isMobile: true, isTablet: false },
-          device,
-          mobileOs,
-          mobileUa
-        )
+        mobilePayload({ isMobile: true, isTablet: false }, device, mobileOs, mobileUa)
       ).toEqual({
         isMobile: true,
         isTablet: false,
@@ -95,40 +90,40 @@ describe("Types tests", () => {
         model: device.model,
         os: mobileOs.name,
         osVersion: mobileOs.version,
-        ua: mobileUa
+        ua: mobileUa,
       });
     });
 
-    it("should return stvPayload()", () => {
-      expect(stvPayload(true, engine, os, ua)).toEqual({
+    it('should return stvPayload()', () => {
+      expect(smartTvPayload(true, engine, os, ua)).toEqual({
         isSmartTV: true,
         engineName: engine.name || false,
         engineVersion: engine.version,
         osName: os.name,
         osVersion: os.version,
-        userAgent: ua
+        userAgent: ua,
       });
     });
 
-    it("should return consolePayload()", () => {
+    it('should return consolePayload()', () => {
       expect(consolePayload(true, engine, os, ua)).toEqual({
         isConsole: true,
         engineName: engine.name || false,
         engineVersion: engine.version,
         osName: os.name,
         osVersion: os.version,
-        userAgent: ua
+        userAgent: ua,
       });
     });
 
-    it("should return wearPayload()", () => {
-      expect(wearPayload(true, engine, os, ua)).toEqual({
+    it('should return wearPayload()', () => {
+      expect(wearablePayload(true, engine, os, ua)).toEqual({
         isWearable: true,
         engineName: engine.name || false,
         engineVersion: engine.version,
         osName: os.name,
         osVersion: os.version,
-        userAgent: ua
+        userAgent: ua,
       });
     });
   });
