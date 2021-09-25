@@ -53,7 +53,7 @@
     "@types/react": "^17.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.1",
-    "jest": "^24.8.0",
+    "jest": "^27.2.2",
     "raf": "^3.4.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
