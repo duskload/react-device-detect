@@ -1,5 +1,8 @@
-import { os, device, browser, ua, engine, setDefaults, isIOS13Check, getNavigatorInstance } from './get-ua-data';
-import { BrowserTypes, DeviceTypes, OsTypes } from './types';
+import { parseUserAgent } from './parse';
+import { BrowserTypes, DeviceTypes, OsTypes } from '../constants/constants';
+import { setDefaults, isIOS13Check, getNavigatorInstance } from '../utils/utils';
+
+const { os, device, browser, ua, engine } = parseUserAgent();
 
 const isMobileType = () => device.type === DeviceTypes.Mobile;
 const isTabletType = () => device.type === DeviceTypes.Tablet;
@@ -32,10 +35,12 @@ const isFirefoxType = () => browser.name === BrowserTypes.Firefox;
 const isChromiumType = () => browser.name === BrowserTypes.Chromium;
 const isEdgeType = () => browser.name === BrowserTypes.Edge;
 const isYandexType = () => browser.name === BrowserTypes.Yandex;
-const isSafariType = () => browser.name === BrowserTypes.Safari || browser.name === BrowserTypes.MobileSafari;
+const isSafariType = () =>
+  browser.name === BrowserTypes.Safari || browser.name === BrowserTypes.MobileSafari;
 const isMobileSafariType = () => browser.name === BrowserTypes.MobileSafari;
 const isOperaType = () => browser.name === BrowserTypes.Opera;
-const isIEType = () => browser.name === BrowserTypes.InternetExplorer || browser.name === BrowserTypes.Ie;
+const isIEType = () =>
+  browser.name === BrowserTypes.InternetExplorer || browser.name === BrowserTypes.Ie;
 const isMIUIType = () => browser.name === BrowserTypes.MIUI;
 const isSamsungBrowserType = () => browser.name === BrowserTypes.SamsungBrowser;
 
@@ -50,8 +55,9 @@ const getIOS13 = () => {
   const nav = getNavigatorInstance();
   return (
     nav &&
-    (/iPad|iPhone|iPod/.test(nav.platform) || (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1)) &&
-      !window.MSStream
+    (/iPad|iPhone|iPod/.test(nav.platform) ||
+      (nav.platform === 'MacIntel' && nav.maxTouchPoints > 1)) &&
+    !window.MSStream
   );
 };
 
@@ -113,4 +119,3 @@ export const isWindows = isWindowsType();
 export const isMacOs = isMacOsType();
 export const isMIUI = isMIUIType();
 export const isSamsungBrowser = isSamsungBrowserType();
-

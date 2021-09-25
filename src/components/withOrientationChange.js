@@ -1,7 +1,7 @@
 import React from "react";
-import { isMobile } from "./selectors";
+import { isMobile } from "../lib/selectors";
 
-function withOrientationChange(WrappedComponent) {
+export function withOrientationChange(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -67,5 +67,3 @@ function withOrientationChange(WrappedComponent) {
     }
   };
 }
-
-export { withOrientationChange };

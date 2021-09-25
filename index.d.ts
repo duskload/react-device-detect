@@ -108,7 +108,9 @@ declare namespace ReactDeviceDetect {
     SamsungBrowser: string;
   }
 
-  export function deviceDetect(): any;
+  export function deviceDetect(userAgent: string | undefined): any;
+
+  export function parseUserAgent(userAgent: string | undefined): any;
 
   export function withOrientationChange<P, S = {}>(Component: React.Component<P, S> | React.FC<P>): React.ComponentClass<P, S>;
 

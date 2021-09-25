@@ -9,30 +9,39 @@ var React__default = _interopDefault(React);
 
 var UAParser = require('ua-parser-js/dist/ua-parser.min');
 
-var UA = new UAParser();
-var browser = UA.getBrowser();
-var cpu = UA.getCPU();
-var device = UA.getDevice();
-var engine = UA.getEngine();
-var os = UA.getOS();
-var ua = UA.getUA();
+var parseUserAgent = function parseUserAgent(userAgent) {
+  // If we have userAgent string passed as argument,
+  // most likely we are running ssr
+  if (userAgent) {
+    var ServerUAInstance = new UAParser(userAgent);
+    return {
+      UA: ServerUAInstance,
+      browser: ServerUAInstance.getBrowser(),
+      cpu: ServerUAInstance.getCPU(),
+      device: ServerUAInstance.getDevice(),
+      engine: ServerUAInstance.getEngine(),
+      os: ServerUAInstance.getOS(),
+      ua: ServerUAInstance.getUA(),
+      setUserAgent: function setUserAgent(userAgentString) {
+        return ServerUAInstance.setUA(userAgentString);
+      }
+    };
+  } // Client user agent
 
-var setDefaults = function setDefaults(p) {
-  var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
-  return p ? p : d;
-};
-var getNavigatorInstance = function getNavigatorInstance() {
-  if (typeof window !== 'undefined') {
-    if (window.navigator || navigator) {
-      return window.navigator || navigator;
+
+  var ClientUAInstance = new UAParser(userAgent);
+  return {
+    UA: ClientUAInstance,
+    browser: ClientUAInstance.getBrowser(),
+    cpu: ClientUAInstance.getCPU(),
+    device: ClientUAInstance.getDevice(),
+    engine: ClientUAInstance.getEngine(),
+    os: ClientUAInstance.getOS(),
+    ua: ClientUAInstance.getUA(),
+    setUserAgent: function setUserAgent(userAgentString) {
+      return ClientUAInstance.setUA(userAgentString);
     }
-  }
-
-  return false;
-};
-var isIOS13Check = function isIOS13Check(type) {
-  var nav = getNavigatorInstance();
-  return nav && nav.platform && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
+  };
 };
 
 function _typeof(obj) {
@@ -221,6 +230,48 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
 var DeviceTypes = {
   Mobile: 'mobile',
   Tablet: 'tablet',
@@ -231,27 +282,27 @@ var DeviceTypes = {
 };
 var BrowserTypes = {
   Chrome: 'Chrome',
-  Firefox: "Firefox",
-  Opera: "Opera",
-  Yandex: "Yandex",
-  Safari: "Safari",
-  InternetExplorer: "Internet Explorer",
-  Edge: "Edge",
-  Chromium: "Chromium",
+  Firefox: 'Firefox',
+  Opera: 'Opera',
+  Yandex: 'Yandex',
+  Safari: 'Safari',
+  InternetExplorer: 'Internet Explorer',
+  Edge: 'Edge',
+  Chromium: 'Chromium',
   Ie: 'IE',
-  MobileSafari: "Mobile Safari",
-  EdgeChromium: "Edge Chromium",
-  MIUI: "MIUI Browser",
+  MobileSafari: 'Mobile Safari',
+  EdgeChromium: 'Edge Chromium',
+  MIUI: 'MIUI Browser',
   SamsungBrowser: 'Samsung Browser'
 };
 var OsTypes = {
   IOS: 'iOS',
-  Android: "Android",
-  WindowsPhone: "Windows Phone",
+  Android: 'Android',
+  WindowsPhone: 'Windows Phone',
   Windows: 'Windows',
   MAC_OS: 'Mac OS'
 };
-var initialData = {
+var InitialDeviceTypes = {
   isMobile: false,
   isTablet: false,
   isBrowser: false,
@@ -259,7 +310,8 @@ var initialData = {
   isConsole: false,
   isWearable: false
 };
-var checkType = function checkType(type) {
+
+var checkDeviceType = function checkDeviceType(type) {
   switch (type) {
     case DeviceTypes.Mobile:
       return {
@@ -292,10 +344,28 @@ var checkType = function checkType(type) {
       };
 
     default:
-      return initialData;
+      return InitialDeviceTypes;
   }
 };
-var broPayload = function broPayload(isBrowser, browser, engine, os, ua) {
+var setDefaults = function setDefaults(p) {
+  var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
+  return p ? p : d;
+};
+var getNavigatorInstance = function getNavigatorInstance() {
+  if (typeof window !== 'undefined') {
+    if (window.navigator || navigator) {
+      return window.navigator || navigator;
+    }
+  }
+
+  return false;
+};
+var isIOS13Check = function isIOS13Check(type) {
+  var nav = getNavigatorInstance();
+  return nav && nav.platform && (nav.platform.indexOf(type) !== -1 || nav.platform === 'MacIntel' && nav.maxTouchPoints > 1 && !window.MSStream);
+};
+
+var browserPayload = function browserPayload(isBrowser, browser, engine, os, ua) {
   return {
     isBrowser: isBrowser,
     browserMajorVersion: setDefaults(browser.major),
@@ -317,7 +387,7 @@ var mobilePayload = function mobilePayload(type, device, os, ua) {
     ua: setDefaults(ua)
   });
 };
-var stvPayload = function stvPayload(isSmartTV, engine, os, ua) {
+var smartTvPayload = function smartTvPayload(isSmartTV, engine, os, ua) {
   return {
     isSmartTV: isSmartTV,
     engineName: setDefaults(engine.name),
@@ -337,7 +407,7 @@ var consolePayload = function consolePayload(isConsole, engine, os, ua) {
     userAgent: setDefaults(ua)
   };
 };
-var wearPayload = function wearPayload(isWearable, engine, os, ua) {
+var wearablePayload = function wearablePayload(isWearable, engine, os, ua) {
   return {
     isWearable: isWearable,
     engineName: setDefaults(engine.name),
@@ -348,9 +418,15 @@ var wearPayload = function wearPayload(isWearable, engine, os, ua) {
   };
 };
 
-var type = checkType(device.type);
+function deviceDetect(userAgent) {
+  var _parseUserAgent = parseUserAgent(userAgent),
+      device = _parseUserAgent.device,
+      browser = _parseUserAgent.browser,
+      engine = _parseUserAgent.engine,
+      os = _parseUserAgent.os,
+      ua = _parseUserAgent.ua;
 
-function deviceDetect() {
+  var type = checkDeviceType(device.type);
   var isBrowser = type.isBrowser,
       isMobile = type.isMobile,
       isTablet = type.isTablet,
@@ -359,11 +435,11 @@ function deviceDetect() {
       isWearable = type.isWearable;
 
   if (isBrowser) {
-    return broPayload(isBrowser, browser, engine, os, ua);
+    return browserPayload(isBrowser, browser, engine, os, ua);
   }
 
   if (isSmartTV) {
-    return stvPayload(isSmartTV, engine, os, ua);
+    return smartTvPayload(isSmartTV, engine, os, ua);
   }
 
   if (isConsole) {
@@ -379,9 +455,16 @@ function deviceDetect() {
   }
 
   if (isWearable) {
-    return wearPayload(isWearable, engine, os, ua);
+    return wearablePayload(isWearable, engine, os, ua);
   }
 }
+
+var _parseUserAgent = parseUserAgent(),
+    os = _parseUserAgent.os,
+    device = _parseUserAgent.device,
+    browser = _parseUserAgent.browser,
+    ua = _parseUserAgent.ua,
+    engine = _parseUserAgent.engine;
 
 var isMobileType = function isMobileType() {
   return device.type === DeviceTypes.Mobile;
@@ -822,6 +905,43 @@ function withOrientationChange(WrappedComponent) {
   );
 }
 
+function useMobileOrientation() {
+  var _useState = React.useState(function () {
+    var orientation = window.innerWidth > window.innerHeight ? 90 : 0;
+    return {
+      isPortrait: orientation === 0,
+      isLandscape: orientation === 90,
+      orientation: orientation === 0 ? 'portrait' : 'landscape'
+    };
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      setState = _useState2[1];
+
+  var handleOrientationChange = React.useCallback(function () {
+    var orientation = window.innerWidth > window.innerHeight ? 90 : 0;
+    var next = {
+      isPortrait: orientation === 0,
+      isLandscape: orientation === 90,
+      orientation: orientation === 0 ? 'portrait' : 'landscape'
+    };
+    state.orientation !== next.orientation && setState(next);
+  }, [state.orientation]);
+  React.useEffect(function () {
+    if ((typeof window === "undefined" ? "undefined" : _typeof(window)) !== undefined && isMobile) {
+      handleOrientationChange();
+      window.addEventListener("load", handleOrientationChange, false);
+      window.addEventListener("resize", handleOrientationChange, false);
+    }
+
+    return function () {
+      window.removeEventListener("resize", handleOrientationChange, false);
+      window.removeEventListener("load", handleOrientationChange, false);
+    };
+  }, [handleOrientationChange]);
+  return state;
+}
+
 exports.AndroidView = AndroidView;
 exports.BrowserTypes = BrowserTypes;
 exports.BrowserView = BrowserView;
@@ -879,4 +999,6 @@ exports.mobileModel = mobileModel;
 exports.mobileVendor = mobileVendor;
 exports.osName = osName;
 exports.osVersion = osVersion;
+exports.parseUserAgent = parseUserAgent;
+exports.useMobileOrientation = useMobileOrientation;
 exports.withOrientationChange = withOrientationChange;

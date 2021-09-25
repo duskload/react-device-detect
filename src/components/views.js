@@ -10,8 +10,8 @@ import {
   isMobileOnly,
   isWearable,
   isConsole,
-  isTablet
-} from '../helpers/selectors';
+  isTablet,
+} from '../lib/selectors';
 
 export const AndroidView = ({ renderWithFragment, children, viewClassName, style, ...props }) => {
   return isAndroid ? (
@@ -97,7 +97,13 @@ export const WinPhoneView = ({ renderWithFragment, children, viewClassName, styl
   ) : null;
 };
 
-export const MobileOnlyView = ({ renderWithFragment, children, viewClassName, style, ...props }) => {
+export const MobileOnlyView = ({
+  renderWithFragment,
+  children,
+  viewClassName,
+  style,
+  ...props
+}) => {
   return isMobileOnly ? (
     renderWithFragment ? (
       <Fragment>{children}</Fragment>
@@ -145,7 +151,14 @@ export const WearableView = ({ renderWithFragment, children, viewClassName, styl
   ) : null;
 };
 
-export const CustomView = ({ renderWithFragment, children, viewClassName, style, condition, ...props }) => {
+export const CustomView = ({
+  renderWithFragment,
+  children,
+  viewClassName,
+  style,
+  condition,
+  ...props
+}) => {
   return condition ? (
     renderWithFragment ? (
       <Fragment>{children}</Fragment>
