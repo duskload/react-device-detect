@@ -5,8 +5,17 @@
 `useMobileOrientation` - watches orientation change and returns current orientation, and boolean values for portrait and landscape
 
 ```js
-// typical payload
-// { isPortrait: true, isLandscape: false, orientation: 'portrait' }
+import { useMobileOrientation } from 'react-device-detect';
+
+function App() {
+  const { isLandscape } = useMobileOrientation()
+  
+  if (!isLandscape) {
+    return null
+  }
+  
+  return <div> Landscape design </div>
+}
 ```
 
 `useDeviceData` - returns full data acquired from user agent. You can either pass your user agent or it will get current window ua.
@@ -14,13 +23,10 @@
 `useDeviceSelectors` - returns selectors and full user agent data. You can either pass your user agent or it will get current window ua.
 
 ```js
-
-// you can either pass your user agent or it will automatica
 const [selectors, data] = useDeviceSelectors(window.navigator.userAgent)
 
 const { isMobile } = selectors
-
-// else do something with selectors
+...
 ```
 
 #### HOC
