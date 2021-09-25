@@ -1,9 +1,11 @@
-import { parseUserAgent } from './parse';
+import * as UAInstance from './parse';
 import * as create from '../utils/payloads';
 import { checkDeviceType } from '../utils/utils';
 
 export function deviceDetect(userAgent) {
-  const { device, browser, engine, os, ua } = parseUserAgent(userAgent);
+  const { device, browser, engine, os, ua } = userAgent
+    ? UAInstance.parseUserAgent(userAgent)
+    : UAInstance;
 
   const type = checkDeviceType(device.type);
   const { isBrowser, isMobile, isTablet, isSmartTV, isConsole, isWearable } = type;

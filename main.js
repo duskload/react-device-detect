@@ -9,40 +9,48 @@ var React__default = _interopDefault(React);
 
 var UAParser = require('ua-parser-js/dist/ua-parser.min');
 
+var ClientUAInstance = new UAParser();
+var browser = ClientUAInstance.getBrowser();
+var cpu = ClientUAInstance.getCPU();
+var device = ClientUAInstance.getDevice();
+var engine = ClientUAInstance.getEngine();
+var os = ClientUAInstance.getOS();
+var ua = ClientUAInstance.getUA();
+var setUa = function setUa(userAgentString) {
+  return ClientUAInstance.setUA(userAgentString);
+};
 var parseUserAgent = function parseUserAgent(userAgent) {
-  // If we have userAgent string passed as argument,
-  // most likely we are running ssr
-  if (userAgent) {
-    var ServerUAInstance = new UAParser(userAgent);
-    return {
-      UA: ServerUAInstance,
-      browser: ServerUAInstance.getBrowser(),
-      cpu: ServerUAInstance.getCPU(),
-      device: ServerUAInstance.getDevice(),
-      engine: ServerUAInstance.getEngine(),
-      os: ServerUAInstance.getOS(),
-      ua: ServerUAInstance.getUA(),
-      setUserAgent: function setUserAgent(userAgentString) {
-        return ServerUAInstance.setUA(userAgentString);
-      }
-    };
-  } // Client user agent
+  if (!userAgent) {
+    console.error('No userAgent string was provided');
+    return;
+  }
 
-
-  var ClientUAInstance = new UAParser(userAgent);
+  var UserAgentInstance = new UAParser(userAgent);
   return {
-    UA: ClientUAInstance,
-    browser: ClientUAInstance.getBrowser(),
-    cpu: ClientUAInstance.getCPU(),
-    device: ClientUAInstance.getDevice(),
-    engine: ClientUAInstance.getEngine(),
-    os: ClientUAInstance.getOS(),
-    ua: ClientUAInstance.getUA(),
+    UA: UserAgentInstance,
+    browser: UserAgentInstance.getBrowser(),
+    cpu: UserAgentInstance.getCPU(),
+    device: UserAgentInstance.getDevice(),
+    engine: UserAgentInstance.getEngine(),
+    os: UserAgentInstance.getOS(),
+    ua: UserAgentInstance.getUA(),
     setUserAgent: function setUserAgent(userAgentString) {
-      return ClientUAInstance.setUA(userAgentString);
+      return UserAgentInstance.setUA(userAgentString);
     }
   };
 };
+
+var UAInstance = /*#__PURE__*/Object.freeze({
+  ClientUAInstance: ClientUAInstance,
+  browser: browser,
+  cpu: cpu,
+  device: device,
+  engine: engine,
+  os: os,
+  ua: ua,
+  setUa: setUa,
+  parseUserAgent: parseUserAgent
+});
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -347,6 +355,9 @@ var checkDeviceType = function checkDeviceType(type) {
       return InitialDeviceTypes;
   }
 };
+var setUserAgent = function setUserAgent(userAgent) {
+  return setUa(userAgent);
+};
 var setDefaults = function setDefaults(p) {
   var d = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'none';
   return p ? p : d;
@@ -419,12 +430,12 @@ var wearablePayload = function wearablePayload(isWearable, engine, os, ua) {
 };
 
 function deviceDetect(userAgent) {
-  var _parseUserAgent = parseUserAgent(userAgent),
-      device = _parseUserAgent.device,
-      browser = _parseUserAgent.browser,
-      engine = _parseUserAgent.engine,
-      os = _parseUserAgent.os,
-      ua = _parseUserAgent.ua;
+  var _ref = userAgent ? parseUserAgent(userAgent) : UAInstance,
+      device = _ref.device,
+      browser = _ref.browser,
+      engine = _ref.engine,
+      os = _ref.os,
+      ua = _ref.ua;
 
   var type = checkDeviceType(device.type);
   var isBrowser = type.isBrowser,
@@ -459,23 +470,20 @@ function deviceDetect(userAgent) {
   }
 }
 
-var _parseUserAgent = parseUserAgent(),
-    os = _parseUserAgent.os,
-    device = _parseUserAgent.device,
-    browser = _parseUserAgent.browser,
-    ua = _parseUserAgent.ua,
-    engine = _parseUserAgent.engine;
-
-var isMobileType = function isMobileType() {
-  return device.type === DeviceTypes.Mobile;
+var isMobileType = function isMobileType(_ref) {
+  var type = _ref.type;
+  return type === DeviceTypes.Mobile;
 };
 
-var isTabletType = function isTabletType() {
-  return device.type === DeviceTypes.Tablet;
+var isTabletType = function isTabletType(_ref2) {
+  var type = _ref2.type;
+  return type === DeviceTypes.Tablet;
 };
 
-var isMobileAndTabletType = function isMobileAndTabletType() {
-  switch (device.type) {
+var isMobileAndTabletType = function isMobileAndTabletType(_ref3) {
+  var type = _ref3.type;
+
+  switch (type) {
     case DeviceTypes.Mobile:
     case DeviceTypes.Tablet:
       return true;
@@ -485,94 +493,167 @@ var isMobileAndTabletType = function isMobileAndTabletType() {
   }
 };
 
-var isEdgeChromiumType = function isEdgeChromiumType() {
-  return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
+var isSmartTVType = function isSmartTVType(_ref4) {
+  var type = _ref4.type;
+  return type === DeviceTypes.SmartTv;
 };
 
-var isSmartTVType = function isSmartTVType() {
-  return device.type === DeviceTypes.SmartTv;
+var isBrowserType = function isBrowserType(_ref5) {
+  var type = _ref5.type;
+  return type === DeviceTypes.Browser;
 };
 
-var isBrowserType = function isBrowserType() {
-  return device.type === DeviceTypes.Browser;
+var isWearableType = function isWearableType(_ref6) {
+  var type = _ref6.type;
+  return type === DeviceTypes.Wearable;
 };
 
-var isWearableType = function isWearableType() {
-  return device.type === DeviceTypes.Wearable;
+var isConsoleType = function isConsoleType(_ref7) {
+  var type = _ref7.type;
+  return type === DeviceTypes.Console;
 };
 
-var isConsoleType = function isConsoleType() {
-  return device.type === DeviceTypes.Console;
+var getMobileVendor = function getMobileVendor(_ref8) {
+  var vendor = _ref8.vendor;
+  return setDefaults(vendor);
 };
 
-var isAndroidType = function isAndroidType() {
-  return os.name === OsTypes.Android;
+var getMobileModel = function getMobileModel(_ref9) {
+  var model = _ref9.model;
+  return setDefaults(model);
 };
 
-var isWindowsType = function isWindowsType() {
-  return os.name === OsTypes.Windows;
+var getDeviceType = function getDeviceType(_ref10) {
+  var type = _ref10.type;
+  return setDefaults(type, 'browser');
+}; // os types
+
+
+var isAndroidType = function isAndroidType(_ref11) {
+  var name = _ref11.name;
+  return name === OsTypes.Android;
 };
 
-var isMacOsType = function isMacOsType() {
-  return os.name === OsTypes.MAC_OS;
+var isWindowsType = function isWindowsType(_ref12) {
+  var name = _ref12.name;
+  return name === OsTypes.Windows;
 };
 
-var isWinPhoneType = function isWinPhoneType() {
-  return os.name === OsTypes.WindowsPhone;
+var isMacOsType = function isMacOsType(_ref13) {
+  var name = _ref13.name;
+  return name === OsTypes.MAC_OS;
 };
 
-var isIOSType = function isIOSType() {
-  return os.name === OsTypes.IOS;
+var isWinPhoneType = function isWinPhoneType(_ref14) {
+  var name = _ref14.name;
+  return name === OsTypes.WindowsPhone;
 };
 
-var isChromeType = function isChromeType() {
-  return browser.name === BrowserTypes.Chrome;
+var isIOSType = function isIOSType(_ref15) {
+  var name = _ref15.name;
+  return name === OsTypes.IOS;
 };
 
-var isFirefoxType = function isFirefoxType() {
-  return browser.name === BrowserTypes.Firefox;
+var getOsVersion = function getOsVersion(_ref16) {
+  var version = _ref16.version;
+  return setDefaults(version);
 };
 
-var isChromiumType = function isChromiumType() {
-  return browser.name === BrowserTypes.Chromium;
+var getOsName = function getOsName(_ref17) {
+  var name = _ref17.name;
+  return setDefaults(name);
+}; // browser types
+
+
+var isChromeType = function isChromeType(_ref18) {
+  var name = _ref18.name;
+  return name === BrowserTypes.Chrome;
 };
 
-var isEdgeType = function isEdgeType() {
-  return browser.name === BrowserTypes.Edge;
+var isFirefoxType = function isFirefoxType(_ref19) {
+  var name = _ref19.name;
+  return name === BrowserTypes.Firefox;
 };
 
-var isYandexType = function isYandexType() {
-  return browser.name === BrowserTypes.Yandex;
+var isChromiumType = function isChromiumType(_ref20) {
+  var name = _ref20.name;
+  return name === BrowserTypes.Chromium;
 };
 
-var isSafariType = function isSafariType() {
-  return browser.name === BrowserTypes.Safari || browser.name === BrowserTypes.MobileSafari;
+var isEdgeType = function isEdgeType(_ref21) {
+  var name = _ref21.name;
+  return name === BrowserTypes.Edge;
 };
 
-var isMobileSafariType = function isMobileSafariType() {
-  return browser.name === BrowserTypes.MobileSafari;
+var isYandexType = function isYandexType(_ref22) {
+  var name = _ref22.name;
+  return name === BrowserTypes.Yandex;
 };
 
-var isOperaType = function isOperaType() {
-  return browser.name === BrowserTypes.Opera;
+var isSafariType = function isSafariType(_ref23) {
+  var name = _ref23.name;
+  return name === BrowserTypes.Safari || name === BrowserTypes.MobileSafari;
 };
 
-var isIEType = function isIEType() {
-  return browser.name === BrowserTypes.InternetExplorer || browser.name === BrowserTypes.Ie;
+var isMobileSafariType = function isMobileSafariType(_ref24) {
+  var name = _ref24.name;
+  return name === BrowserTypes.MobileSafari;
 };
 
-var isMIUIType = function isMIUIType() {
-  return browser.name === BrowserTypes.MIUI;
+var isOperaType = function isOperaType(_ref25) {
+  var name = _ref25.name;
+  return name === BrowserTypes.Opera;
 };
 
-var isSamsungBrowserType = function isSamsungBrowserType() {
-  return browser.name === BrowserTypes.SamsungBrowser;
+var isIEType = function isIEType(_ref26) {
+  var name = _ref26.name;
+  return name === BrowserTypes.InternetExplorer || name === BrowserTypes.Ie;
+};
+
+var isMIUIType = function isMIUIType(_ref27) {
+  var name = _ref27.name;
+  return name === BrowserTypes.MIUI;
+};
+
+var isSamsungBrowserType = function isSamsungBrowserType(_ref28) {
+  var name = _ref28.name;
+  return name === BrowserTypes.SamsungBrowser;
+};
+
+var getBrowserFullVersion = function getBrowserFullVersion(_ref29) {
+  var version = _ref29.version;
+  return setDefaults(version);
+};
+
+var getBrowserVersion = function getBrowserVersion(_ref30) {
+  var major = _ref30.major;
+  return setDefaults(major);
+};
+
+var getBrowserName = function getBrowserName(_ref31) {
+  var name = _ref31.name;
+  return setDefaults(name);
+}; // engine types
+
+
+var getEngineName = function getEngineName(_ref32) {
+  var name = _ref32.name;
+  return setDefaults(name);
+};
+
+var getEngineVersion = function getEngineVersion(_ref33) {
+  var version = _ref33.version;
+  return setDefaults(version);
 };
 
 var isElectronType = function isElectronType() {
   var nav = getNavigatorInstance();
   var ua = nav && nav.userAgent && nav.userAgent.toLowerCase();
   return typeof ua === 'string' ? /electron/.test(ua) : false;
+};
+
+var isEdgeChromiumType = function isEdgeChromiumType() {
+  return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
 };
 
 var getIOS13 = function getIOS13() {
@@ -592,92 +673,110 @@ var getIPod13 = function getIPod13() {
   return isIOS13Check('iPod');
 };
 
-var getBrowserFullVersion = function getBrowserFullVersion() {
-  return setDefaults(browser.version);
+var getUseragent = function getUseragent(userAg) {
+  return setDefaults(userAg);
 };
 
-var getBrowserVersion = function getBrowserVersion() {
-  return setDefaults(browser.major);
-};
-
-var getOsVersion = function getOsVersion() {
-  return setDefaults(os.version);
-};
-
-var getOsName = function getOsName() {
-  return setDefaults(os.name);
-};
-
-var getBrowserName = function getBrowserName() {
-  return setDefaults(browser.name);
-};
-
-var getMobileVendor = function getMobileVendor() {
-  return setDefaults(device.vendor);
-};
-
-var getMobileModel = function getMobileModel() {
-  return setDefaults(device.model);
-};
-
-var getEngineName = function getEngineName() {
-  return setDefaults(engine.name);
-};
-
-var getEngineVersion = function getEngineVersion() {
-  return setDefaults(engine.version);
-};
-
-var getUseragent = function getUseragent() {
-  return setDefaults(ua);
-};
-
-var getDeviceType = function getDeviceType() {
-  return setDefaults(device.type, 'browser');
-};
-
-var isSmartTV = isSmartTVType();
-var isConsole = isConsoleType();
-var isWearable = isWearableType();
-var isMobileSafari = isMobileSafariType() || getIPad13();
-var isChromium = isChromiumType();
-var isMobile = isMobileAndTabletType() || getIPad13();
-var isMobileOnly = isMobileType();
-var isTablet = isTabletType() || getIPad13();
-var isBrowser = isBrowserType();
-var isDesktop = isBrowserType();
-var isAndroid = isAndroidType();
-var isWinPhone = isWinPhoneType();
-var isIOS = isIOSType() || getIPad13();
-var isChrome = isChromeType();
-var isFirefox = isFirefoxType();
-var isSafari = isSafariType();
-var isOpera = isOperaType();
-var isIE = isIEType();
-var osVersion = getOsVersion();
-var osName = getOsName();
-var fullBrowserVersion = getBrowserFullVersion();
-var browserVersion = getBrowserVersion();
-var browserName = getBrowserName();
-var mobileVendor = getMobileVendor();
-var mobileModel = getMobileModel();
-var engineName = getEngineName();
-var engineVersion = getEngineVersion();
-var getUA = getUseragent();
-var isEdge = isEdgeType() || isEdgeChromiumType();
-var isYandex = isYandexType();
-var deviceType = getDeviceType();
+var isSmartTV = isSmartTVType(device);
+var isConsole = isConsoleType(device);
+var isWearable = isWearableType(device);
+var isMobileSafari = isMobileSafariType(browser) || getIPad13();
+var isChromium = isChromiumType(browser);
+var isMobile = isMobileAndTabletType(device) || getIPad13();
+var isMobileOnly = isMobileType(device);
+var isTablet = isTabletType(device) || getIPad13();
+var isBrowser = isBrowserType(device);
+var isDesktop = isBrowserType(device);
+var isAndroid = isAndroidType(os);
+var isWinPhone = isWinPhoneType(os);
+var isIOS = isIOSType(os) || getIPad13();
+var isChrome = isChromeType(browser);
+var isFirefox = isFirefoxType(browser);
+var isSafari = isSafariType(browser);
+var isOpera = isOperaType(browser);
+var isIE = isIEType(browser);
+var osVersion = getOsVersion(os);
+var osName = getOsName(os);
+var fullBrowserVersion = getBrowserFullVersion(browser);
+var browserVersion = getBrowserVersion(browser);
+var browserName = getBrowserName(browser);
+var mobileVendor = getMobileVendor(device);
+var mobileModel = getMobileModel(device);
+var engineName = getEngineName(engine);
+var engineVersion = getEngineVersion(engine);
+var getUA = getUseragent(ua);
+var isEdge = isEdgeType(browser) || isEdgeChromiumType();
+var isYandex = isYandexType(browser);
+var deviceType = getDeviceType(device);
 var isIOS13 = getIOS13();
 var isIPad13 = getIPad13();
 var isIPhone13 = getIphone13();
 var isIPod13 = getIPod13();
 var isElectron = isElectronType();
 var isEdgeChromium = isEdgeChromiumType();
-var isLegacyEdge = isEdgeType() && !isEdgeChromiumType();
-var isWindows = isWindowsType();
-var isMacOs = isMacOsType();
-var isMIUI = isMIUIType();
-var isSamsungBrowser = isSamsungBrowserType();
+var isLegacyEdge = isEdgeType(browser) && !isEdgeChromiumType();
+var isWindows = isWindowsType(os);
+var isMacOs = isMacOsType(os);
+var isMIUI = isMIUIType(browser);
+var isSamsungBrowser = isSamsungBrowserType(browser);
+var getSelectorsByUserAgent = function getSelectorsByUserAgent(userAgent) {
+  if (!userAgent || typeof userAgent !== 'string') {
+    console.error('No valid user agent string was provided');
+    return;
+  }
+
+  var _parseUserAgent = parseUserAgent(userAgent),
+      device = _parseUserAgent.device,
+      browser = _parseUserAgent.browser,
+      os = _parseUserAgent.os,
+      engine = _parseUserAgent.engine,
+      ua = _parseUserAgent.ua;
+
+  return {
+    isSmartTV: isSmartTVType(device),
+    isConsole: isConsoleType(device),
+    isWearable: isWearableType(device),
+    isMobileSafari: isMobileSafariType(browser) || getIPad13(),
+    isChromium: isChromiumType(browser),
+    isMobile: isMobileAndTabletType(device) || getIPad13(),
+    isMobileOnly: isMobileType(device),
+    isTablet: isTabletType(device) || getIPad13(),
+    isBrowser: isBrowserType(device),
+    isDesktop: isBrowserType(device),
+    isAndroid: isAndroidType(os),
+    isWinPhone: isWinPhoneType(os),
+    isIOS: isIOSType(os) || getIPad13(),
+    isChrome: isChromeType(browser),
+    isFirefox: isFirefoxType(browser),
+    isSafari: isSafariType(browser),
+    isOpera: isOperaType(browser),
+    isIE: isIEType(browser),
+    osVersion: getOsVersion(os),
+    osName: getOsName(os),
+    fullBrowserVersion: getBrowserFullVersion(browser),
+    browserVersion: getBrowserVersion(browser),
+    browserName: getBrowserName(browser),
+    mobileVendor: getMobileVendor(device),
+    mobileModel: getMobileModel(device),
+    engineName: getEngineName(engine),
+    engineVersion: getEngineVersion(engine),
+    getUA: getUseragent(ua),
+    isEdge: isEdgeType(browser) || isEdgeChromiumType(),
+    isYandex: isYandexType(browser),
+    deviceType: getDeviceType(device),
+    isIOS13: getIOS13(),
+    isIPad13: getIPad13(),
+    isIPhone13: getIphone13(),
+    isIPod13: getIPod13(),
+    isElectron: isElectronType(),
+    isEdgeChromium: isEdgeChromiumType(),
+    isLegacyEdge: isEdgeType(browser) && !isEdgeChromiumType(),
+    isWindows: isWindowsType(os),
+    isMacOs: isMacOsType(os),
+    isMIUI: isMIUIType(browser),
+    isSamsungBrowser: isSamsungBrowserType(browser)
+  };
+};
 
 var AndroidView = function AndroidView(_ref) {
   var renderWithFragment = _ref.renderWithFragment,
@@ -963,6 +1062,7 @@ exports.deviceType = deviceType;
 exports.engineName = engineName;
 exports.engineVersion = engineVersion;
 exports.fullBrowserVersion = fullBrowserVersion;
+exports.getSelectorsByUserAgent = getSelectorsByUserAgent;
 exports.getUA = getUA;
 exports.isAndroid = isAndroid;
 exports.isBrowser = isBrowser;
@@ -1000,5 +1100,6 @@ exports.mobileVendor = mobileVendor;
 exports.osName = osName;
 exports.osVersion = osVersion;
 exports.parseUserAgent = parseUserAgent;
+exports.setUserAgent = setUserAgent;
 exports.useMobileOrientation = useMobileOrientation;
 exports.withOrientationChange = withOrientationChange;

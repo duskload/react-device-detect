@@ -1,4 +1,5 @@
 import { DeviceTypes, InitialDeviceTypes, BrowserTypes } from '../constants/constants';
+import { setUa } from '../lib/parse';
 
 export const checkDeviceType = (type) => {
   switch (type) {
@@ -34,6 +35,8 @@ export const getCurrentBrowser = (name) => {
       return false;
   }
 };
+
+export const setUserAgent = (userAgent) => setUa(userAgent)
 
 export const mockUserAgent = (userAgent) => {
   window.navigator.__defineGetter__('userAgent', () => userAgent);

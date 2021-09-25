@@ -1,34 +1,31 @@
 const UAParser = require('ua-parser-js/dist/ua-parser.min');
 
-export const parseUserAgent = (userAgent) => {
-  // If we have userAgent string passed as argument,
-  // most likely we are running ssr
-  if (userAgent) {
-    const ServerUAInstance = new UAParser(userAgent);
+export const ClientUAInstance = new UAParser();
 
-    return {
-      UA: ServerUAInstance,
-      browser: ServerUAInstance.getBrowser(),
-      cpu: ServerUAInstance.getCPU(),
-      device: ServerUAInstance.getDevice(),
-      engine: ServerUAInstance.getEngine(),
-      os: ServerUAInstance.getOS(),
-      ua: ServerUAInstance.getUA(),
-      setUserAgent: (userAgentString) => ServerUAInstance.setUA(userAgentString),
-    };
+export const browser = ClientUAInstance.getBrowser();
+export const cpu = ClientUAInstance.getCPU();
+export const device = ClientUAInstance.getDevice();
+export const engine = ClientUAInstance.getEngine();
+export const os = ClientUAInstance.getOS();
+export const ua = ClientUAInstance.getUA();
+export const setUa = (userAgentString) => ClientUAInstance.setUA(userAgentString);
+
+export const parseUserAgent = (userAgent) => {
+  if (!userAgent) {
+    console.error('No userAgent string was provided');
+    return;
   }
 
-  // Client user agent
-  const ClientUAInstance = new UAParser(userAgent);
+  const UserAgentInstance = new UAParser(userAgent);
 
   return {
-    UA: ClientUAInstance,
-    browser: ClientUAInstance.getBrowser(),
-    cpu: ClientUAInstance.getCPU(),
-    device: ClientUAInstance.getDevice(),
-    engine: ClientUAInstance.getEngine(),
-    os: ClientUAInstance.getOS(),
-    ua: ClientUAInstance.getUA(),
-    setUserAgent: (userAgentString) => ClientUAInstance.setUA(userAgentString),
+    UA: UserAgentInstance,
+    browser: UserAgentInstance.getBrowser(),
+    cpu: UserAgentInstance.getCPU(),
+    device: UserAgentInstance.getDevice(),
+    engine: UserAgentInstance.getEngine(),
+    os: UserAgentInstance.getOS(),
+    ua: UserAgentInstance.getUA(),
+    setUserAgent: (userAgentString) => UserAgentInstance.setUA(userAgentString),
   };
 };
