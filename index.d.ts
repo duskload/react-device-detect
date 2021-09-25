@@ -1,5 +1,5 @@
 
-// Type definitions for react-device-detect 1.6.4
+// Type definitions for react-device-detect 2.0.0
 // Project: https://github.com/duskload/react-device-detect
 // Definitions by: Michael Laktionov <https://github.com/duskload>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -66,6 +66,12 @@ declare module "react-device-detect" {
   export import isSamsungBrowser = ReactDeviceDetect.isSamsungBrowser;
   export import OsTypes = ReactDeviceDetect.OsTypes;
   export import BrowserTypes = ReactDeviceDetect.BrowserTypes;
+  export import parseUserAgent = ReactDeviceDetect.parseUserAgent;
+  export import setUserAgent = ReactDeviceDetect.setUserAgent;
+  export import getSelectorsByUserAgent = ReactDeviceDetect.getSelectorsByUserAgent;
+  export import useDeviceSelectors = ReactDeviceDetect.useDeviceSelectors;
+  export import useDeviceData = ReactDeviceDetect.useDeviceData;
+  export import useMobileOrientation = ReactDeviceDetect.useMobileOrientation;
 }
 
 declare namespace ReactDeviceDetect {
