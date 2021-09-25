@@ -16,6 +16,12 @@ or
 yarn add react-device-detect
 ```
 
+## API
+
+- [Hooks, SSR and utilities](docs/api.md)
+- [Selectors](docs/selectors.md)
+- [Views](docs/views.md)
+
 ## Usage
 
 Example:
@@ -108,12 +114,6 @@ const styles = {
   <p>View content</p>
 </BrowserView>
 ```
-
-Other API
-
-- [Hooks, SSR and utilities](docs/api.md)
-- [Selectors](docs/selectors.md)
-- [Views](docs/views.md)
 
 ### Testing
 
