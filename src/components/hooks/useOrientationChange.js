@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { isMobile } from "../../lib/selectors";
 
-export function useMobileOrientation() {
+export function useOrientationChange() {
   const [state, setState] = useState(() => {
     const orientation = window.innerWidth > window.innerHeight ? 90 : 0;
     return {

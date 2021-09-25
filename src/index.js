@@ -5,5 +5,7 @@ export { setUserAgent } from './utils/utils';
 
 export * from './components/views';
 export * from './components/withOrientationChange';
-export * from './components/hooks';
+export * from './components/hooks/useOrientationChange';
+export { useDeviceData } from './components/hooks/useDeviceData';
+export { useDeviceSelectors } from './components/hooks/useDeviceSelectors';
 export * from './lib/selectors';

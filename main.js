@@ -40,7 +40,7 @@ var parseUserAgent = function parseUserAgent(userAgent) {
   };
 };
 
-var UAInstance = /*#__PURE__*/Object.freeze({
+var UAHelper = /*#__PURE__*/Object.freeze({
   ClientUAInstance: ClientUAInstance,
   browser: browser,
   cpu: cpu,
@@ -430,7 +430,7 @@ var wearablePayload = function wearablePayload(isWearable, engine, os, ua) {
 };
 
 function deviceDetect(userAgent) {
-  var _ref = userAgent ? parseUserAgent(userAgent) : UAInstance,
+  var _ref = userAgent ? parseUserAgent(userAgent) : UAHelper,
       device = _ref.device,
       browser = _ref.browser,
       engine = _ref.engine,
@@ -469,6 +469,8 @@ function deviceDetect(userAgent) {
     return wearablePayload(isWearable, engine, os, ua);
   }
 }
+
+var parseUserAgent$1 = parseUserAgent; // device types
 
 var isMobileType = function isMobileType(_ref) {
   var type = _ref.type;
@@ -652,7 +654,7 @@ var isElectronType = function isElectronType() {
   return typeof ua === 'string' ? /electron/.test(ua) : false;
 };
 
-var isEdgeChromiumType = function isEdgeChromiumType() {
+var isEdgeChromiumType = function isEdgeChromiumType(ua) {
   return typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
 };
 
@@ -705,7 +707,7 @@ var mobileModel = getMobileModel(device);
 var engineName = getEngineName(engine);
 var engineVersion = getEngineVersion(engine);
 var getUA = getUseragent(ua);
-var isEdge = isEdgeType(browser) || isEdgeChromiumType();
+var isEdge = isEdgeType(browser) || isEdgeChromiumType(ua);
 var isYandex = isYandexType(browser);
 var deviceType = getDeviceType(device);
 var isIOS13 = getIOS13();
@@ -713,24 +715,19 @@ var isIPad13 = getIPad13();
 var isIPhone13 = getIphone13();
 var isIPod13 = getIPod13();
 var isElectron = isElectronType();
-var isEdgeChromium = isEdgeChromiumType();
-var isLegacyEdge = isEdgeType(browser) && !isEdgeChromiumType();
+var isEdgeChromium = isEdgeChromiumType(ua);
+var isLegacyEdge = isEdgeType(browser) && !isEdgeChromiumType(ua);
 var isWindows = isWindowsType(os);
 var isMacOs = isMacOsType(os);
 var isMIUI = isMIUIType(browser);
 var isSamsungBrowser = isSamsungBrowserType(browser);
-var getSelectorsByUserAgent = function getSelectorsByUserAgent(userAgent) {
-  if (!userAgent || typeof userAgent !== 'string') {
-    console.error('No valid user agent string was provided');
-    return;
-  }
-
-  var _parseUserAgent = parseUserAgent(userAgent),
-      device = _parseUserAgent.device,
-      browser = _parseUserAgent.browser,
-      os = _parseUserAgent.os,
-      engine = _parseUserAgent.engine,
-      ua = _parseUserAgent.ua;
+function buildSelectorsObject(options) {
+  var _ref34 = options ? options : UAHelper,
+      device = _ref34.device,
+      browser = _ref34.browser,
+      os = _ref34.os,
+      engine = _ref34.engine,
+      ua = _ref34.ua;
 
   return {
     isSmartTV: isSmartTVType(device),
@@ -761,7 +758,7 @@ var getSelectorsByUserAgent = function getSelectorsByUserAgent(userAgent) {
     engineName: getEngineName(engine),
     engineVersion: getEngineVersion(engine),
     getUA: getUseragent(ua),
-    isEdge: isEdgeType(browser) || isEdgeChromiumType(),
+    isEdge: isEdgeType(browser) || isEdgeChromiumType(ua),
     isYandex: isYandexType(browser),
     deviceType: getDeviceType(device),
     isIOS13: getIOS13(),
@@ -769,13 +766,34 @@ var getSelectorsByUserAgent = function getSelectorsByUserAgent(userAgent) {
     isIPhone13: getIphone13(),
     isIPod13: getIPod13(),
     isElectron: isElectronType(),
-    isEdgeChromium: isEdgeChromiumType(),
-    isLegacyEdge: isEdgeType(browser) && !isEdgeChromiumType(),
+    isEdgeChromium: isEdgeChromiumType(ua),
+    isLegacyEdge: isEdgeType(browser) && !isEdgeChromiumType(ua),
     isWindows: isWindowsType(os),
     isMacOs: isMacOsType(os),
     isMIUI: isMIUIType(browser),
     isSamsungBrowser: isSamsungBrowserType(browser)
   };
+}
+var getSelectorsByUserAgent = function getSelectorsByUserAgent(userAgent) {
+  if (!userAgent || typeof userAgent !== 'string') {
+    console.error('No valid user agent string was provided');
+    return;
+  }
+
+  var _parseUserAgent = parseUserAgent$1(userAgent),
+      device = _parseUserAgent.device,
+      browser = _parseUserAgent.browser,
+      os = _parseUserAgent.os,
+      engine = _parseUserAgent.engine,
+      ua = _parseUserAgent.ua;
+
+  return buildSelectorsObject({
+    device: device,
+    browser: browser,
+    os: os,
+    engine: engine,
+    ua: ua
+  });
 };
 
 var AndroidView = function AndroidView(_ref) {
@@ -1041,6 +1059,18 @@ function useMobileOrientation() {
   return state;
 }
 
+function useDeviceData(userAgent) {
+  var hookUserAgent = userAgent ? userAgent : window.navigator.userAgent;
+  return parseUserAgent(hookUserAgent);
+}
+
+function useDeviceSelectors(userAgent) {
+  var hookUserAgent = userAgent ? userAgent : window.navigator.userAgent;
+  var deviceData = useDeviceData(hookUserAgent);
+  var selectors = buildSelectorsObject(deviceData);
+  return [selectors, deviceData];
+}
+
 exports.AndroidView = AndroidView;
 exports.BrowserTypes = BrowserTypes;
 exports.BrowserView = BrowserView;
@@ -1057,6 +1087,7 @@ exports.WearableView = WearableView;
 exports.WinPhoneView = WinPhoneView;
 exports.browserName = browserName;
 exports.browserVersion = browserVersion;
+exports.buildSelectorsObject = buildSelectorsObject;
 exports.deviceDetect = deviceDetect;
 exports.deviceType = deviceType;
 exports.engineName = engineName;
@@ -1101,5 +1132,7 @@ exports.osName = osName;
 exports.osVersion = osVersion;
 exports.parseUserAgent = parseUserAgent;
 exports.setUserAgent = setUserAgent;
+exports.useDeviceData = useDeviceData;
+exports.useDeviceSelectors = useDeviceSelectors;
 exports.useMobileOrientation = useMobileOrientation;
 exports.withOrientationChange = withOrientationChange;
