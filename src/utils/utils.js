@@ -15,6 +15,8 @@ export const checkDeviceType = (type) => {
       return { isWearable: true };
     case DeviceTypes.Browser:
       return { isBrowser: true };
+    case DeviceTypes.Embedded:
+      return { isEmbedded: true }
     default:
       return InitialDeviceTypes;
   }

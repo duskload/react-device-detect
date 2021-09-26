@@ -47,3 +47,14 @@ export const wearablePayload = (isWearable, engine, os, ua) => ({
   osVersion: setDefaults(os.version),
   userAgent: setDefaults(ua),
 });
+
+export const embeddedPayload = (isEmbedded, device, engine, os, ua) => ({
+  isEmbedded,
+  vendor: setDefaults(device.vendor),
+  model: setDefaults(device.model),
+  engineName: setDefaults(engine.name),
+  engineVersion: setDefaults(engine.version),
+  osName: setDefaults(os.name),
+  osVersion: setDefaults(os.version),
+  userAgent: setDefaults(ua),
+})

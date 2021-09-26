@@ -8,7 +8,7 @@ export function deviceDetect(userAgent) {
     : UAHelper;
 
   const type = checkDeviceType(device.type);
-  const { isBrowser, isMobile, isTablet, isSmartTV, isConsole, isWearable } = type;
+  const { isBrowser, isMobile, isTablet, isSmartTV, isConsole, isWearable, isEmbedded } = type;
 
   if (isBrowser) {
     return create.browserPayload(isBrowser, browser, engine, os, ua);
@@ -32,5 +32,9 @@ export function deviceDetect(userAgent) {
 
   if (isWearable) {
     return create.wearablePayload(isWearable, engine, os, ua);
+  }
+
+  if (isEmbedded) {
+    return create.embeddedPayload(isEmbedded, device, engine, os, ua);
   }
 }

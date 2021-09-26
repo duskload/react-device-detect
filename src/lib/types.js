@@ -10,6 +10,7 @@ export const isSmartTVType = ({ type }) => type === DeviceTypes.SmartTv;
 export const isBrowserType = ({ type }) => type === DeviceTypes.Browser;
 export const isWearableType = ({ type }) => type === DeviceTypes.Wearable;
 export const isConsoleType = ({ type }) => type === DeviceTypes.Console;
+export const isEmbeddedType = ({ type }) => type === DeviceTypes.Embedded;
 export const getMobileVendor = ({ vendor }) => setDefaults(vendor);
 export const getMobileModel = ({ model }) => setDefaults(model);
 export const getDeviceType = ({ type }) => setDefaults(type, 'browser');

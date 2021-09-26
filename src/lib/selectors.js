@@ -5,6 +5,7 @@ import { buildSelectorsObject } from './buildSelectors';
 export const isSmartTV = types.isSmartTVType(UAHelper.device);
 export const isConsole = types.isConsoleType(UAHelper.device);
 export const isWearable = types.isWearableType(UAHelper.device);
+export const isEmbedded = types.isEmbeddedType(UAHelper.device);
 export const isMobileSafari = types.isMobileSafariType(UAHelper.browser) || types.getIPad13();
 export const isChromium = types.isChromiumType(UAHelper.browser);
 export const isMobile = types.isMobileAndTabletType(UAHelper.device) || types.getIPad13();

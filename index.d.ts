@@ -27,6 +27,7 @@ declare module "react-device-detect" {
   export import isSmartTV = ReactDeviceDetect.isSmartTV;
   export import isConsole = ReactDeviceDetect.isConsole;
   export import isWearable = ReactDeviceDetect.isWearable;
+  export import isEmbedded = ReactDeviceDetect.isEmbedded;
   export import isMobileSafari = ReactDeviceDetect.isMobileSafari;
   export import isChromium = ReactDeviceDetect.isChromium;
   export import isMobileOnly = ReactDeviceDetect.isMobileOnly;
@@ -179,6 +180,8 @@ declare namespace ReactDeviceDetect {
   export const isConsole: boolean;
 
   export const isWearable: boolean;
+
+  export const isEmbedded: boolean;
 
   export const isMobileSafari: boolean;
 

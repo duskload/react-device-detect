@@ -4,6 +4,7 @@ export const DeviceTypes = {
   SmartTv: 'smarttv',
   Console: 'console',
   Wearable: 'wearable',
+  Embedded: 'embedded',
   Browser: undefined,
 };
 

@@ -7,6 +7,7 @@ export function buildSelectorsObject(options) {
     isSmartTV: types.isSmartTVType(device),
     isConsole: types.isConsoleType(device),
     isWearable: types.isWearableType(device),
+    isEmbedded: types.isEmbeddedType(device),
     isMobileSafari: types.isMobileSafariType(browser) || types.getIPad13(),
     isChromium: types.isChromiumType(browser),
     isMobile: types.isMobileAndTabletType(device) || types.getIPad13(),
