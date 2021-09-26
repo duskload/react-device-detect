@@ -12,6 +12,7 @@ Available selectors:
 | isSmartTV          | bool    | returns true if device type is `smarttv`                                               |
 | isWearable         | bool    | returns true if device type is `wearable`                                              |
 | isConsole          | bool    | returns true if device type is `console`                                               |
+| isEmbedded         | bool    | returns true if device type is `embedded`                                              |
 | isAndroid          | bool    | returns true if os type is `Android`                                                   |
 | isWinPhone         | bool    | returns true if os type is `Windows Phone`                                             |
 | isIOS              | bool    | returns true if os type is `iOS`                                                       |
