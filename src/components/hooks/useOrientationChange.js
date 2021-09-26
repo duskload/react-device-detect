@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { isMobile } from "./selectors";
+import { isMobile } from "../../lib/selectors";
 
 export function useMobileOrientation() {
   const [state, setState] = useState(() => {
@@ -32,5 +32,3 @@ export function useMobileOrientation() {
   }, [handleOrientationChange]);
   return state;
 }
-
-export { useMobileOrientation };

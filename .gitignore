@@ -1,4 +1,13 @@
+# folders
 node_modules
 coverage
+
+# ide
 .idea
+.vscode
+
+# mac files
 .DS_Store
+
+# build
+dist

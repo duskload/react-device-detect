@@ -6,7 +6,7 @@ export default {
   external: [ 'react', 'react-dom' ],
   input: 'src/index.js',
   output: {
-    file: 'main.js',
+    file: 'dist/lib.js',
     format: 'cjs'
   },
   plugins: [

@@ -1,5 +1,5 @@
 
-// Type definitions for react-device-detect 1.6.4
+// Type definitions for react-device-detect 2.0.0
 // Project: https://github.com/duskload/react-device-detect
 // Definitions by: Michael Laktionov <https://github.com/duskload>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -27,6 +27,7 @@ declare module "react-device-detect" {
   export import isSmartTV = ReactDeviceDetect.isSmartTV;
   export import isConsole = ReactDeviceDetect.isConsole;
   export import isWearable = ReactDeviceDetect.isWearable;
+  export import isEmbedded = ReactDeviceDetect.isEmbedded;
   export import isMobileSafari = ReactDeviceDetect.isMobileSafari;
   export import isChromium = ReactDeviceDetect.isChromium;
   export import isMobileOnly = ReactDeviceDetect.isMobileOnly;
@@ -66,6 +67,12 @@ declare module "react-device-detect" {
   export import isSamsungBrowser = ReactDeviceDetect.isSamsungBrowser;
   export import OsTypes = ReactDeviceDetect.OsTypes;
   export import BrowserTypes = ReactDeviceDetect.BrowserTypes;
+  export import parseUserAgent = ReactDeviceDetect.parseUserAgent;
+  export import setUserAgent = ReactDeviceDetect.setUserAgent;
+  export import getSelectorsByUserAgent = ReactDeviceDetect.getSelectorsByUserAgent;
+  export import useDeviceSelectors = ReactDeviceDetect.useDeviceSelectors;
+  export import useDeviceData = ReactDeviceDetect.useDeviceData;
+  export import useMobileOrientation = ReactDeviceDetect.useMobileOrientation;
 }
 
 declare namespace ReactDeviceDetect {
@@ -108,7 +115,17 @@ declare namespace ReactDeviceDetect {
     SamsungBrowser: string;
   }
 
-  export function deviceDetect(): any;
+  export function deviceDetect(userAgent: string | undefined): any;
+
+  export function parseUserAgent(userAgent: string | undefined): any;
+
+  export function setUserAgent(userAgent: string): any;
+
+  export function getSelectorsByUserAgent(userAgent: string): any;
+
+  export function useDeviceSelectors(userAgent: string): any;
+
+  export function useDeviceData(userAgent: string): any;
 
   export function withOrientationChange<P, S = {}>(Component: React.Component<P, S> | React.FC<P>): React.ComponentClass<P, S>;
 
@@ -163,6 +180,8 @@ declare namespace ReactDeviceDetect {
   export const isConsole: boolean;
 
   export const isWearable: boolean;
+
+  export const isEmbedded: boolean;
 
   export const isMobileSafari: boolean;
 
