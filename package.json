@@ -1,6 +1,6 @@
 {
   "name": "react-device-detect",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Detect device type and render your component according to it",
   "main": "dist/lib.js",
   "typings": "./index.d.ts",

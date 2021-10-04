@@ -79,14 +79,14 @@ declare namespace ReactDeviceDetect {
   export interface ViewProps {
     renderWithFragment?: boolean;
     children?: React.ReactNode;
-    viewClassName?: string;
+    className?: string;
     style?: React.CSSProperties;
   }
 
   export interface CustomViewProps {
     renderWithFragment?: boolean;
     children?: React.ReactNode;
-    viewClassName?: string;
+    className?: string;
     style?: React.CSSProperties;
     condition?: boolean;
   }
