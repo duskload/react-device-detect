@@ -91,7 +91,7 @@ function App() {
 
 ## Style the view
 
-You can style view component by passing class to `viewClassName` prop
+You can style a view component by passing class to the `className` prop
 
 ```html
 <BrowserView className="custom-class">
