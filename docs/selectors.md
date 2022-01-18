@@ -33,7 +33,7 @@ Available selectors:
 | browserName        | string  | returns browser name                                                                   |
 | mobileVendor       | string  | returns mobile device vendor (e.g `LG`, `iPhone` etc)                                  |
 | mobileModel        | string  | returns mobile device model (e.g `Nexus 5`)                                            |
-| engineName         | string  | returns browser engine `name` (e.g `Gecko` for FF or `WebKit` for Chrome)              |
+| engineName         | string  | returns browser engine `name` (e.g `Gecko` for FF or `Blink` for Chrome)               |
 | engineVersion      | string  | returns engine version                                                                 |
 | getUA              | string  | returns user agent                                                                     |
 | deviceType         | string  | returns device type (e.g `mobile` or `tablet`)                                         |
