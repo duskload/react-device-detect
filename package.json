@@ -24,8 +24,8 @@
     "console"
   ],
   "peerDependencies": {
-    "react": ">= 0.14.0 < 18.0.0",
-    "react-dom": ">= 0.14.0 < 18.0.0"
+    "react": ">= 0.14.0",
+    "react-dom": ">= 0.14.0"
   },
   "scripts": {
     "test": "jest",
