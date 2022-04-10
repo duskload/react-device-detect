@@ -16,6 +16,10 @@ or
 yarn add react-device-detect
 ```
 
+## When to use this library
+
+This library uses a technique called [user agent sniffing](https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent) to detect device information. That means it works by examining the [User Agent string](https://en.wikipedia.org/wiki/User_agent) given by a browser and comparing it to a list of browser and device names it knows about. This technique works, but [has drawbacks](https://css-tricks.com/browser-detection-is-bad/) and may or may not be the right approach, depending on what you're trying to achieve. If you need to detect a specific browser type (e.g. Chrome, Safari, Internet Explorer) or specific category of device (e.g. all iPods), this library can do that. If you just want your React app to behave differently or look different on mobiles in general, [CSS `@media` queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@media) and [`matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) are probably what you want. There are many libraries that can help with using `@media` queries and `matchMedia` in React projects, such as [react-responsive](https://www.npmjs.com/package/react-responsive) and [@react-hook/media-query](https://www.npmjs.com/package/@react-hook/media-query).
+
 ## API
 
 - [Hooks, SSR and utilities](docs/api.md)
