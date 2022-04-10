@@ -51,7 +51,7 @@ import {isMobile} from 'react-device-detect';
 function App() {
   renderContent = () => {
     if (isMobile) {
-      return <div> This content is unavailable on mobile</div>
+      return <div> This content is available only on mobile</div>
     }
     return <div> ...content </div>
   }
