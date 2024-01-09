@@ -9,6 +9,7 @@ import {
   isSmartTV,
   isMobileOnly,
   isWearable,
+  isWebView,
   isConsole,
   isTablet,
 } from '../lib/selectors';
@@ -111,6 +112,16 @@ export const SmartTVView = ({ renderWithFragment, children, ...props }) => {
 
 export const ConsoleView = ({ renderWithFragment, children, ...props }) => {
   return isConsole ? (
+    renderWithFragment ? (
+      <Fragment>{children}</Fragment>
+    ) : (
+      <div {...props}>{children}</div>
+    )
+  ) : null;
+};
+
+export const WebView = ({ renderWithFragment, children, ...props }) => {
+  return isWebView ? (
     renderWithFragment ? (
       <Fragment>{children}</Fragment>
     ) : (

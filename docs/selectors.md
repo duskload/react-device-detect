@@ -14,6 +14,7 @@ Available selectors:
 | isConsole          | bool    | returns true if device type is `console`                                               |
 | isEmbedded         | bool    | returns true if device type is `embedded`                                              |
 | isAndroid          | bool    | returns true if os type is `Android`                                                   |
+| isWebView          | bool    | returns true if is WebView `mobile`                                                |
 | isWinPhone         | bool    | returns true if os type is `Windows Phone`                                             |
 | isIOS              | bool    | returns true if os type is `iOS`                                                       |
 | isChrome           | bool    | returns true if browser is `Chrome`                                                    |

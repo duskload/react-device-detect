@@ -16,6 +16,7 @@ export function buildSelectorsObject(options) {
     isBrowser: types.isBrowserType(device),
     isDesktop: types.isBrowserType(device),
     isAndroid: types.isAndroidType(os),
+    isWebView: types.isWebViewType(),
     isWinPhone: types.isWinPhoneType(os),
     isIOS: types.isIOSType(os) || types.getIPad13(),
     isChrome: types.isChromeType(browser),

@@ -15,6 +15,7 @@ export const isBrowser = types.isBrowserType(UAHelper.device);
 export const isDesktop = types.isBrowserType(UAHelper.device);
 export const isAndroid = types.isAndroidType(UAHelper.os);
 export const isWinPhone = types.isWinPhoneType(UAHelper.os);
+export const isWebView = types.isWebViewType();
 export const isIOS = types.isIOSType(UAHelper.os) || types.getIPad13();
 export const isChrome = types.isChromeType(UAHelper.browser);
 export const isFirefox = types.isFirefoxType(UAHelper.browser);
