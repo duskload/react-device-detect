@@ -32,6 +32,7 @@ declare module "react-device-detect" {
   export import isChromium = ReactDeviceDetect.isChromium;
   export import isMobileOnly = ReactDeviceDetect.isMobileOnly;
   export import isAndroid = ReactDeviceDetect.isAndroid;
+  export import isWebView = ReactDeviceDetect.isWebView;
   export import isWinPhone = ReactDeviceDetect.isWinPhone;
   export import isIOS = ReactDeviceDetect.isIOS;
   export import isChrome = ReactDeviceDetect.isChrome;
@@ -188,8 +189,10 @@ declare namespace ReactDeviceDetect {
   export const isChromium: boolean;
 
   export const isMobileOnly: boolean;
-
+  
   export const isAndroid: boolean;
+  
+  export const isWebView: boolean;
 
   export const isWinPhone: boolean;
 

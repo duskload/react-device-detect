@@ -54,6 +54,13 @@ export const isElectronType = () => {
 };
 export const isEdgeChromiumType = (ua) => typeof ua === 'string' && ua.indexOf('Edg/') !== -1;
 
+export const isWebViewType = () => {
+  const nav = getNavigatorInstance();
+  const ua = nav && nav.userAgent ? nav.userAgent : '';
+
+  return /WebView|(iPhone|iPod|iPad)(?!.*Safari)/i.test(ua);
+};
+
 export const getIOS13 = () => {
   const nav = getNavigatorInstance();
   return (
